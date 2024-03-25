@@ -1,0 +1,15 @@
+INT=1
+FLOAT=2
+PLUS=3
+MINUS=4
+MULT=5
+DIV=6
+OPEN_PAREN=7
+CLOSE_PAREN=8
+WS=9
+'+'=3
+'-'=4
+'*'=5
+'/'=6
+'('=7
+')'=8
