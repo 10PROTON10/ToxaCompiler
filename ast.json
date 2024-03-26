@@ -1,32 +1,46 @@
 {
-    "type": "PLUS",
+    "type": "MINUS",
     "left": {
-        "type": "MINUS",
+        "type": "PLUS",
         "left": {
-            "type": "DIV",
-            "left": {
-                "type": "INT",
-                "value": 30
-            },
-            "right": {
-                "type": "INT",
-                "value": 10
-            }
+            "type": "INT",
+            "value": 3
         },
         "right": {
             "type": "MULT",
             "left": {
-                "type": "INT",
-                "value": 5
+                "type": "MINUS",
+                "left": {
+                    "type": "INT",
+                    "value": 5
+                },
+                "right": {
+                    "type": "INT",
+                    "value": 1
+                }
             },
             "right": {
                 "type": "INT",
-                "value": 3
+                "value": 2
             }
         }
     },
     "right": {
-        "type": "INT",
-        "value": 8
+        "type": "DIV",
+        "left": {
+            "type": "INT",
+            "value": 2
+        },
+        "right": {
+            "type": "PLUS",
+            "left": {
+                "type": "INT",
+                "value": 3
+            },
+            "right": {
+                "type": "INT",
+                "value": 1
+            }
+        }
     }
 }
