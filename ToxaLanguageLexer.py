@@ -42,8 +42,8 @@ class ToxaLanguageLexer(Lexer):
     MINUS = 4
     MULT = 5
     DIV = 6
-    OPEN_PAREN = 7
-    CLOSE_PAREN = 8
+    LPAREN = 7
+    RPAREN = 8
     WS = 9
 
     channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
@@ -54,11 +54,11 @@ class ToxaLanguageLexer(Lexer):
             "'+'", "'-'", "'*'", "'/'", "'('", "')'" ]
 
     symbolicNames = [ "<INVALID>",
-            "INT", "FLOAT", "PLUS", "MINUS", "MULT", "DIV", "OPEN_PAREN", 
-            "CLOSE_PAREN", "WS" ]
+            "INT", "FLOAT", "PLUS", "MINUS", "MULT", "DIV", "LPAREN", "RPAREN", 
+            "WS" ]
 
-    ruleNames = [ "INT", "FLOAT", "PLUS", "MINUS", "MULT", "DIV", "OPEN_PAREN", 
-                  "CLOSE_PAREN", "WS" ]
+    ruleNames = [ "INT", "FLOAT", "PLUS", "MINUS", "MULT", "DIV", "LPAREN", 
+                  "RPAREN", "WS" ]
 
     grammarFileName = "ToxaLanguage.g4"
 

@@ -4,72 +4,62 @@ from ToxaLanguageLexer import ToxaLanguageLexer
 from ToxaLanguageVisitor import ToxaLanguageVisitor
 from ToxaLanguageParser import ToxaLanguageParser
 
-# Создаем класс посетителя для обхода дерева разбора и создания AST
+
 class ASTBuilder(ToxaLanguageVisitor):
     def __init__(self):
-        self.ast = []
+        self.ast = None
 
-    # Добавление узла в AST
-    def add_ast_node(self, node):
-        self.ast.append(node)
-
-    # Обход узлов multExpr (умножение и деление)
-    def visitMultExpr(self, ctx: ToxaLanguageParser.MultExprContext):
-        if ctx.MULT():
-            left = self.visit(ctx.multExpr())
-            right = self.visit(ctx.atom())
-            node = {"type": "MULT", "left": left, "right": right}
-            return node
-        elif ctx.DIV():
-            left = self.visit(ctx.multExpr())
-            right = self.visit(ctx.atom())
-            node = {"type": "DIV", "left": left, "right": right}
-            return node
-        else:
-            return self.visit(ctx.atom())
-
-    # Обход узлов expression (сложение и вычитание)
-    def visitExpression(self, ctx: ToxaLanguageParser.ExpressionContext):
+    def visitExpr(self, ctx: ToxaLanguageParser.ExprContext):
         if ctx.PLUS():
-            left = self.visit(ctx.expression())
-            right = self.visit(ctx.multExpr())
+            left = self.visit(ctx.expr(0))
+            right = self.visit(ctx.expr(1))
             node = {"type": "PLUS", "left": left, "right": right}
+            self.add_ast_node(node)
             return node
         elif ctx.MINUS():
-            left = self.visit(ctx.expression())
-            right = self.visit(ctx.multExpr())
+            left = self.visit(ctx.expr(0))
+            right = self.visit(ctx.expr(1))
             node = {"type": "MINUS", "left": left, "right": right}
+            self.add_ast_node(node)
             return node
-        else:
-            return self.visit(ctx.multExpr())
-
-    # Обход узлов atom (числа и скобки)
-    def visitAtom(self, ctx: ToxaLanguageParser.AtomContext):
-        if ctx.INT():
-            return {"type": "INT", "value": int(ctx.INT().getText())}
+        elif ctx.INT():
+            node = {"type": "INT", "value": int(ctx.INT().getText())}
+            return node
         elif ctx.FLOAT():
-            return {"type": "FLOAT", "value": float(ctx.FLOAT().getText())}
-        elif ctx.OPEN_PAREN():
-            return self.visit(ctx.expression())
+            node = {"type": "FLOAT", "value": float(ctx.FLOAT().getText())}
+            return node
+        elif ctx.MULT():
+            left = self.visit(ctx.expr(0))
+            right = self.visit(ctx.expr(1))
+            node = {"type": "MULT", "left": left, "right": right}
+            self.add_ast_node(node)
+            return node
+        elif ctx.DIV():
+            left = self.visit(ctx.expr(0))
+            right = self.visit(ctx.expr(1))
+            node = {"type": "DIV", "left": left, "right": right}
+            self.add_ast_node(node)
+            return node
+        elif ctx.LPAREN():
+            return self.visit(ctx.expr(0))
         else:
             return None
 
-    # Сохранение AST в JSON файл
+    def add_ast_node(self, node):
+        self.ast = node
+
     def save_ast_to_json(self, filename):
         with open(filename, 'w') as file:
             json.dump(self.ast, file, indent=4)
 
-# Функция для создания AST и сохранения в JSON
-def create_ast_and_save_to_json(input_file, output_file="ast.json"):
-    input_code = FileStream(input_file)
+
+if __name__ == "__main__":
+    input_code = FileStream("input_program.txt")
     lexer = ToxaLanguageLexer(input_code)
     tokens = CommonTokenStream(lexer)
     parser = ToxaLanguageParser(tokens)
-    tree = parser.expression()
+    tree = parser.expr()
 
     ast_builder = ASTBuilder()
-    ast_builder.add_ast_node(ast_builder.visit(tree))  # Добавляем корневой узел AST
-    ast_builder.save_ast_to_json(output_file)
-
-if __name__ == "__main__":
-    create_ast_and_save_to_json("input_program.txt")
+    ast_builder.visit(tree)
+    ast_builder.save_ast_to_json("ast.json")

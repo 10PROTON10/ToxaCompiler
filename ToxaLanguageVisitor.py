@@ -9,18 +9,8 @@ else:
 
 class ToxaLanguageVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by ToxaLanguageParser#expression.
-    def visitExpression(self, ctx:ToxaLanguageParser.ExpressionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#multExpr.
-    def visitMultExpr(self, ctx:ToxaLanguageParser.MultExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#atom.
-    def visitAtom(self, ctx:ToxaLanguageParser.AtomContext):
+    # Visit a parse tree produced by ToxaLanguageParser#expr.
+    def visitExpr(self, ctx:ToxaLanguageParser.ExprContext):
         return self.visitChildren(ctx)
 
 

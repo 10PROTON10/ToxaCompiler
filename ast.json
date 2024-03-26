@@ -1,27 +1,32 @@
-[
-    {
+{
+    "type": "PLUS",
+    "left": {
         "type": "MINUS",
         "left": {
-            "type": "FLOAT",
-            "value": 32.5
-        },
-        "right": {
             "type": "DIV",
             "left": {
-                "type": "MULT",
-                "left": {
-                    "type": "INT",
-                    "value": 10
-                },
-                "right": {
-                    "type": "INT",
-                    "value": 4
-                }
+                "type": "INT",
+                "value": 30
             },
             "right": {
                 "type": "INT",
-                "value": 33
+                "value": 10
+            }
+        },
+        "right": {
+            "type": "MULT",
+            "left": {
+                "type": "INT",
+                "value": 5
+            },
+            "right": {
+                "type": "INT",
+                "value": 3
             }
         }
+    },
+    "right": {
+        "type": "INT",
+        "value": 8
     }
-]
+}

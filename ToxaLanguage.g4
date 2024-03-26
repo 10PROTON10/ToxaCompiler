@@ -1,32 +1,29 @@
 grammar ToxaLanguage;
 
 // Определение лексем
+
 INT : [0-9]+ ;
 FLOAT : [0-9]+'.'[0-9]+ ;
-PLUS : '+' ;
-MINUS : '-' ;
-MULT : '*' ;
-DIV : '/' ;
-OPEN_PAREN : '(' ;
-CLOSE_PAREN : ')' ;
+
+// Арифметические операторы(Lexer Token)
+PLUS : '+' ; // Сложение
+MINUS : '-' ; // Вычитание
+MULT : '*' ; // Умножение
+DIV : '/' ; // Деление
+
+// Скобки(Lexer Token)
+LPAREN : '(' ; // Левая круглая скобка
+RPAREN : ')' ; // Правая круглая скобка
 
 // Пропуск пробелов и переводов строк
 WS : [ \t\r\n]+ -> skip ;
 
 // Правила синтаксиса
-expression : multExpr
-           | expression PLUS multExpr
-           | expression MINUS multExpr
-           ;
-
-multExpr : atom
-         | multExpr MULT atom
-         | multExpr DIV atom
-         ;
-
-atom : INT
+expr : expr (MULT | DIV) expr
+     | expr (PLUS | MINUS) expr
+     | INT
      | FLOAT
-     | OPEN_PAREN expression CLOSE_PAREN
+     | LPAREN expr RPAREN
      ;
 
 

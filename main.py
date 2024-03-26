@@ -3,37 +3,56 @@ from ToxaLanguageLexer import ToxaLanguageLexer
 from ToxaLanguageParser import ToxaLanguageParser
 from ToxaLanguageListener import ToxaLanguageListener
 from antlr4.error.ErrorListener import ErrorListener
-import ast_create  # импортируем файл ast_create.py
+import json
+from ast_create import ASTBuilder
+
 
 class MyListener(ToxaLanguageListener):
     def enterEveryRule(self, ctx):
         print("Вход в правило:", ToxaLanguageParser.ruleNames[ctx.getRuleIndex()])
 
-    def enterExpression(self, ctx):
+    def enterExpr(self, ctx):
         print("Выражение:", ctx.getText())
 
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
         print("Ошибка синтаксиса на строке", line, "и столбце", column, ":", msg)
 
+    def exitExpr(self, ctx):
+        if ctx.PLUS():
+            print("Операция сложения")
+        elif ctx.MINUS():
+            print("Операция вычитания")
+        elif ctx.MULT():
+            print("Операция умножения")
+        elif ctx.DIV():
+            print("Операция деления")
+        elif ctx.FLOAT():
+            print("Число с плавающей точкой:", ctx.FLOAT().getText())
+        elif ctx.INT():
+            print("Целое число:", ctx.INT().getText())
+
+
 def main():
-    input_stream = FileStream("input_program.txt")  # Путь к вашему входному файлу с кодом
+    input_stream = FileStream("input_program.txt")
 
     lexer = ToxaLanguageLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
     parser = ToxaLanguageParser(token_stream)
     listener = MyListener()
 
-    parser.removeErrorListeners()  # Удаляем стандартных слушателей ошибок
+    parser.removeErrorListeners()
     lexer.removeErrorListeners()
-    parser.addErrorListener(listener)  # Добавляем наш собственный слушатель ошибок
+    parser.addErrorListener(listener)
     lexer.addErrorListener(listener)
 
-    tree = parser.expression()  # Парсим входной файл с использованием правила expression
+    tree = parser.expr()
     walker = ParseTreeWalker()
-    walker.walk(listener, tree)  # Обходим дерево разбора с нашим слушателем
+    walker.walk(listener, tree)
 
-    # Вызываем создание AST и сохранение в JSON
-    ast_create.create_ast_and_save_to_json("input_program.txt")
+    ast_builder = ASTBuilder()
+    ast_builder.visit(tree)
+    ast_builder.save_ast_to_json("ast.json")
+
 
 if __name__ == '__main__':
     main()
