@@ -1,7 +1,10 @@
 import json
 
+
 def evaluate(node):
     if node["type"] == "INT":
+        return node["value"]
+    elif node["type"] == "FLOAT":
         return node["value"]
     elif node["type"] == "PLUS":
         return evaluate(node["left"]) + evaluate(node["right"])
@@ -11,6 +14,10 @@ def evaluate(node):
         return evaluate(node["left"]) * evaluate(node["right"])
     elif node["type"] == "DIV":
         return evaluate(node["left"]) / evaluate(node["right"])
+    elif node["type"] == "ASSIGN":
+        return evaluate(node["value"])
+    elif node["type"] == "PRINT":
+        return evaluate(node["value"])
 
 if __name__ == "__main__":
     with open("ast.json", "r") as file:

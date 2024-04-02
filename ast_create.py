@@ -45,6 +45,24 @@ class ASTBuilder(ToxaLanguageVisitor):
         else:
             return None
 
+    def visitAssignStatement(self, ctx: ToxaLanguageParser.AssignStatementContext):
+        variable_type = ctx.type_().getText()  # Получаем тип переменной
+        variable_name = ctx.ID().getText()  # Получаем имя переменной
+        assigned_value = self.visit(ctx.expr())  # Получаем значение переменной
+        node = {"type": "ASSIGNMENT", "variable_type": variable_type,
+                "variable_name": variable_name, "value": assigned_value, "END_STATE": ctx.END_STATE().getText()}
+        self.add_ast_node(node)
+        return node
+
+    def visitPrint(self, ctx: ToxaLanguageParser.ProgContext):
+        value_to_print = self.visit(ctx.expr())
+        node = {"type": "PRINT", "value": value_to_print, "END_STATE": ctx.END_STATE().getText()}
+        self.add_ast_node(node)
+        return node
+
+    def visitProg(self, ctx: ToxaLanguageParser.ProgContext):
+        return self.visitChildren(ctx)
+
     def add_ast_node(self, node):
         self.ast = node
 
@@ -58,8 +76,11 @@ if __name__ == "__main__":
     lexer = ToxaLanguageLexer(input_code)
     tokens = CommonTokenStream(lexer)
     parser = ToxaLanguageParser(tokens)
-    tree = parser.expr()
+    tree = parser.prog()
 
     ast_builder = ASTBuilder()
     ast_builder.visit(tree)
     ast_builder.save_ast_to_json("ast.json")
+
+
+

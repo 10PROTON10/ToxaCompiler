@@ -15,16 +15,51 @@ DIV : '/' ; // Деление
 LPAREN : '(' ; // Левая круглая скобка
 RPAREN : ')' ; // Правая круглая скобка
 
+// Присвоение и вывод
+ASSIGN : '=' ;
+PRINT : 'print' ;
+
+// Типы данных переменных
+TYPE_INT : 'int' ;
+TYPE_FLOAT : 'float' ;
+
+// Идентификатор
+ID : [a-zA-Z]+ ; // Переменные и имена функций состоят из букв.
+
 // Пропуск пробелов и переводов строк
 WS : [ \t\r\n]+ -> skip ;
 
+// Добавленный токен
+END_STATE : ';' ;
+
 // Правила синтаксиса
-expr : expr (MULT | DIV) expr
-     | expr (PLUS | MINUS) expr
-     | INT
-     | FLOAT
-     | LPAREN expr RPAREN
-     ;
+prog : (assignStatement | printStatement | expr) ;
+
+printStatement : PRINT LPAREN expr RPAREN END_STATE ;
+
+// Правила для выражений
+expr : term ((PLUS | MINUS) term)* ;
+
+term : factor ((MULT | DIV) factor)* ;
+
+factor : INT
+       | FLOAT
+       | LPAREN expr RPAREN
+       | ID
+       ;
+
+// Правило для объявления переменной
+assignStatement : type ID (ASSIGN expr)? END_STATE ;
+
+type : TYPE_INT | TYPE_FLOAT ;
+
+
+
+
+
+
+
+
 
 
 

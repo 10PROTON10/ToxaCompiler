@@ -11,8 +11,11 @@ class MyListener(ToxaLanguageListener):
     def enterEveryRule(self, ctx):
         print("Вход в правило:", ToxaLanguageParser.ruleNames[ctx.getRuleIndex()])
 
-    def enterExpr(self, ctx):
-        print("Выражение:", ctx.getText())
+    def enterDeclaration(self, ctx):
+        print("Объявление:", ctx.getText())
+
+    def enterPrint(self, ctx):
+        print("Вывод:", ctx.getText())
 
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
         print("Ошибка синтаксиса на строке", line, "и столбце", column, ":", msg)
@@ -45,7 +48,8 @@ def main():
     parser.addErrorListener(listener)
     lexer.addErrorListener(listener)
 
-    tree = parser.expr()
+
+    tree = parser.prog()  # Используем правило prog для парсинга
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
 
@@ -56,6 +60,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+я
+
 
 
 
