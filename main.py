@@ -6,15 +6,14 @@ from antlr4.error.ErrorListener import ErrorListener
 import json
 from ast_create import ASTBuilder
 
-
 class MyListener(ToxaLanguageListener):
     def enterEveryRule(self, ctx):
         print("Вход в правило:", ToxaLanguageParser.ruleNames[ctx.getRuleIndex()])
 
-    def enterDeclaration(self, ctx):
-        print("Объявление:", ctx.getText())
+    def enterAssignStatement(self, ctx):
+        print("Присваивание:", ctx.getText())
 
-    def enterPrint(self, ctx):
+    def enterPrintStatement(self, ctx):
         print("Вывод:", ctx.getText())
 
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
@@ -34,10 +33,8 @@ class MyListener(ToxaLanguageListener):
         elif ctx.INT():
             print("Целое число:", ctx.INT().getText())
 
-
 def main():
     input_stream = FileStream("input_program.txt")
-
     lexer = ToxaLanguageLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
     parser = ToxaLanguageParser(token_stream)
@@ -48,7 +45,6 @@ def main():
     parser.addErrorListener(listener)
     lexer.addErrorListener(listener)
 
-
     tree = parser.prog()  # Используем правило prog для парсинга
     walker = ParseTreeWalker()
     walker.walk(listener, tree)
@@ -57,9 +53,9 @@ def main():
     ast_builder.visit(tree)
     ast_builder.save_ast_to_json("ast.json")
 
-
 if __name__ == '__main__':
     main()
+
 
 
 

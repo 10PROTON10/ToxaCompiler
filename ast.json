@@ -6,7 +6,7 @@
         "type": "PLUS",
         "left": {
             "type": "INT",
-            "value": 31
+            "value": 10
         },
         "right": {
             "type": "INT",
