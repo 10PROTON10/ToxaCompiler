@@ -20,18 +20,27 @@ class MyListener(ToxaLanguageListener):
         print("Ошибка синтаксиса на строке", line, "и столбце", column, ":", msg)
 
     def exitExpr(self, ctx):
-        if ctx.PLUS():
-            print("Операция сложения")
-        elif ctx.MINUS():
-            print("Операция вычитания")
-        elif ctx.MULT():
-            print("Операция умножения")
-        elif ctx.DIV():
-            print("Операция деления")
-        elif ctx.FLOAT():
-            print("Число с плавающей точкой:", ctx.FLOAT().getText())
-        elif ctx.INT():
-            print("Целое число:", ctx.INT().getText())
+        children = ctx.children
+        for child in children:
+            if isinstance(child, TerminalNode):
+                if child.symbol.type == ToxaLanguageParser.ID:
+                    print("Идентификатор:", child.getText())
+                elif child.symbol.type == ToxaLanguageParser.INT:
+                    print("Целое число:", child.getText())
+                elif child.symbol.type == ToxaLanguageParser.FLOAT:
+                    print("Число с плавающей точкой:", child.getText())
+                elif child.symbol.type == ToxaLanguageParser.PLUS:
+                    print("Операция сложения")
+                elif child.symbol.type == ToxaLanguageParser.MINUS:
+                    print("Операция вычитания")
+                elif child.symbol.type == ToxaLanguageParser.MULT:
+                    print("Операция умножения")
+                elif child.symbol.type == ToxaLanguageParser.DIV:
+                    print("Операция деления")
+                elif child.symbol.type == ToxaLanguageParser.LPAREN:
+                    print("Левая скобка")
+                elif child.symbol.type == ToxaLanguageParser.RPAREN:
+                    print("Правая скобка")
 
 def main():
     input_stream = FileStream("input_program.txt")
@@ -55,6 +64,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 

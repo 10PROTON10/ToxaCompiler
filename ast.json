@@ -1,17 +1,33 @@
-{
-    "type": "ASSIGNMENT",
-    "variable_type": "int",
-    "variable_name": "c",
-    "value": {
-        "type": "PLUS",
-        "left": {
-            "type": "INT",
-            "value": 10
+[
+    {
+        "type": "ASSIGNMENT",
+        "variable_type": "int",
+        "variable_name": "b",
+        "value": {
+            "type": "MULT",
+            "left": {
+                "type": "INT",
+                "value": 35
+            },
+            "right": {
+                "type": "PAREN_EXPR",
+                "value": {
+                    "LPAREN": "(",
+                    "expr": {
+                        "type": "MINUS",
+                        "left": {
+                            "type": "INT",
+                            "value": 21
+                        },
+                        "right": {
+                            "type": "INT",
+                            "value": 5
+                        }
+                    },
+                    "RPAREN": ")"
+                }
+            }
         },
-        "right": {
-            "type": "INT",
-            "value": 16
-        }
-    },
-    "END_STATE": ";"
-}
+        "END_STATE": ";"
+    }
+]

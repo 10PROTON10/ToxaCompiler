@@ -6,7 +6,7 @@ from ToxaLanguageParser import ToxaLanguageParser
 
 class ASTBuilder(ToxaLanguageVisitor):
     def __init__(self):
-        self.ast = None
+        self.ast = []
 
     def visitExpr(self, ctx: ToxaLanguageParser.ExprContext):
         if ctx.PLUS():
@@ -46,6 +46,14 @@ class ASTBuilder(ToxaLanguageVisitor):
         elif ctx.ID():
             node = {"type": "ID", "value": ctx.ID().getText()}
             return node
+        elif ctx.LPAREN():
+            expr_node = self.visit(ctx.expr())  # Обработка выражений в скобках
+            lparen = ctx.LPAREN().getText()
+            rparen = ctx.RPAREN().getText()
+            if lparen != "(" or rparen != ")":
+                error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
+                return error_node
+            return {"type": "PAREN_EXPR", "value": {"LPAREN": "(", "expr": expr_node, "RPAREN": ")"}}
         else:
             return self.visit(ctx.expr())
 
@@ -53,34 +61,52 @@ class ASTBuilder(ToxaLanguageVisitor):
         variable_type = ctx.type_().getText()
         variable_name = ctx.ID().getText()
         assigned_value = self.visit(ctx.expr())
+        if assigned_value.get("type") == "ERROR":
+            self.ast.append(assigned_value)
+            return
         end_state = ctx.END_STATE().getText()
         node = {"type": "ASSIGNMENT", "variable_type": variable_type,
                 "variable_name": variable_name, "value": assigned_value, "END_STATE": end_state}
-        return node
+        self.ast.append(node)
 
     def visitPrintStatement(self, ctx: ToxaLanguageParser.PrintStatementContext):
         value_to_print = self.visit(ctx.expr())
+        if value_to_print.get("type") == "ERROR":
+            self.ast.append(value_to_print)
+            return
         node = {"type": "PRINT", "value": value_to_print}
-        return node
+        self.ast.append(node)
 
     def visitProg(self, ctx: ToxaLanguageParser.ProgContext):
-        self.ast = self.visitChildren(ctx)
+        self.visitChildren(ctx)
         return self.ast
 
     def save_ast_to_json(self, filename):
         with open(filename, 'w') as file:
             json.dump(self.ast, file, indent=4)
 
-if __name__ == "__main__":
-    input_code = FileStream("input_program.txt")
-    lexer = ToxaLanguageLexer(input_code)
-    tokens = CommonTokenStream(lexer)
-    parser = ToxaLanguageParser(tokens)
-    tree = parser.prog()
+def parse_input_file(input_filename):
+    try:
+        input_code = FileStream(input_filename)
+        lexer = ToxaLanguageLexer(input_code)
+        tokens = CommonTokenStream(lexer)
+        parser = ToxaLanguageParser(tokens)
+        tree = parser.prog()
+        return tree
+    except ValueError as e:
+        if "Mismatched parentheses" in str(e):
+            error_info = {"type": "ERROR", "message": str(e)}
+            return error_info
+        else:
+            raise e
 
-    ast_builder = ASTBuilder()
-    ast_builder.visit(tree)
-    ast_builder.save_ast_to_json("ast.json")
+if __name__ == "__main__":
+    input_filename = "input_program.txt"
+    ast_or_error = parse_input_file(input_filename)
+    with open("ast.json", "w") as json_file:
+        json.dump(ast_or_error, json_file, indent=4)
+
+
 
 
 

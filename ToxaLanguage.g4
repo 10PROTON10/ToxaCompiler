@@ -33,7 +33,7 @@ WS : [ \t\r\n]+ -> skip ;
 END_STATE : ';' ;
 
 // Правила синтаксиса
-prog : (assignStatement | printStatement | expr) ;
+prog : (assignStatement | printStatement | expr)* ;
 
 printStatement : PRINT LPAREN expr RPAREN END_STATE ;
 
