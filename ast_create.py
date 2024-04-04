@@ -1,8 +1,8 @@
 import json
 from antlr4 import FileStream, CommonTokenStream
 from ToxaLanguageLexer import ToxaLanguageLexer
-from ToxaLanguageVisitor import ToxaLanguageVisitor
 from ToxaLanguageParser import ToxaLanguageParser
+from ToxaLanguageVisitor import ToxaLanguageVisitor
 
 class ASTBuilder(ToxaLanguageVisitor):
     def __init__(self):
@@ -58,26 +58,51 @@ class ASTBuilder(ToxaLanguageVisitor):
             return self.visit(ctx.expr())
 
     def visitAssignStatement(self, ctx: ToxaLanguageParser.AssignStatementContext):
-        variable_type = ctx.type_().getText()
-        variable_name = ctx.ID().getText()
-        assigned_value = self.visit(ctx.expr())
-        if assigned_value.get("type") == "ERROR":
-            self.ast.append(assigned_value)
-            return
-        end_state = ctx.END_STATE().getText()
-        node = {"type": "ASSIGNMENT", "variable_type": variable_type,
-                "variable_name": variable_name, "value": assigned_value, "END_STATE": end_state}
-        self.ast.append(node)
+        try:
+            variable_type = ctx.type_().getText()
+            variable_name = ctx.ID().getText()
+            assigned_value = self.visit(ctx.expr())
+            if assigned_value.get("type") == "ERROR":
+                self.ast.append(assigned_value)
+                return
+            end_state = ctx.END_STATE().getText()
+            node = {"type": "ASSIGNMENT", "variable_type": variable_type,
+                    "variable_name": variable_name, "value": assigned_value, "END_STATE": end_state}
+            self.ast.append(node)
+        except AttributeError:
+            error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
+            self.ast.append(error_node)
 
     def visitPrintStatement(self, ctx: ToxaLanguageParser.PrintStatementContext):
-        value_to_print = self.visit(ctx.expr())
-        if value_to_print.get("type") == "ERROR":
-            self.ast.append(value_to_print)
-            return
-        node = {"type": "PRINT", "value": value_to_print}
-        self.ast.append(node)
+        try:
+            value_to_print = self.visit(ctx.expr())
+            if value_to_print.get("type") == "ERROR":
+                self.ast.append(value_to_print)
+                return
+            node = {"type": "PRINT", "value": value_to_print}
+            self.ast.append(node)
+        except AttributeError:
+            error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
+            self.ast.append(error_node)
+
+    def check_parenthesis_matching(self, ctx: ToxaLanguageParser.ProgContext):
+        text = ctx.getText()
+        stack = []
+        for char in text:
+            if char == '(':
+                stack.append('(')
+            elif char == ')':
+                if not stack:
+                    return False
+                stack.pop()
+        return not stack
 
     def visitProg(self, ctx: ToxaLanguageParser.ProgContext):
+        if not self.check_parenthesis_matching(ctx):
+            error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
+            self.ast.append(error_node)
+            return self.ast
+
         self.visitChildren(ctx)
         return self.ast
 
@@ -94,17 +119,21 @@ def parse_input_file(input_filename):
         tree = parser.prog()
         return tree
     except ValueError as e:
-        if "Mismatched parentheses" in str(e):
-            error_info = {"type": "ERROR", "message": str(e)}
-            return error_info
-        else:
-            raise e
+        error_info = {"type": "ERROR", "message": str(e)}
+        return error_info
+    except AttributeError as e:
+        error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
+        return error_node
 
 if __name__ == "__main__":
     input_filename = "input_program.txt"
     ast_or_error = parse_input_file(input_filename)
-    with open("ast.json", "w") as json_file:
-        json.dump(ast_or_error, json_file, indent=4)
+    ast_builder = ASTBuilder()
+    ast_builder.visit(ast_or_error)
+    ast_builder.save_ast_to_json("ast.json")
+
+
+
 
 
 

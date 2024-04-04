@@ -4,10 +4,17 @@
         "variable_type": "int",
         "variable_name": "b",
         "value": {
-            "type": "MULT",
+            "type": "PLUS",
             "left": {
-                "type": "INT",
-                "value": 35
+                "type": "MULT",
+                "left": {
+                    "type": "INT",
+                    "value": 35
+                },
+                "right": {
+                    "type": "INT",
+                    "value": 21
+                }
             },
             "right": {
                 "type": "PAREN_EXPR",
@@ -17,11 +24,11 @@
                         "type": "MINUS",
                         "left": {
                             "type": "INT",
-                            "value": 21
+                            "value": 29
                         },
                         "right": {
                             "type": "INT",
-                            "value": 5
+                            "value": 1
                         }
                     },
                     "RPAREN": ")"
