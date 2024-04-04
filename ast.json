@@ -13,7 +13,7 @@
                 },
                 "right": {
                     "type": "INT",
-                    "value": 21
+                    "value": 22
                 }
             },
             "right": {
@@ -24,7 +24,7 @@
                         "type": "MINUS",
                         "left": {
                             "type": "INT",
-                            "value": 29
+                            "value": 33
                         },
                         "right": {
                             "type": "INT",
@@ -35,6 +35,6 @@
                 }
             }
         },
-        "END_STATE": ";"
+        "END_STATE": "<missing ';'>"
     }
 ]

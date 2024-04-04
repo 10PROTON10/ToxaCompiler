@@ -1,10 +1,16 @@
 import json
-from antlr4 import FileStream, CommonTokenStream
+from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from ToxaLanguageLexer import ToxaLanguageLexer
 from ToxaLanguageParser import ToxaLanguageParser
 from ToxaLanguageVisitor import ToxaLanguageVisitor
+from antlr4.error.ErrorListener import ErrorListener
+from antlr4 import *
 
-class ASTBuilder(ToxaLanguageVisitor):
+class MyErrorListener(ErrorListener):
+    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        print("Ошибка синтаксиса на строке", line, "и столбце", column, ":", msg)
+
+class ASTbuilder(ToxaLanguageVisitor):
     def __init__(self):
         self.ast = []
 
@@ -116,6 +122,9 @@ def parse_input_file(input_filename):
         lexer = ToxaLanguageLexer(input_code)
         tokens = CommonTokenStream(lexer)
         parser = ToxaLanguageParser(tokens)
+        parser.removeErrorListeners()  # Удаляем стандартные ErrorListener'ы
+        error_listener = MyErrorListener()  # Создаем свой ErrorListener
+        parser.addErrorListener(error_listener)  # Добавляем свой ErrorListener к парсеру
         tree = parser.prog()
         return tree
     except ValueError as e:
@@ -125,20 +134,12 @@ def parse_input_file(input_filename):
         error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
         return error_node
 
-if __name__ == "__main__":
+def ast_create():
     input_filename = "input_program.txt"
     ast_or_error = parse_input_file(input_filename)
-    ast_builder = ASTBuilder()
+    ast_builder = ASTbuilder()
     ast_builder.visit(ast_or_error)
     ast_builder.save_ast_to_json("ast.json")
 
-
-
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    ast_create()
