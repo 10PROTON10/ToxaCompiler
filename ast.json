@@ -35,6 +35,23 @@
                 }
             }
         },
-        "END_STATE": "<missing ';'>"
+        "END_STATE": ";"
+    },
+    {
+        "type": "ASSIGNMENT",
+        "variable_type": "int",
+        "variable_name": "c",
+        "value": {
+            "type": "PLUS",
+            "left": {
+                "type": "INT",
+                "value": 35
+            },
+            "right": {
+                "type": "INT",
+                "value": 1
+            }
+        },
+        "END_STATE": ";"
     }
 ]

@@ -118,15 +118,18 @@ class ASTbuilder(ToxaLanguageVisitor):
 
 def parse_input_file(input_filename):
     try:
-        input_code = FileStream(input_filename)
-        lexer = ToxaLanguageLexer(input_code)
-        tokens = CommonTokenStream(lexer)
-        parser = ToxaLanguageParser(tokens)
-        parser.removeErrorListeners()  # Удаляем стандартные ErrorListener'ы
-        error_listener = MyErrorListener()  # Создаем свой ErrorListener
-        parser.addErrorListener(error_listener)  # Добавляем свой ErrorListener к парсеру
-        tree = parser.prog()
-        return tree
+        with open(input_filename, 'r') as file:
+            code_lines = file.readlines()
+            full_code = ''.join(code_lines)
+            input_code = InputStream(full_code)
+            lexer = ToxaLanguageLexer(input_code)
+            tokens = CommonTokenStream(lexer)
+            parser = ToxaLanguageParser(tokens)
+            parser.removeErrorListeners()  # Удаляем стандартные ErrorListener'ы
+            error_listener = MyErrorListener()  # Создаем свой ErrorListener
+            parser.addErrorListener(error_listener)  # Добавляем свой ErrorListener к парсеру
+            tree = parser.prog()
+            return tree
     except ValueError as e:
         error_info = {"type": "ERROR", "message": str(e)}
         return error_info
