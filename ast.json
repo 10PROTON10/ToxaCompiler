@@ -24,7 +24,7 @@
                         "type": "MINUS",
                         "left": {
                             "type": "INT",
-                            "value": 33
+                            "value": 30
                         },
                         "right": {
                             "type": "INT",

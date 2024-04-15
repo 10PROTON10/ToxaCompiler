@@ -1,66 +1,106 @@
 grammar ToxaLanguage;
 
-// Определение лексем
+// Начальное правило - программа
+program: statement* EOF;
 
-INT : [0-9]+ ;
-FLOAT : [0-9]+'.'[0-9]+ ;
+// Выражение может быть арифметическим выражением, операцией присваивания, оператором печати, if-else, for, while
+statement: assignmentStatement
+         | printStatement
+         | ifStatement
+         | whileStatement
+         | forStatement
+         | functionDeclaration
+         | returnStatement
+         | expression;
 
-// Арифметические операторы(Lexer Token)
-PLUS : '+' ; // Сложение
-MINUS : '-' ; // Вычитание
-MULT : '*' ; // Умножение
-DIV : '/' ; // Деление
+// Правило для операции присваивания
+assignmentStatement: ID EQ expression END_STATE;
 
-// Скобки(Lexer Token)
-LPAREN : '(' ; // Левая круглая скобка
-RPAREN : ')' ; // Правая круглая скобка
+// Правило для оператора печати
+printStatement: 'print' LPAREN expression RPAREN END_STATE;
 
-// Присвоение и вывод
-ASSIGN : '=' ;
-PRINT : 'print' ;
+// Правило для if-else
+ifStatement: 'if' LPAREN expression RPAREN 'then' block ( elseStatement )? 'endif' END_STATE;
 
-// Типы данных переменных
-TYPE_INT : 'int' ;
-TYPE_FLOAT : 'float' ;
+// Правило для elseStatement
+elseStatement: 'else' block;
 
-// Идентификатор
-ID : [a-zA-Z]+ ; // Переменные и имена функций состоят из букв.
+block: statement*;
 
-// Пропуск пробелов и переводов строк
-WS : [ \t\r\n]+ -> skip ;
+// Правило для оператора цикла for
+forStatement: 'for' LPAREN forInitializer? ';' forCondition? ';' forUpdate? RPAREN 'then' block 'endfor' END_STATE;
 
-// Добавленный токен
-END_STATE : ';' ;
+// Правило для оператора цикла while
+whileStatement: 'while' LPAREN expression RPAREN 'then' block 'endwhile' END_STATE;
 
-// Правила синтаксиса
-prog : (assignStatement | printStatement | expr)* ;
+// Правило для функции
+functionDeclaration: 'function' ID LPAREN params RPAREN 'begin' statement* 'end' END_STATE;
 
-printStatement : PRINT LPAREN expr RPAREN END_STATE ;
+// Правило для оператора возврата
+returnStatement: 'return' expression END_STATE;
 
-// Правила для выражений
-expr : term ((PLUS | MINUS) term)* ;
+// Правило для инициализации цикла for
+forInitializer: assignmentStatement | expression;
 
-term : factor ((MULT | DIV) factor)* ;
+// Правило для условия цикла for
+forCondition: expression;
 
-factor : INT
-       | FLOAT
-       | LPAREN expr RPAREN
-       | ID
-       ;
+// Правило для обновления цикла for
+forUpdate: expression;
 
-// Правило для объявления переменной
-assignStatement : type ID (ASSIGN expr)? END_STATE ;
+// Вызов функции
+functionCall: ID LPAREN params RPAREN;
 
-type : TYPE_INT | TYPE_FLOAT ;
+// Параметры функции
+params: expression? (',' expression)*;
 
+// Правило для арифметического выражения
+expression
+    : '(' expression ')'                      #expressionNested
+    | expression POW expression              #expressionPow
+    | expression (MUL | DIV | REM) expression  #expressionMulDivRem
+    | expression (PLUS | MINUS) expression     #expressionAddSub
+    | operand                                  #expressionOperand
+    | expression (GT | LT | GE | LE | EQ | EQEQ | NE) expression        #expressionComparison
+    | expression (AND | OR) expression        #expressionAndOr
+    ;
 
+// Правило для операнда
+operand
+    : INT                                     #operandInt
+    | FLOAT                                   #operandFloat
+    | ID                                      #operandId
+    | functionCall                            #operandFunctionCall
+    ;
 
+// Типы данных
+type: 'int' | 'float';
 
+// Лексические правила (токены)
+INT: DIGIT+;
+FLOAT: DIGIT+ '.' DIGIT+;
+ID: [a-zA-Z]+ DIGIT*;
+MUL: '*';
+REM: '%';
+DIV: '/';
+PLUS: '+';
+MINUS: '-';
+POW: '^';
+EQ: '=';
+LPAREN: '(';
+RPAREN: ')';
+END_STATE: ';';
+GT: '>';
+LT: '<';
+GE: '>=';
+LE: '<=';
+EQEQ: '==';
+NE: '!=';
+AND: '&&';
+OR: '||';
 
+// Пропускаем пробельные символы
+WS: [ \t\r\n]+ -> skip;
 
-
-
-
-
-
+fragment DIGIT: [0-9];
 
