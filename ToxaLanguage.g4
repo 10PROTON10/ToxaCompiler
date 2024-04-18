@@ -14,7 +14,7 @@ statement: assignmentStatement
          | expression;
 
 // Правило для операции присваивания
-assignmentStatement: ID EQ expression END_STATE;
+assignmentStatement: type ID EQ expression END_STATE;
 
 // Правило для оператора печати
 printStatement: 'print' LPAREN expression RPAREN END_STATE;
@@ -28,7 +28,7 @@ elseStatement: 'else' block;
 block: statement*;
 
 // Правило для оператора цикла for
-forStatement: 'for' LPAREN forInitializer? ';' forCondition? ';' forUpdate? RPAREN 'then' block 'endfor' END_STATE;
+forStatement: 'for' LPAREN forInitializer ';' forCondition? ';' forUpdate RPAREN 'then' block 'endfor' END_STATE;
 
 // Правило для оператора цикла while
 whileStatement: 'while' LPAREN expression RPAREN 'then' block 'endwhile' END_STATE;
@@ -40,7 +40,7 @@ functionDeclaration: 'function' ID LPAREN params RPAREN 'begin' statement* 'end'
 returnStatement: 'return' expression END_STATE;
 
 // Правило для инициализации цикла for
-forInitializer: assignmentStatement | expression;
+forInitializer: type ID EQ expression;
 
 // Правило для условия цикла for
 forCondition: expression;
@@ -56,21 +56,19 @@ params: expression? (',' expression)*;
 
 // Правило для арифметического выражения
 expression
-    : '(' expression ')'                      #expressionNested
-    | expression POW expression              #expressionPow
-    | expression (MUL | DIV | REM) expression  #expressionMulDivRem
-    | expression (PLUS | MINUS) expression     #expressionAddSub
-    | operand                                  #expressionOperand
-    | expression (GT | LT | GE | LE | EQ | EQEQ | NE) expression        #expressionComparison
-    | expression (AND | OR) expression        #expressionAndOr
+    : operand
+    | LPAREN expression RPAREN
+    | expression (MUL | DIV | REM) expression
+    | expression (PLUS | MINUS) expression
+    | expression (GT | LT | GE | LE | EQ | EQEQ | NE) expression
+    | expression (AND | OR) expression
     ;
 
-// Правило для операнда
 operand
-    : INT                                     #operandInt
-    | FLOAT                                   #operandFloat
-    | ID                                      #operandId
-    | functionCall                            #operandFunctionCall
+    : INT
+    | FLOAT
+    | ID
+    | functionCall
     ;
 
 // Типы данных
@@ -85,7 +83,6 @@ REM: '%';
 DIV: '/';
 PLUS: '+';
 MINUS: '-';
-POW: '^';
 EQ: '=';
 LPAREN: '(';
 RPAREN: ')';
@@ -103,4 +100,3 @@ OR: '||';
 WS: [ \t\r\n]+ -> skip;
 
 fragment DIGIT: [0-9];
-

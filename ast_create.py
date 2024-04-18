@@ -1,148 +1,148 @@
 import json
-from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
+from antlr4 import FileStream, CommonTokenStream
 from ToxaLanguageLexer import ToxaLanguageLexer
 from ToxaLanguageParser import ToxaLanguageParser
 from ToxaLanguageVisitor import ToxaLanguageVisitor
-from antlr4.error.ErrorListener import ErrorListener
-from antlr4 import *
 
-class MyErrorListener(ErrorListener):
-    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-        print("Ошибка синтаксиса на строке", line, "и столбце", column, ":", msg)
-
-class ASTbuilder(ToxaLanguageVisitor):
+class ASTBuilder(ToxaLanguageVisitor):
     def __init__(self):
         self.ast = []
 
-    def visitExpr(self, ctx: ToxaLanguageParser.ExprContext):
-        if ctx.PLUS():
-            left = self.visit(ctx.term(0))
-            right = self.visit(ctx.term(1))
-            node = {"type": "PLUS", "left": left, "right": right}
-            return node
-        elif ctx.MINUS():
-            left = self.visit(ctx.term(0))
-            right = self.visit(ctx.term(1))
-            node = {"type": "MINUS", "left": left, "right": right}
-            return node
-        else:
-            return self.visit(ctx.term(0))
-
-    def visitTerm(self, ctx: ToxaLanguageParser.TermContext):
-        if ctx.MULT():
-            left = self.visit(ctx.factor(0))
-            right = self.visit(ctx.factor(1))
-            node = {"type": "MULT", "left": left, "right": right}
-            return node
-        elif ctx.DIV():
-            left = self.visit(ctx.factor(0))
-            right = self.visit(ctx.factor(1))
-            node = {"type": "DIV", "left": left, "right": right}
-            return node
-        else:
-            return self.visit(ctx.factor(0))
-
-    def visitFactor(self, ctx: ToxaLanguageParser.FactorContext):
-        if ctx.INT():
-            node = {"type": "INT", "value": int(ctx.INT().getText())}
-            return node
-        elif ctx.FLOAT():
-            node = {"type": "FLOAT", "value": float(ctx.FLOAT().getText())}
-            return node
-        elif ctx.ID():
-            node = {"type": "ID", "value": ctx.ID().getText()}
-            return node
-        elif ctx.LPAREN():
-            expr_node = self.visit(ctx.expr())  # Обработка выражений в скобках
-            lparen = ctx.LPAREN().getText()
-            rparen = ctx.RPAREN().getText()
-            if lparen != "(" or rparen != ")":
-                error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
-                return error_node
-            return {"type": "PAREN_EXPR", "value": {"LPAREN": "(", "expr": expr_node, "RPAREN": ")"}}
-        else:
-            return self.visit(ctx.expr())
-
-    def visitAssignStatement(self, ctx: ToxaLanguageParser.AssignStatementContext):
-        try:
-            variable_type = ctx.type_().getText()
-            variable_name = ctx.ID().getText()
-            assigned_value = self.visit(ctx.expr())
-            if assigned_value.get("type") == "ERROR":
-                self.ast.append(assigned_value)
-                return
-            end_state = ctx.END_STATE().getText()
-            node = {"type": "ASSIGNMENT", "variable_type": variable_type,
-                    "variable_name": variable_name, "value": assigned_value, "END_STATE": end_state}
-            self.ast.append(node)
-        except AttributeError:
-            error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
-            self.ast.append(error_node)
+    def visitAssignmentStatement(self, ctx: ToxaLanguageParser.AssignmentStatementContext):
+        variable_type = ctx.type_().getText()
+        variable_name = ctx.ID().getText()
+        assigned_value = self.visit(ctx.expression())
+        end_state = ctx.END_STATE().getText()
+        node = {
+            "type": "ASSIGNMENT",
+            "variable_type": variable_type,
+            "variable_name": variable_name,
+            "value": assigned_value,  # Используем посещенное значение выражения
+            "END_STATE": end_state
+        }
+        self.ast.append(node)
 
     def visitPrintStatement(self, ctx: ToxaLanguageParser.PrintStatementContext):
-        try:
-            value_to_print = self.visit(ctx.expr())
-            if value_to_print.get("type") == "ERROR":
-                self.ast.append(value_to_print)
-                return
-            node = {"type": "PRINT", "value": value_to_print}
-            self.ast.append(node)
-        except AttributeError:
-            error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
-            self.ast.append(error_node)
+        value_to_print = self.visit(ctx.expression())
+        node = {"type": "PRINT", "value": value_to_print}
+        self.ast.append(node)
 
-    def check_parenthesis_matching(self, ctx: ToxaLanguageParser.ProgContext):
-        text = ctx.getText()
-        stack = []
-        for char in text:
-            if char == '(':
-                stack.append('(')
-            elif char == ')':
-                if not stack:
-                    return False
-                stack.pop()
-        return not stack
+    def visitIfStatement(self, ctx: ToxaLanguageParser.IfStatementContext):
+        condition = self.visit(ctx.expression())
+        block = [self.visit(statement) for statement in ctx.block().statement()]
+        else_block = None
+        if ctx.elseStatement():
+            else_block = [self.visit(statement) for statement in ctx.elseStatement().block().statement()]
+        node = {"type": "IF", "condition": condition, "block": block, "else_block": else_block}
+        self.ast.append(node)
 
-    def visitProg(self, ctx: ToxaLanguageParser.ProgContext):
-        if not self.check_parenthesis_matching(ctx):
-            error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
-            self.ast.append(error_node)
-            return self.ast
+    def visitWhileStatement(self, ctx: ToxaLanguageParser.WhileStatementContext):
+        condition = self.visit(ctx.expression())
+        block = [self.visit(statement) for statement in ctx.block().statement()]
+        node = {"type": "WHILE", "condition": condition, "block": block}
+        self.ast.append(node)
 
-        self.visitChildren(ctx)
+    def visitForStatement(self, ctx: ToxaLanguageParser.ForStatementContext):
+        init = self.visit(ctx.forInitializer())
+        condition = self.visit(ctx.forCondition()) if ctx.forCondition() else None
+        update = self.visit(ctx.forUpdate())
+        block = [self.visit(statement) for statement in ctx.block().statement()]
+        node = {"type": "FOR", "init": init, "condition": condition, "update": update, "block": block}
+        self.ast.append(node)
+
+    def visitFunctionDeclaration(self, ctx: ToxaLanguageParser.FunctionDeclarationContext):
+        function_name = ctx.ID().getText()
+        parameters = [self.visit(param) for param in ctx.params().expression()]
+        block = [self.visit(statement) for statement in ctx.block().statement()]
+        node = {"type": "FUNCTION", "function_name": function_name, "parameters": parameters, "block": block}
+        self.ast.append(node)
+
+    def visitReturnStatement(self, ctx: ToxaLanguageParser.ReturnStatementContext):
+        value = self.visit(ctx.expression()) if ctx.expression() else None
+        node = {"type": "RETURN", "value": value}
+        self.ast.append(node)
+
+    def visitExpression(self, ctx: ToxaLanguageParser.ExpressionContext):
+        if ctx.operand():
+            return self.visit(ctx.operand())
+        elif ctx.LPAREN():
+            return {"type": "PAREN_EXPR",
+                    "value": {"LPAREN": "(", "expr": self.visit(ctx.expression(0)), "RPAREN": ")"}}
+        elif ctx.PLUS():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "PLUS", "left": left, "right": right}
+        elif ctx.MINUS():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "MINUS", "left": left, "right": right}
+        elif ctx.MUL():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "MUL", "left": left, "right": right}
+        elif ctx.DIV():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "DIV", "left": left, "right": right}
+        elif ctx.GT():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "GT", "left": left, "right": right}
+        elif ctx.LT():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "LT", "left": left, "right": right}
+        elif ctx.GE():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "GE", "left": left, "right": right}
+        elif ctx.LE():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "LE", "left": left, "right": right}
+        elif ctx.EQEQ():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "EQEQ", "left": left, "right": right}
+        elif ctx.NE():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "NE", "left": left, "right": right}
+        elif ctx.AND():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "AND", "left": left, "right": right}
+        elif ctx.OR():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "OR", "left": left, "right": right}
+    def visitOperand(self, ctx: ToxaLanguageParser.OperandContext):
+        if ctx.INT():
+            return {"type": "INT", "value": int(ctx.INT().getText())}
+        elif ctx.FLOAT():
+            return {"type": "FLOAT", "value": float(ctx.FLOAT().getText())}
+        elif ctx.ID():
+            return {"type": "ID", "value": ctx.ID().getText()}
+        elif ctx.functionCall():
+            return self.visit(ctx.functionCall())
+
+    def get_ast(self):
         return self.ast
 
     def save_ast_to_json(self, filename):
         with open(filename, 'w') as file:
             json.dump(self.ast, file, indent=4)
 
-def parse_input_file(input_filename):
-    try:
-        with open(input_filename, 'r') as file:
-            code_lines = file.readlines()
-            full_code = ''.join(code_lines)
-            input_code = InputStream(full_code)
-            lexer = ToxaLanguageLexer(input_code)
-            tokens = CommonTokenStream(lexer)
-            parser = ToxaLanguageParser(tokens)
-            parser.removeErrorListeners()  # Удаляем стандартные ErrorListener'ы
-            error_listener = MyErrorListener()  # Создаем свой ErrorListener
-            parser.addErrorListener(error_listener)  # Добавляем свой ErrorListener к парсеру
-            tree = parser.prog()
-            return tree
-    except ValueError as e:
-        error_info = {"type": "ERROR", "message": str(e)}
-        return error_info
-    except AttributeError as e:
-        error_node = {"type": "ERROR", "message": "Mismatched parentheses"}
-        return error_node
+def ast_create(input_filename="input_program.txt", output_filename="ast.json"):
+    input_stream = FileStream(input_filename)
+    lexer = ToxaLanguageLexer(input_stream)
+    token_stream = CommonTokenStream(lexer)
+    parser = ToxaLanguageParser(token_stream)
+    tree = parser.program()
 
-def ast_create():
-    input_filename = "input_program.txt"
-    ast_or_error = parse_input_file(input_filename)
-    ast_builder = ASTbuilder()
-    ast_builder.visit(ast_or_error)
-    ast_builder.save_ast_to_json("ast.json")
+    ast_builder = ASTBuilder()
+    ast_builder.visit(tree)
+    ast_builder.save_ast_to_json(output_filename)
 
 if __name__ == "__main__":
     ast_create()

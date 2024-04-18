@@ -152,102 +152,21 @@ class ToxaLanguageListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ToxaLanguageParser#expressionComparison.
-    def enterExpressionComparison(self, ctx:ToxaLanguageParser.ExpressionComparisonContext):
+    # Enter a parse tree produced by ToxaLanguageParser#expression.
+    def enterExpression(self, ctx:ToxaLanguageParser.ExpressionContext):
         pass
 
-    # Exit a parse tree produced by ToxaLanguageParser#expressionComparison.
-    def exitExpressionComparison(self, ctx:ToxaLanguageParser.ExpressionComparisonContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#expressionAddSub.
-    def enterExpressionAddSub(self, ctx:ToxaLanguageParser.ExpressionAddSubContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#expressionAddSub.
-    def exitExpressionAddSub(self, ctx:ToxaLanguageParser.ExpressionAddSubContext):
+    # Exit a parse tree produced by ToxaLanguageParser#expression.
+    def exitExpression(self, ctx:ToxaLanguageParser.ExpressionContext):
         pass
 
 
-    # Enter a parse tree produced by ToxaLanguageParser#expressionAndOr.
-    def enterExpressionAndOr(self, ctx:ToxaLanguageParser.ExpressionAndOrContext):
+    # Enter a parse tree produced by ToxaLanguageParser#operand.
+    def enterOperand(self, ctx:ToxaLanguageParser.OperandContext):
         pass
 
-    # Exit a parse tree produced by ToxaLanguageParser#expressionAndOr.
-    def exitExpressionAndOr(self, ctx:ToxaLanguageParser.ExpressionAndOrContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#expressionNested.
-    def enterExpressionNested(self, ctx:ToxaLanguageParser.ExpressionNestedContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#expressionNested.
-    def exitExpressionNested(self, ctx:ToxaLanguageParser.ExpressionNestedContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#expressionPow.
-    def enterExpressionPow(self, ctx:ToxaLanguageParser.ExpressionPowContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#expressionPow.
-    def exitExpressionPow(self, ctx:ToxaLanguageParser.ExpressionPowContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#expressionMulDivRem.
-    def enterExpressionMulDivRem(self, ctx:ToxaLanguageParser.ExpressionMulDivRemContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#expressionMulDivRem.
-    def exitExpressionMulDivRem(self, ctx:ToxaLanguageParser.ExpressionMulDivRemContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#expressionOperand.
-    def enterExpressionOperand(self, ctx:ToxaLanguageParser.ExpressionOperandContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#expressionOperand.
-    def exitExpressionOperand(self, ctx:ToxaLanguageParser.ExpressionOperandContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#operandInt.
-    def enterOperandInt(self, ctx:ToxaLanguageParser.OperandIntContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#operandInt.
-    def exitOperandInt(self, ctx:ToxaLanguageParser.OperandIntContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#operandFloat.
-    def enterOperandFloat(self, ctx:ToxaLanguageParser.OperandFloatContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#operandFloat.
-    def exitOperandFloat(self, ctx:ToxaLanguageParser.OperandFloatContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#operandId.
-    def enterOperandId(self, ctx:ToxaLanguageParser.OperandIdContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#operandId.
-    def exitOperandId(self, ctx:ToxaLanguageParser.OperandIdContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#operandFunctionCall.
-    def enterOperandFunctionCall(self, ctx:ToxaLanguageParser.OperandFunctionCallContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#operandFunctionCall.
-    def exitOperandFunctionCall(self, ctx:ToxaLanguageParser.OperandFunctionCallContext):
+    # Exit a parse tree produced by ToxaLanguageParser#operand.
+    def exitOperand(self, ctx:ToxaLanguageParser.OperandContext):
         pass
 
 

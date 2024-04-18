@@ -89,58 +89,13 @@ class ToxaLanguageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ToxaLanguageParser#expressionComparison.
-    def visitExpressionComparison(self, ctx:ToxaLanguageParser.ExpressionComparisonContext):
+    # Visit a parse tree produced by ToxaLanguageParser#expression.
+    def visitExpression(self, ctx:ToxaLanguageParser.ExpressionContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ToxaLanguageParser#expressionAddSub.
-    def visitExpressionAddSub(self, ctx:ToxaLanguageParser.ExpressionAddSubContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#expressionAndOr.
-    def visitExpressionAndOr(self, ctx:ToxaLanguageParser.ExpressionAndOrContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#expressionNested.
-    def visitExpressionNested(self, ctx:ToxaLanguageParser.ExpressionNestedContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#expressionPow.
-    def visitExpressionPow(self, ctx:ToxaLanguageParser.ExpressionPowContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#expressionMulDivRem.
-    def visitExpressionMulDivRem(self, ctx:ToxaLanguageParser.ExpressionMulDivRemContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#expressionOperand.
-    def visitExpressionOperand(self, ctx:ToxaLanguageParser.ExpressionOperandContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#operandInt.
-    def visitOperandInt(self, ctx:ToxaLanguageParser.OperandIntContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#operandFloat.
-    def visitOperandFloat(self, ctx:ToxaLanguageParser.OperandFloatContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#operandId.
-    def visitOperandId(self, ctx:ToxaLanguageParser.OperandIdContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#operandFunctionCall.
-    def visitOperandFunctionCall(self, ctx:ToxaLanguageParser.OperandFunctionCallContext):
+    # Visit a parse tree produced by ToxaLanguageParser#operand.
+    def visitOperand(self, ctx:ToxaLanguageParser.OperandContext):
         return self.visitChildren(ctx)
 
 

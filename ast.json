@@ -1,57 +1,36 @@
 [
     {
-        "type": "ASSIGNMENT",
-        "variable_type": "int",
-        "variable_name": "b",
+        "type": "PRINT",
         "value": {
-            "type": "PLUS",
-            "left": {
-                "type": "MULT",
-                "left": {
-                    "type": "INT",
-                    "value": 35
-                },
-                "right": {
-                    "type": "INT",
-                    "value": 22
-                }
-            },
-            "right": {
-                "type": "PAREN_EXPR",
-                "value": {
-                    "LPAREN": "(",
-                    "expr": {
-                        "type": "MINUS",
-                        "left": {
-                            "type": "INT",
-                            "value": 30
-                        },
-                        "right": {
-                            "type": "INT",
-                            "value": 1
-                        }
-                    },
-                    "RPAREN": ")"
-                }
-            }
-        },
-        "END_STATE": ";"
+            "type": "ID",
+            "value": "c"
+        }
     },
     {
-        "type": "ASSIGNMENT",
-        "variable_type": "int",
-        "variable_name": "c",
+        "type": "PRINT",
         "value": {
-            "type": "PLUS",
+            "type": "ID",
+            "value": "a"
+        }
+    },
+    {
+        "type": "IF",
+        "condition": {
+            "type": "GT",
             "left": {
-                "type": "INT",
-                "value": 35
+                "type": "ID",
+                "value": "c"
             },
             "right": {
                 "type": "INT",
-                "value": 1
+                "value": 10
             }
         },
-        "END_STATE": ";"
+        "block": [
+            null
+        ],
+        "else_block": [
+            null
+        ]
     }
 ]

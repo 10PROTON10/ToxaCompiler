@@ -1,7 +1,7 @@
-from ast_create import ast_create
+from ast_create import ASTBuilder
 
 if __name__ == "__main__":
-    ast_create()
+    ASTBuilder()
 
 
 
