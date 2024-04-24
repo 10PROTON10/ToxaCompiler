@@ -34,13 +34,18 @@ class ToxaLanguageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ToxaLanguageParser#elseStatement.
-    def visitElseStatement(self, ctx:ToxaLanguageParser.ElseStatementContext):
+    # Visit a parse tree produced by ToxaLanguageParser#ifBlock.
+    def visitIfBlock(self, ctx:ToxaLanguageParser.IfBlockContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ToxaLanguageParser#block.
-    def visitBlock(self, ctx:ToxaLanguageParser.BlockContext):
+    # Visit a parse tree produced by ToxaLanguageParser#ifElseStatement.
+    def visitIfElseStatement(self, ctx:ToxaLanguageParser.IfElseStatementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#elseBlock.
+    def visitElseBlock(self, ctx:ToxaLanguageParser.ElseBlockContext):
         return self.visitChildren(ctx)
 
 
@@ -49,18 +54,8 @@ class ToxaLanguageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by ToxaLanguageParser#whileStatement.
-    def visitWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#functionDeclaration.
-    def visitFunctionDeclaration(self, ctx:ToxaLanguageParser.FunctionDeclarationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by ToxaLanguageParser#returnStatement.
-    def visitReturnStatement(self, ctx:ToxaLanguageParser.ReturnStatementContext):
+    # Visit a parse tree produced by ToxaLanguageParser#forBlock.
+    def visitForBlock(self, ctx:ToxaLanguageParser.ForBlockContext):
         return self.visitChildren(ctx)
 
 
@@ -76,6 +71,31 @@ class ToxaLanguageVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by ToxaLanguageParser#forUpdate.
     def visitForUpdate(self, ctx:ToxaLanguageParser.ForUpdateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#whileStatement.
+    def visitWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#whileBlock.
+    def visitWhileBlock(self, ctx:ToxaLanguageParser.WhileBlockContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#functionStatement.
+    def visitFunctionStatement(self, ctx:ToxaLanguageParser.FunctionStatementContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#functionBlock.
+    def visitFunctionBlock(self, ctx:ToxaLanguageParser.FunctionBlockContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#returnStatement.
+    def visitReturnStatement(self, ctx:ToxaLanguageParser.ReturnStatementContext):
         return self.visitChildren(ctx)
 
 

@@ -3,87 +3,41 @@ from antlr4 import FileStream, CommonTokenStream
 from ToxaLanguageLexer import ToxaLanguageLexer
 from ToxaLanguageParser import ToxaLanguageParser
 from ToxaLanguageVisitor import ToxaLanguageVisitor
+from antlr4.error.ErrorListener import ErrorListener
+
+class MyErrorListener(ErrorListener):
+    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        raise Exception("Ошибка на строке " + str(line) + ":" + str(column) + " " + msg)
 
 class ASTBuilder(ToxaLanguageVisitor):
     def __init__(self):
         self.ast = []
 
+    def visitStatement(self, ctx: ToxaLanguageParser.StatementContext):
+        return self.visitChildren(ctx)
+
+    def visitProgram(self, ctx: ToxaLanguageParser.ProgramContext):
+        for statement_ctx in ctx.statement():
+            self.ast.append(self.visit(statement_ctx))
+        return self.ast
+
     def visitAssignmentStatement(self, ctx: ToxaLanguageParser.AssignmentStatementContext):
-        variable_type = ctx.type_().getText()
-        variable_name = ctx.ID().getText()
-        assigned_value = self.visit(ctx.expression())
-        end_state = ctx.END_STATE().getText()
-        node = {
-            "type": "ASSIGNMENT",
-            "variable_type": variable_type,
-            "variable_name": variable_name,
-            "value": assigned_value,  # Используем посещенное значение выражения
-            "END_STATE": end_state
+        assignment = {
+            "type": "assignment",
+            "variable": ctx.ID().getText(),
+            "value": self.visit(ctx.expression())
         }
-        self.ast.append(node)
+        return assignment
 
     def visitPrintStatement(self, ctx: ToxaLanguageParser.PrintStatementContext):
-        value_to_print = self.visit(ctx.expression())
-        node = {"type": "PRINT", "value": value_to_print}
-        self.ast.append(node)
-
-    def visitIfStatement(self, ctx: ToxaLanguageParser.IfStatementContext):
-        condition = self.visit(ctx.expression())
-        block = [self.visit(statement) for statement in ctx.block().statement()]
-        else_block = None
-        if ctx.elseStatement():
-            else_block = [self.visit(statement) for statement in ctx.elseStatement().block().statement()]
-        node = {"type": "IF", "condition": condition, "block": block, "else_block": else_block}
-        self.ast.append(node)
-
-    def visitWhileStatement(self, ctx: ToxaLanguageParser.WhileStatementContext):
-        condition = self.visit(ctx.expression())
-        block = [self.visit(statement) for statement in ctx.block().statement()]
-        node = {"type": "WHILE", "condition": condition, "block": block}
-        self.ast.append(node)
-
-    def visitForStatement(self, ctx: ToxaLanguageParser.ForStatementContext):
-        init = self.visit(ctx.forInitializer())
-        condition = self.visit(ctx.forCondition()) if ctx.forCondition() else None
-        update = self.visit(ctx.forUpdate())
-        block = [self.visit(statement) for statement in ctx.block().statement()]
-        node = {"type": "FOR", "init": init, "condition": condition, "update": update, "block": block}
-        self.ast.append(node)
-
-    def visitFunctionDeclaration(self, ctx: ToxaLanguageParser.FunctionDeclarationContext):
-        function_name = ctx.ID().getText()
-        parameters = [self.visit(param) for param in ctx.params().expression()]
-        block = [self.visit(statement) for statement in ctx.block().statement()]
-        node = {"type": "FUNCTION", "function_name": function_name, "parameters": parameters, "block": block}
-        self.ast.append(node)
-
-    def visitReturnStatement(self, ctx: ToxaLanguageParser.ReturnStatementContext):
-        value = self.visit(ctx.expression()) if ctx.expression() else None
-        node = {"type": "RETURN", "value": value}
-        self.ast.append(node)
+        return {
+            "type": "print",
+            "value": self.visit(ctx.expression())
+        }
 
     def visitExpression(self, ctx: ToxaLanguageParser.ExpressionContext):
         if ctx.operand():
             return self.visit(ctx.operand())
-        elif ctx.LPAREN():
-            return {"type": "PAREN_EXPR",
-                    "value": {"LPAREN": "(", "expr": self.visit(ctx.expression(0)), "RPAREN": ")"}}
-        elif ctx.PLUS():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "PLUS", "left": left, "right": right}
-        elif ctx.MINUS():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "MINUS", "left": left, "right": right}
-        elif ctx.MUL():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "MUL", "left": left, "right": right}
-        elif ctx.DIV():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "DIV", "left": left, "right": right}
         elif ctx.GT():
             left = self.visit(ctx.expression(0))
             right = self.visit(ctx.expression(1))
@@ -116,6 +70,27 @@ class ASTBuilder(ToxaLanguageVisitor):
             left = self.visit(ctx.expression(0))
             right = self.visit(ctx.expression(1))
             return {"type": "OR", "left": left, "right": right}
+        elif ctx.PLUS():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "PLUS", "left": left, "right": right}
+        elif ctx.MINUS():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "MINUS", "left": left, "right": right}
+        elif ctx.MUL():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "MUL", "left": left, "right": right}
+        elif ctx.DIV():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "DIV", "left": left, "right": right}
+        elif ctx.REM():
+            left = self.visit(ctx.expression(0))
+            right = self.visit(ctx.expression(1))
+            return {"type": "REM", "left": left, "right": right}
+
     def visitOperand(self, ctx: ToxaLanguageParser.OperandContext):
         if ctx.INT():
             return {"type": "INT", "value": int(ctx.INT().getText())}
@@ -126,23 +101,79 @@ class ASTBuilder(ToxaLanguageVisitor):
         elif ctx.functionCall():
             return self.visit(ctx.functionCall())
 
-    def get_ast(self):
-        return self.ast
+    def visitIfStatement(self, ctx: ToxaLanguageParser.IfStatementContext):
+        condition = self.visit(ctx.expression())
+        block = [self.visit(statement) for statement in ctx.ifBlock().statement()]
+        node = {
+            "type": "IF",
+            "condition": condition,
+            "block": block
+        }
+        return node
 
-    def save_ast_to_json(self, filename):
-        with open(filename, 'w') as file:
-            json.dump(self.ast, file, indent=4)
+    def visitIfElseStatement(self, ctx: ToxaLanguageParser.IfElseStatementContext):
+        if_else_statement = {
+            "type": "if_else",
+            "condition": self.visit(ctx.expression()),
+            "if_body": self.visit(ctx.ifBlock()),
+            "else_body": self.visit(ctx.elseBlock())
+        }
+        return if_else_statement
 
-def ast_create(input_filename="input_program.txt", output_filename="ast.json"):
-    input_stream = FileStream(input_filename)
+    def visitForStatement(self, ctx: ToxaLanguageParser.ForStatementContext):
+        for_statement = {
+            "type": "for",
+            "initializer": self.visit(ctx.forInitializer()),
+            "condition": self.visit(ctx.forCondition()) if ctx.forCondition() else None,
+            "update": self.visit(ctx.forUpdate()),
+            "body": self.visit(ctx.forBlock())
+        }
+        return for_statement
+
+    def visitWhileStatement(self, ctx: ToxaLanguageParser.WhileStatementContext):
+        while_statement = {
+            "type": "while",
+            "condition": self.visit(ctx.expression()),
+            "body": self.visit(ctx.whileBlock())
+        }
+        return while_statement
+
+    def visitFunctionStatement(self, ctx: ToxaLanguageParser.FunctionStatementContext):
+        function_statement = {
+            "type": "function",
+            "name": ctx.ID().getText(),
+            "params": [self.visit(param) for param in ctx.params().expression()] if ctx.params() else [],
+            "body": self.visit(ctx.functionBlock())
+        }
+        return function_statement
+
+    def visitReturnStatement(self, ctx: ToxaLanguageParser.ReturnStatementContext):
+        return_statement = {
+            "type": "return",
+            "value": self.visit(ctx.expression()) if ctx.expression() else None
+        }
+        return return_statement
+
+# Код для запуска парсера и создания AST
+def main():
+    input_file = "input_program.txt"
+    output_file = "ast.json"
+
+    input_stream = FileStream(input_file)
     lexer = ToxaLanguageLexer(input_stream)
-    token_stream = CommonTokenStream(lexer)
-    parser = ToxaLanguageParser(token_stream)
+    lexer.removeErrorListeners()
+    lexer.addErrorListener(MyErrorListener())
+    stream = CommonTokenStream(lexer)
+    parser = ToxaLanguageParser(stream)
+    parser.removeErrorListeners()
+    parser.addErrorListener(MyErrorListener())
     tree = parser.program()
 
     ast_builder = ASTBuilder()
-    ast_builder.visit(tree)
-    ast_builder.save_ast_to_json(output_filename)
+    ast = ast_builder.visit(tree)
 
-if __name__ == "__main__":
-    ast_create()
+    with open(output_file, "w") as f:
+        json.dump(ast, f, indent=4)
+
+if __name__ == '__main__':
+    main()

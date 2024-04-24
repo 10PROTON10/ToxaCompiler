@@ -53,21 +53,30 @@ class ToxaLanguageListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ToxaLanguageParser#elseStatement.
-    def enterElseStatement(self, ctx:ToxaLanguageParser.ElseStatementContext):
+    # Enter a parse tree produced by ToxaLanguageParser#ifBlock.
+    def enterIfBlock(self, ctx:ToxaLanguageParser.IfBlockContext):
         pass
 
-    # Exit a parse tree produced by ToxaLanguageParser#elseStatement.
-    def exitElseStatement(self, ctx:ToxaLanguageParser.ElseStatementContext):
+    # Exit a parse tree produced by ToxaLanguageParser#ifBlock.
+    def exitIfBlock(self, ctx:ToxaLanguageParser.IfBlockContext):
         pass
 
 
-    # Enter a parse tree produced by ToxaLanguageParser#block.
-    def enterBlock(self, ctx:ToxaLanguageParser.BlockContext):
+    # Enter a parse tree produced by ToxaLanguageParser#ifElseStatement.
+    def enterIfElseStatement(self, ctx:ToxaLanguageParser.IfElseStatementContext):
         pass
 
-    # Exit a parse tree produced by ToxaLanguageParser#block.
-    def exitBlock(self, ctx:ToxaLanguageParser.BlockContext):
+    # Exit a parse tree produced by ToxaLanguageParser#ifElseStatement.
+    def exitIfElseStatement(self, ctx:ToxaLanguageParser.IfElseStatementContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#elseBlock.
+    def enterElseBlock(self, ctx:ToxaLanguageParser.ElseBlockContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#elseBlock.
+    def exitElseBlock(self, ctx:ToxaLanguageParser.ElseBlockContext):
         pass
 
 
@@ -80,30 +89,12 @@ class ToxaLanguageListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ToxaLanguageParser#whileStatement.
-    def enterWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
+    # Enter a parse tree produced by ToxaLanguageParser#forBlock.
+    def enterForBlock(self, ctx:ToxaLanguageParser.ForBlockContext):
         pass
 
-    # Exit a parse tree produced by ToxaLanguageParser#whileStatement.
-    def exitWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#functionDeclaration.
-    def enterFunctionDeclaration(self, ctx:ToxaLanguageParser.FunctionDeclarationContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#functionDeclaration.
-    def exitFunctionDeclaration(self, ctx:ToxaLanguageParser.FunctionDeclarationContext):
-        pass
-
-
-    # Enter a parse tree produced by ToxaLanguageParser#returnStatement.
-    def enterReturnStatement(self, ctx:ToxaLanguageParser.ReturnStatementContext):
-        pass
-
-    # Exit a parse tree produced by ToxaLanguageParser#returnStatement.
-    def exitReturnStatement(self, ctx:ToxaLanguageParser.ReturnStatementContext):
+    # Exit a parse tree produced by ToxaLanguageParser#forBlock.
+    def exitForBlock(self, ctx:ToxaLanguageParser.ForBlockContext):
         pass
 
 
@@ -131,6 +122,51 @@ class ToxaLanguageListener(ParseTreeListener):
 
     # Exit a parse tree produced by ToxaLanguageParser#forUpdate.
     def exitForUpdate(self, ctx:ToxaLanguageParser.ForUpdateContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#whileStatement.
+    def enterWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#whileStatement.
+    def exitWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#whileBlock.
+    def enterWhileBlock(self, ctx:ToxaLanguageParser.WhileBlockContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#whileBlock.
+    def exitWhileBlock(self, ctx:ToxaLanguageParser.WhileBlockContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#functionStatement.
+    def enterFunctionStatement(self, ctx:ToxaLanguageParser.FunctionStatementContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#functionStatement.
+    def exitFunctionStatement(self, ctx:ToxaLanguageParser.FunctionStatementContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#functionBlock.
+    def enterFunctionBlock(self, ctx:ToxaLanguageParser.FunctionBlockContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#functionBlock.
+    def exitFunctionBlock(self, ctx:ToxaLanguageParser.FunctionBlockContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#returnStatement.
+    def enterReturnStatement(self, ctx:ToxaLanguageParser.ReturnStatementContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#returnStatement.
+    def exitReturnStatement(self, ctx:ToxaLanguageParser.ReturnStatementContext):
         pass
 
 

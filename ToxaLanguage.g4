@@ -7,9 +7,10 @@ program: statement* EOF;
 statement: assignmentStatement
          | printStatement
          | ifStatement
+         | ifElseStatement
          | whileStatement
          | forStatement
-         | functionDeclaration
+         | functionStatement
          | returnStatement
          | expression;
 
@@ -20,24 +21,18 @@ assignmentStatement: type ID EQ expression END_STATE;
 printStatement: 'print' LPAREN expression RPAREN END_STATE;
 
 // Правило для if-else
-ifStatement: 'if' LPAREN expression RPAREN 'then' block ( elseStatement )? 'endif' END_STATE;
+ifStatement: 'if' LPAREN expression RPAREN RCORNER ifBlock LCORNER END_STATE;
 
-// Правило для elseStatement
-elseStatement: 'else' block;
+ifBlock: statement*;
 
-block: statement*;
+ifElseStatement: 'if' LPAREN expression RPAREN RCORNER ifBlock 'else' elseBlock LCORNER END_STATE;
+
+elseBlock: statement*;
 
 // Правило для оператора цикла for
-forStatement: 'for' LPAREN forInitializer ';' forCondition? ';' forUpdate RPAREN 'then' block 'endfor' END_STATE;
+forStatement: 'for' LPAREN forInitializer END_STATE (forCondition END_STATE?) forUpdate RPAREN RCORNER forBlock LCORNER END_STATE;
 
-// Правило для оператора цикла while
-whileStatement: 'while' LPAREN expression RPAREN 'then' block 'endwhile' END_STATE;
-
-// Правило для функции
-functionDeclaration: 'function' ID LPAREN params RPAREN 'begin' statement* 'end' END_STATE;
-
-// Правило для оператора возврата
-returnStatement: 'return' expression END_STATE;
+forBlock: statement*;
 
 // Правило для инициализации цикла for
 forInitializer: type ID EQ expression;
@@ -47,6 +42,19 @@ forCondition: expression;
 
 // Правило для обновления цикла for
 forUpdate: expression;
+
+// Правило для оператора цикла while
+whileStatement: 'while' LPAREN expression RPAREN RCORNER whileBlock LCORNER END_STATE;
+
+whileBlock: statement*;
+
+// Правило для функции
+functionStatement: 'function' ID LPAREN params RPAREN RCORNER functionBlock LCORNER END_STATE;
+
+functionBlock: statement*;
+
+// Правило для оператора возврата
+returnStatement: 'return' expression END_STATE;
 
 // Вызов функции
 functionCall: ID LPAREN params RPAREN;
@@ -95,6 +103,9 @@ EQEQ: '==';
 NE: '!=';
 AND: '&&';
 OR: '||';
+// Левая и правая фигурные скобки(Lexer Token)
+RCORNER: '{';
+LCORNER: '}';
 
 // Пропускаем пробельные символы
 WS: [ \t\r\n]+ -> skip;

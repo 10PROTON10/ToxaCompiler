@@ -1,19 +1,5 @@
 [
     {
-        "type": "PRINT",
-        "value": {
-            "type": "ID",
-            "value": "c"
-        }
-    },
-    {
-        "type": "PRINT",
-        "value": {
-            "type": "ID",
-            "value": "a"
-        }
-    },
-    {
         "type": "IF",
         "condition": {
             "type": "GT",
@@ -27,10 +13,22 @@
             }
         },
         "block": [
-            null
-        ],
-        "else_block": [
-            null
+            {
+                "type": "assignment",
+                "variable": "a",
+                "value": {
+                    "type": "INT",
+                    "value": 35
+                }
+            },
+            {
+                "type": "assignment",
+                "variable": "b",
+                "value": {
+                    "type": "INT",
+                    "value": 35
+                }
+            }
         ]
     }
 ]

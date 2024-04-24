@@ -1,7 +1,4 @@
-a = 25;
-c = 1;
-if (c > 10) then
-    print(c);
-else
-    print(a);
-endif;
+if (c > 10){
+    int a = 35;
+    int b = 35;
+};
