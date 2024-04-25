@@ -23,73 +23,38 @@ class ASTBuilder(ToxaLanguageVisitor):
 
     def visitAssignmentStatement(self, ctx: ToxaLanguageParser.AssignmentStatementContext):
         assignment = {
-            "type": "assignment",
-            "variable": ctx.ID().getText(),
-            "value": self.visit(ctx.expression())
+            "statement": {
+                "assignmentStatement": {
+                    "type": ctx.type_().getText(),
+                    "ID": ctx.ID().getText(),
+                    "expr": self.visit(ctx.expression()),
+                    "END_STATE": ";"
+                }
+            }
         }
         return assignment
 
     def visitPrintStatement(self, ctx: ToxaLanguageParser.PrintStatementContext):
         return {
-            "type": "print",
-            "value": self.visit(ctx.expression())
+            "statement": {
+                "printStatement": {
+                    "expression": self.visit(ctx.expression()),
+                    "END_STATE": ";"
+                }
+            }
         }
 
     def visitExpression(self, ctx: ToxaLanguageParser.ExpressionContext):
-        if ctx.operand():
+        if ctx.arithmetic():
+            return self.visit(ctx.arithmetic())
+        elif ctx.comparison():
+            return self.visit(ctx.comparison())
+        elif ctx.logical():
+            return self.visit(ctx.logical())
+        elif ctx.operand():
             return self.visit(ctx.operand())
-        elif ctx.GT():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "GT", "left": left, "right": right}
-        elif ctx.LT():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "LT", "left": left, "right": right}
-        elif ctx.GE():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "GE", "left": left, "right": right}
-        elif ctx.LE():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "LE", "left": left, "right": right}
-        elif ctx.EQEQ():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "EQEQ", "left": left, "right": right}
-        elif ctx.NE():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "NE", "left": left, "right": right}
-        elif ctx.AND():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "AND", "left": left, "right": right}
-        elif ctx.OR():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "OR", "left": left, "right": right}
-        elif ctx.PLUS():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "PLUS", "left": left, "right": right}
-        elif ctx.MINUS():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "MINUS", "left": left, "right": right}
-        elif ctx.MUL():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "MUL", "left": left, "right": right}
-        elif ctx.DIV():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "DIV", "left": left, "right": right}
-        elif ctx.REM():
-            left = self.visit(ctx.expression(0))
-            right = self.visit(ctx.expression(1))
-            return {"type": "REM", "left": left, "right": right}
+        elif ctx.LPAREN():
+            return self.visit(ctx.expression(0))
 
     def visitOperand(self, ctx: ToxaLanguageParser.OperandContext):
         if ctx.INT():
@@ -153,6 +118,24 @@ class ASTBuilder(ToxaLanguageVisitor):
             "value": self.visit(ctx.expression()) if ctx.expression() else None
         }
         return return_statement
+
+    def visitComparison(self, ctx: ToxaLanguageParser.ComparisonContext):
+        left = self.visit(ctx.operand(0))
+        right = self.visit(ctx.operand(1))
+        operator = ctx.children[1].getText()  # Получаем оператор сравнения
+        return {"comparison": operator, "left": left, "right": right}
+
+    def visitArithmetic(self, ctx: ToxaLanguageParser.ArithmeticContext):
+        left = self.visit(ctx.operand(0))
+        right = self.visit(ctx.operand(1))
+        operator = ctx.children[1].getText()  # Получаем арифметический оператор
+        return {"arithmetic": operator, "left": left, "right": right}
+
+    def visitLogical(self, ctx: ToxaLanguageParser.LogicalContext):
+        left = self.visit(ctx.operand(0))
+        right = self.visit(ctx.operand(1))
+        operator = ctx.children[1].getText()  # Получаем логический оператор
+        return {"logical": operator, "left": left, "right": right}
 
 # Код для запуска парсера и создания AST
 def main():

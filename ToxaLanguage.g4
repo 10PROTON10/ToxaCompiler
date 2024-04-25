@@ -64,13 +64,18 @@ params: expression? (',' expression)*;
 
 // Правило для арифметического выражения
 expression
-    : operand
+    : arithmetic
+    | comparison
+    | logical
+    | operand
     | LPAREN expression RPAREN
-    | expression (MUL | DIV | REM) expression
-    | expression (PLUS | MINUS) expression
-    | expression (GT | LT | GE | LE | EQ | EQEQ | NE) expression
-    | expression (AND | OR) expression
     ;
+
+comparison: operand (GT | LT | GE | LE | EQ | EQEQ | NE) operand;
+
+arithmetic: operand (MUL | DIV | REM | PLUS | MINUS) operand;
+
+logical: operand (AND | OR) operand;
 
 operand
     : INT

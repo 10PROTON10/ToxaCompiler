@@ -197,6 +197,33 @@ class ToxaLanguageListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ToxaLanguageParser#comparison.
+    def enterComparison(self, ctx:ToxaLanguageParser.ComparisonContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#comparison.
+    def exitComparison(self, ctx:ToxaLanguageParser.ComparisonContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#arithmetic.
+    def enterArithmetic(self, ctx:ToxaLanguageParser.ArithmeticContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#arithmetic.
+    def exitArithmetic(self, ctx:ToxaLanguageParser.ArithmeticContext):
+        pass
+
+
+    # Enter a parse tree produced by ToxaLanguageParser#logical.
+    def enterLogical(self, ctx:ToxaLanguageParser.LogicalContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#logical.
+    def exitLogical(self, ctx:ToxaLanguageParser.LogicalContext):
+        pass
+
+
     # Enter a parse tree produced by ToxaLanguageParser#operand.
     def enterOperand(self, ctx:ToxaLanguageParser.OperandContext):
         pass

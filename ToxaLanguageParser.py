@@ -10,81 +10,81 @@ else:
 
 def serializedATN():
     return [
-        4,1,33,223,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,33,226,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
-        7,20,2,21,7,21,2,22,7,22,1,0,5,0,48,8,0,10,0,12,0,51,9,0,1,0,1,0,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,64,8,1,1,2,1,2,1,2,1,2,1,
-        2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,
-        4,1,5,5,5,88,8,5,10,5,12,5,91,9,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,
-        6,1,6,1,6,1,6,1,7,5,7,105,8,7,10,7,12,7,108,9,7,1,8,1,8,1,8,1,8,
-        1,8,1,8,3,8,116,8,8,1,8,1,8,1,8,1,8,1,8,1,8,1,8,1,9,5,9,126,8,9,
-        10,9,12,9,129,9,9,1,10,1,10,1,10,1,10,1,10,1,11,1,11,1,12,1,12,1,
-        13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,14,5,14,150,8,14,10,
-        14,12,14,153,9,14,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,15,1,
-        15,1,16,5,16,166,8,16,10,16,12,16,169,9,16,1,17,1,17,1,17,1,17,1,
-        18,1,18,1,18,1,18,1,18,1,19,3,19,181,8,19,1,19,1,19,5,19,185,8,19,
-        10,19,12,19,188,9,19,1,20,1,20,1,20,1,20,1,20,1,20,3,20,196,8,20,
-        1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,1,20,5,20,
-        210,8,20,10,20,12,20,213,9,20,1,21,1,21,1,21,1,21,3,21,219,8,21,
-        1,22,1,22,1,22,0,1,40,23,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,
-        30,32,34,36,38,40,42,44,0,5,1,0,14,16,1,0,17,18,2,0,19,19,23,28,
-        1,0,29,30,1,0,9,10,224,0,49,1,0,0,0,2,63,1,0,0,0,4,65,1,0,0,0,6,
-        71,1,0,0,0,8,77,1,0,0,0,10,89,1,0,0,0,12,92,1,0,0,0,14,106,1,0,0,
-        0,16,109,1,0,0,0,18,127,1,0,0,0,20,130,1,0,0,0,22,135,1,0,0,0,24,
-        137,1,0,0,0,26,139,1,0,0,0,28,151,1,0,0,0,30,154,1,0,0,0,32,167,
-        1,0,0,0,34,170,1,0,0,0,36,174,1,0,0,0,38,180,1,0,0,0,40,195,1,0,
-        0,0,42,218,1,0,0,0,44,220,1,0,0,0,46,48,3,2,1,0,47,46,1,0,0,0,48,
-        51,1,0,0,0,49,47,1,0,0,0,49,50,1,0,0,0,50,52,1,0,0,0,51,49,1,0,0,
-        0,52,53,5,0,0,1,53,1,1,0,0,0,54,64,3,4,2,0,55,64,3,6,3,0,56,64,3,
-        8,4,0,57,64,3,12,6,0,58,64,3,26,13,0,59,64,3,16,8,0,60,64,3,30,15,
-        0,61,64,3,34,17,0,62,64,3,40,20,0,63,54,1,0,0,0,63,55,1,0,0,0,63,
-        56,1,0,0,0,63,57,1,0,0,0,63,58,1,0,0,0,63,59,1,0,0,0,63,60,1,0,0,
-        0,63,61,1,0,0,0,63,62,1,0,0,0,64,3,1,0,0,0,65,66,3,44,22,0,66,67,
-        5,13,0,0,67,68,5,19,0,0,68,69,3,40,20,0,69,70,5,22,0,0,70,5,1,0,
-        0,0,71,72,5,1,0,0,72,73,5,20,0,0,73,74,3,40,20,0,74,75,5,21,0,0,
-        75,76,5,22,0,0,76,7,1,0,0,0,77,78,5,2,0,0,78,79,5,20,0,0,79,80,3,
-        40,20,0,80,81,5,21,0,0,81,82,5,31,0,0,82,83,3,10,5,0,83,84,5,32,
-        0,0,84,85,5,22,0,0,85,9,1,0,0,0,86,88,3,2,1,0,87,86,1,0,0,0,88,91,
-        1,0,0,0,89,87,1,0,0,0,89,90,1,0,0,0,90,11,1,0,0,0,91,89,1,0,0,0,
-        92,93,5,2,0,0,93,94,5,20,0,0,94,95,3,40,20,0,95,96,5,21,0,0,96,97,
-        5,31,0,0,97,98,3,10,5,0,98,99,5,3,0,0,99,100,3,14,7,0,100,101,5,
-        32,0,0,101,102,5,22,0,0,102,13,1,0,0,0,103,105,3,2,1,0,104,103,1,
-        0,0,0,105,108,1,0,0,0,106,104,1,0,0,0,106,107,1,0,0,0,107,15,1,0,
-        0,0,108,106,1,0,0,0,109,110,5,4,0,0,110,111,5,20,0,0,111,112,3,20,
-        10,0,112,113,5,22,0,0,113,115,3,22,11,0,114,116,5,22,0,0,115,114,
-        1,0,0,0,115,116,1,0,0,0,116,117,1,0,0,0,117,118,3,24,12,0,118,119,
-        5,21,0,0,119,120,5,31,0,0,120,121,3,18,9,0,121,122,5,32,0,0,122,
-        123,5,22,0,0,123,17,1,0,0,0,124,126,3,2,1,0,125,124,1,0,0,0,126,
-        129,1,0,0,0,127,125,1,0,0,0,127,128,1,0,0,0,128,19,1,0,0,0,129,127,
-        1,0,0,0,130,131,3,44,22,0,131,132,5,13,0,0,132,133,5,19,0,0,133,
-        134,3,40,20,0,134,21,1,0,0,0,135,136,3,40,20,0,136,23,1,0,0,0,137,
-        138,3,40,20,0,138,25,1,0,0,0,139,140,5,5,0,0,140,141,5,20,0,0,141,
-        142,3,40,20,0,142,143,5,21,0,0,143,144,5,31,0,0,144,145,3,28,14,
-        0,145,146,5,32,0,0,146,147,5,22,0,0,147,27,1,0,0,0,148,150,3,2,1,
-        0,149,148,1,0,0,0,150,153,1,0,0,0,151,149,1,0,0,0,151,152,1,0,0,
-        0,152,29,1,0,0,0,153,151,1,0,0,0,154,155,5,6,0,0,155,156,5,13,0,
-        0,156,157,5,20,0,0,157,158,3,38,19,0,158,159,5,21,0,0,159,160,5,
-        31,0,0,160,161,3,32,16,0,161,162,5,32,0,0,162,163,5,22,0,0,163,31,
-        1,0,0,0,164,166,3,2,1,0,165,164,1,0,0,0,166,169,1,0,0,0,167,165,
-        1,0,0,0,167,168,1,0,0,0,168,33,1,0,0,0,169,167,1,0,0,0,170,171,5,
-        7,0,0,171,172,3,40,20,0,172,173,5,22,0,0,173,35,1,0,0,0,174,175,
-        5,13,0,0,175,176,5,20,0,0,176,177,3,38,19,0,177,178,5,21,0,0,178,
-        37,1,0,0,0,179,181,3,40,20,0,180,179,1,0,0,0,180,181,1,0,0,0,181,
-        186,1,0,0,0,182,183,5,8,0,0,183,185,3,40,20,0,184,182,1,0,0,0,185,
-        188,1,0,0,0,186,184,1,0,0,0,186,187,1,0,0,0,187,39,1,0,0,0,188,186,
-        1,0,0,0,189,190,6,20,-1,0,190,196,3,42,21,0,191,192,5,20,0,0,192,
-        193,3,40,20,0,193,194,5,21,0,0,194,196,1,0,0,0,195,189,1,0,0,0,195,
-        191,1,0,0,0,196,211,1,0,0,0,197,198,10,4,0,0,198,199,7,0,0,0,199,
-        210,3,40,20,5,200,201,10,3,0,0,201,202,7,1,0,0,202,210,3,40,20,4,
-        203,204,10,2,0,0,204,205,7,2,0,0,205,210,3,40,20,3,206,207,10,1,
-        0,0,207,208,7,3,0,0,208,210,3,40,20,2,209,197,1,0,0,0,209,200,1,
-        0,0,0,209,203,1,0,0,0,209,206,1,0,0,0,210,213,1,0,0,0,211,209,1,
-        0,0,0,211,212,1,0,0,0,212,41,1,0,0,0,213,211,1,0,0,0,214,219,5,11,
-        0,0,215,219,5,12,0,0,216,219,5,13,0,0,217,219,3,36,18,0,218,214,
-        1,0,0,0,218,215,1,0,0,0,218,216,1,0,0,0,218,217,1,0,0,0,219,43,1,
-        0,0,0,220,221,7,4,0,0,221,45,1,0,0,0,14,49,63,89,106,115,127,151,
-        167,180,186,195,209,211,218
+        7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,1,0,5,0,54,
+        8,0,10,0,12,0,57,9,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        3,1,70,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,4,1,
+        4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,5,5,5,94,8,5,10,5,12,5,97,9,5,1,
+        6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,7,5,7,111,8,7,10,7,12,
+        7,114,9,7,1,8,1,8,1,8,1,8,1,8,1,8,3,8,122,8,8,1,8,1,8,1,8,1,8,1,
+        8,1,8,1,8,1,9,5,9,132,8,9,10,9,12,9,135,9,9,1,10,1,10,1,10,1,10,
+        1,10,1,11,1,11,1,12,1,12,1,13,1,13,1,13,1,13,1,13,1,13,1,13,1,13,
+        1,13,1,14,5,14,156,8,14,10,14,12,14,159,9,14,1,15,1,15,1,15,1,15,
+        1,15,1,15,1,15,1,15,1,15,1,15,1,16,5,16,172,8,16,10,16,12,16,175,
+        9,16,1,17,1,17,1,17,1,17,1,18,1,18,1,18,1,18,1,18,1,19,3,19,187,
+        8,19,1,19,1,19,5,19,191,8,19,10,19,12,19,194,9,19,1,20,1,20,1,20,
+        1,20,1,20,1,20,1,20,1,20,3,20,204,8,20,1,21,1,21,1,21,1,21,1,22,
+        1,22,1,22,1,22,1,23,1,23,1,23,1,23,1,24,1,24,1,24,1,24,3,24,222,
+        8,24,1,25,1,25,1,25,0,0,26,0,2,4,6,8,10,12,14,16,18,20,22,24,26,
+        28,30,32,34,36,38,40,42,44,46,48,50,0,4,2,0,19,19,23,28,1,0,14,18,
+        1,0,29,30,1,0,9,10,223,0,55,1,0,0,0,2,69,1,0,0,0,4,71,1,0,0,0,6,
+        77,1,0,0,0,8,83,1,0,0,0,10,95,1,0,0,0,12,98,1,0,0,0,14,112,1,0,0,
+        0,16,115,1,0,0,0,18,133,1,0,0,0,20,136,1,0,0,0,22,141,1,0,0,0,24,
+        143,1,0,0,0,26,145,1,0,0,0,28,157,1,0,0,0,30,160,1,0,0,0,32,173,
+        1,0,0,0,34,176,1,0,0,0,36,180,1,0,0,0,38,186,1,0,0,0,40,203,1,0,
+        0,0,42,205,1,0,0,0,44,209,1,0,0,0,46,213,1,0,0,0,48,221,1,0,0,0,
+        50,223,1,0,0,0,52,54,3,2,1,0,53,52,1,0,0,0,54,57,1,0,0,0,55,53,1,
+        0,0,0,55,56,1,0,0,0,56,58,1,0,0,0,57,55,1,0,0,0,58,59,5,0,0,1,59,
+        1,1,0,0,0,60,70,3,4,2,0,61,70,3,6,3,0,62,70,3,8,4,0,63,70,3,12,6,
+        0,64,70,3,26,13,0,65,70,3,16,8,0,66,70,3,30,15,0,67,70,3,34,17,0,
+        68,70,3,40,20,0,69,60,1,0,0,0,69,61,1,0,0,0,69,62,1,0,0,0,69,63,
+        1,0,0,0,69,64,1,0,0,0,69,65,1,0,0,0,69,66,1,0,0,0,69,67,1,0,0,0,
+        69,68,1,0,0,0,70,3,1,0,0,0,71,72,3,50,25,0,72,73,5,13,0,0,73,74,
+        5,19,0,0,74,75,3,40,20,0,75,76,5,22,0,0,76,5,1,0,0,0,77,78,5,1,0,
+        0,78,79,5,20,0,0,79,80,3,40,20,0,80,81,5,21,0,0,81,82,5,22,0,0,82,
+        7,1,0,0,0,83,84,5,2,0,0,84,85,5,20,0,0,85,86,3,40,20,0,86,87,5,21,
+        0,0,87,88,5,31,0,0,88,89,3,10,5,0,89,90,5,32,0,0,90,91,5,22,0,0,
+        91,9,1,0,0,0,92,94,3,2,1,0,93,92,1,0,0,0,94,97,1,0,0,0,95,93,1,0,
+        0,0,95,96,1,0,0,0,96,11,1,0,0,0,97,95,1,0,0,0,98,99,5,2,0,0,99,100,
+        5,20,0,0,100,101,3,40,20,0,101,102,5,21,0,0,102,103,5,31,0,0,103,
+        104,3,10,5,0,104,105,5,3,0,0,105,106,3,14,7,0,106,107,5,32,0,0,107,
+        108,5,22,0,0,108,13,1,0,0,0,109,111,3,2,1,0,110,109,1,0,0,0,111,
+        114,1,0,0,0,112,110,1,0,0,0,112,113,1,0,0,0,113,15,1,0,0,0,114,112,
+        1,0,0,0,115,116,5,4,0,0,116,117,5,20,0,0,117,118,3,20,10,0,118,119,
+        5,22,0,0,119,121,3,22,11,0,120,122,5,22,0,0,121,120,1,0,0,0,121,
+        122,1,0,0,0,122,123,1,0,0,0,123,124,3,24,12,0,124,125,5,21,0,0,125,
+        126,5,31,0,0,126,127,3,18,9,0,127,128,5,32,0,0,128,129,5,22,0,0,
+        129,17,1,0,0,0,130,132,3,2,1,0,131,130,1,0,0,0,132,135,1,0,0,0,133,
+        131,1,0,0,0,133,134,1,0,0,0,134,19,1,0,0,0,135,133,1,0,0,0,136,137,
+        3,50,25,0,137,138,5,13,0,0,138,139,5,19,0,0,139,140,3,40,20,0,140,
+        21,1,0,0,0,141,142,3,40,20,0,142,23,1,0,0,0,143,144,3,40,20,0,144,
+        25,1,0,0,0,145,146,5,5,0,0,146,147,5,20,0,0,147,148,3,40,20,0,148,
+        149,5,21,0,0,149,150,5,31,0,0,150,151,3,28,14,0,151,152,5,32,0,0,
+        152,153,5,22,0,0,153,27,1,0,0,0,154,156,3,2,1,0,155,154,1,0,0,0,
+        156,159,1,0,0,0,157,155,1,0,0,0,157,158,1,0,0,0,158,29,1,0,0,0,159,
+        157,1,0,0,0,160,161,5,6,0,0,161,162,5,13,0,0,162,163,5,20,0,0,163,
+        164,3,38,19,0,164,165,5,21,0,0,165,166,5,31,0,0,166,167,3,32,16,
+        0,167,168,5,32,0,0,168,169,5,22,0,0,169,31,1,0,0,0,170,172,3,2,1,
+        0,171,170,1,0,0,0,172,175,1,0,0,0,173,171,1,0,0,0,173,174,1,0,0,
+        0,174,33,1,0,0,0,175,173,1,0,0,0,176,177,5,7,0,0,177,178,3,40,20,
+        0,178,179,5,22,0,0,179,35,1,0,0,0,180,181,5,13,0,0,181,182,5,20,
+        0,0,182,183,3,38,19,0,183,184,5,21,0,0,184,37,1,0,0,0,185,187,3,
+        40,20,0,186,185,1,0,0,0,186,187,1,0,0,0,187,192,1,0,0,0,188,189,
+        5,8,0,0,189,191,3,40,20,0,190,188,1,0,0,0,191,194,1,0,0,0,192,190,
+        1,0,0,0,192,193,1,0,0,0,193,39,1,0,0,0,194,192,1,0,0,0,195,204,3,
+        44,22,0,196,204,3,42,21,0,197,204,3,46,23,0,198,204,3,48,24,0,199,
+        200,5,20,0,0,200,201,3,40,20,0,201,202,5,21,0,0,202,204,1,0,0,0,
+        203,195,1,0,0,0,203,196,1,0,0,0,203,197,1,0,0,0,203,198,1,0,0,0,
+        203,199,1,0,0,0,204,41,1,0,0,0,205,206,3,48,24,0,206,207,7,0,0,0,
+        207,208,3,48,24,0,208,43,1,0,0,0,209,210,3,48,24,0,210,211,7,1,0,
+        0,211,212,3,48,24,0,212,45,1,0,0,0,213,214,3,48,24,0,214,215,7,2,
+        0,0,215,216,3,48,24,0,216,47,1,0,0,0,217,222,5,11,0,0,218,222,5,
+        12,0,0,219,222,5,13,0,0,220,222,3,36,18,0,221,217,1,0,0,0,221,218,
+        1,0,0,0,221,219,1,0,0,0,221,220,1,0,0,0,222,49,1,0,0,0,223,224,7,
+        3,0,0,224,51,1,0,0,0,12,55,69,95,112,121,133,157,173,186,192,203,
+        221
     ]
 
 class ToxaLanguageParser ( Parser ):
@@ -133,15 +133,19 @@ class ToxaLanguageParser ( Parser ):
     RULE_functionCall = 18
     RULE_params = 19
     RULE_expression = 20
-    RULE_operand = 21
-    RULE_type = 22
+    RULE_comparison = 21
+    RULE_arithmetic = 22
+    RULE_logical = 23
+    RULE_operand = 24
+    RULE_type = 25
 
     ruleNames =  [ "program", "statement", "assignmentStatement", "printStatement", 
                    "ifStatement", "ifBlock", "ifElseStatement", "elseBlock", 
                    "forStatement", "forBlock", "forInitializer", "forCondition", 
                    "forUpdate", "whileStatement", "whileBlock", "functionStatement", 
                    "functionBlock", "returnStatement", "functionCall", "params", 
-                   "expression", "operand", "type" ]
+                   "expression", "comparison", "arithmetic", "logical", 
+                   "operand", "type" ]
 
     EOF = Token.EOF
     T__0=1
@@ -231,17 +235,17 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 49
+            self.state = 55
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1064694) != 0):
-                self.state = 46
+                self.state = 52
                 self.statement()
-                self.state = 51
+                self.state = 57
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 52
+            self.state = 58
             self.match(ToxaLanguageParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -320,61 +324,61 @@ class ToxaLanguageParser ( Parser ):
         localctx = ToxaLanguageParser.StatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_statement)
         try:
-            self.state = 63
+            self.state = 69
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 54
+                self.state = 60
                 self.assignmentStatement()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 55
+                self.state = 61
                 self.printStatement()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 56
+                self.state = 62
                 self.ifStatement()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 57
+                self.state = 63
                 self.ifElseStatement()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 58
+                self.state = 64
                 self.whileStatement()
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 59
+                self.state = 65
                 self.forStatement()
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 60
+                self.state = 66
                 self.functionStatement()
                 pass
 
             elif la_ == 8:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 61
+                self.state = 67
                 self.returnStatement()
                 pass
 
             elif la_ == 9:
                 self.enterOuterAlt(localctx, 9)
-                self.state = 62
-                self.expression(0)
+                self.state = 68
+                self.expression()
                 pass
 
 
@@ -437,15 +441,15 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_assignmentStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 65
+            self.state = 71
             self.type_()
-            self.state = 66
+            self.state = 72
             self.match(ToxaLanguageParser.ID)
-            self.state = 67
+            self.state = 73
             self.match(ToxaLanguageParser.EQ)
-            self.state = 68
-            self.expression(0)
-            self.state = 69
+            self.state = 74
+            self.expression()
+            self.state = 75
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -502,15 +506,15 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_printStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 71
+            self.state = 77
             self.match(ToxaLanguageParser.T__0)
-            self.state = 72
+            self.state = 78
             self.match(ToxaLanguageParser.LPAREN)
-            self.state = 73
-            self.expression(0)
-            self.state = 74
+            self.state = 79
+            self.expression()
+            self.state = 80
             self.match(ToxaLanguageParser.RPAREN)
-            self.state = 75
+            self.state = 81
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -577,21 +581,21 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_ifStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 77
-            self.match(ToxaLanguageParser.T__1)
-            self.state = 78
-            self.match(ToxaLanguageParser.LPAREN)
-            self.state = 79
-            self.expression(0)
-            self.state = 80
-            self.match(ToxaLanguageParser.RPAREN)
-            self.state = 81
-            self.match(ToxaLanguageParser.RCORNER)
-            self.state = 82
-            self.ifBlock()
             self.state = 83
-            self.match(ToxaLanguageParser.LCORNER)
+            self.match(ToxaLanguageParser.T__1)
             self.state = 84
+            self.match(ToxaLanguageParser.LPAREN)
+            self.state = 85
+            self.expression()
+            self.state = 86
+            self.match(ToxaLanguageParser.RPAREN)
+            self.state = 87
+            self.match(ToxaLanguageParser.RCORNER)
+            self.state = 88
+            self.ifBlock()
+            self.state = 89
+            self.match(ToxaLanguageParser.LCORNER)
+            self.state = 90
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -643,13 +647,13 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 89
+            self.state = 95
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1064694) != 0):
-                self.state = 86
+                self.state = 92
                 self.statement()
-                self.state = 91
+                self.state = 97
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -722,25 +726,25 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_ifElseStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 92
-            self.match(ToxaLanguageParser.T__1)
-            self.state = 93
-            self.match(ToxaLanguageParser.LPAREN)
-            self.state = 94
-            self.expression(0)
-            self.state = 95
-            self.match(ToxaLanguageParser.RPAREN)
-            self.state = 96
-            self.match(ToxaLanguageParser.RCORNER)
-            self.state = 97
-            self.ifBlock()
             self.state = 98
-            self.match(ToxaLanguageParser.T__2)
+            self.match(ToxaLanguageParser.T__1)
             self.state = 99
-            self.elseBlock()
+            self.match(ToxaLanguageParser.LPAREN)
             self.state = 100
-            self.match(ToxaLanguageParser.LCORNER)
+            self.expression()
             self.state = 101
+            self.match(ToxaLanguageParser.RPAREN)
+            self.state = 102
+            self.match(ToxaLanguageParser.RCORNER)
+            self.state = 103
+            self.ifBlock()
+            self.state = 104
+            self.match(ToxaLanguageParser.T__2)
+            self.state = 105
+            self.elseBlock()
+            self.state = 106
+            self.match(ToxaLanguageParser.LCORNER)
+            self.state = 107
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -792,13 +796,13 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 106
+            self.state = 112
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1064694) != 0):
-                self.state = 103
+                self.state = 109
                 self.statement()
-                self.state = 108
+                self.state = 114
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -879,36 +883,36 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 109
+            self.state = 115
             self.match(ToxaLanguageParser.T__3)
-            self.state = 110
+            self.state = 116
             self.match(ToxaLanguageParser.LPAREN)
-            self.state = 111
+            self.state = 117
             self.forInitializer()
-            self.state = 112
+            self.state = 118
             self.match(ToxaLanguageParser.END_STATE)
 
-            self.state = 113
+            self.state = 119
             self.forCondition()
-            self.state = 115
+            self.state = 121
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==22:
-                self.state = 114
+                self.state = 120
                 self.match(ToxaLanguageParser.END_STATE)
 
 
-            self.state = 117
+            self.state = 123
             self.forUpdate()
-            self.state = 118
+            self.state = 124
             self.match(ToxaLanguageParser.RPAREN)
-            self.state = 119
+            self.state = 125
             self.match(ToxaLanguageParser.RCORNER)
-            self.state = 120
+            self.state = 126
             self.forBlock()
-            self.state = 121
+            self.state = 127
             self.match(ToxaLanguageParser.LCORNER)
-            self.state = 122
+            self.state = 128
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -960,13 +964,13 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 127
+            self.state = 133
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1064694) != 0):
-                self.state = 124
+                self.state = 130
                 self.statement()
-                self.state = 129
+                self.state = 135
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1026,14 +1030,14 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 20, self.RULE_forInitializer)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 130
+            self.state = 136
             self.type_()
-            self.state = 131
+            self.state = 137
             self.match(ToxaLanguageParser.ID)
-            self.state = 132
+            self.state = 138
             self.match(ToxaLanguageParser.EQ)
-            self.state = 133
-            self.expression(0)
+            self.state = 139
+            self.expression()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1080,8 +1084,8 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 22, self.RULE_forCondition)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 135
-            self.expression(0)
+            self.state = 141
+            self.expression()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1128,8 +1132,8 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 24, self.RULE_forUpdate)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 137
-            self.expression(0)
+            self.state = 143
+            self.expression()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1195,21 +1199,21 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_whileStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 139
-            self.match(ToxaLanguageParser.T__4)
-            self.state = 140
-            self.match(ToxaLanguageParser.LPAREN)
-            self.state = 141
-            self.expression(0)
-            self.state = 142
-            self.match(ToxaLanguageParser.RPAREN)
-            self.state = 143
-            self.match(ToxaLanguageParser.RCORNER)
-            self.state = 144
-            self.whileBlock()
             self.state = 145
-            self.match(ToxaLanguageParser.LCORNER)
+            self.match(ToxaLanguageParser.T__4)
             self.state = 146
+            self.match(ToxaLanguageParser.LPAREN)
+            self.state = 147
+            self.expression()
+            self.state = 148
+            self.match(ToxaLanguageParser.RPAREN)
+            self.state = 149
+            self.match(ToxaLanguageParser.RCORNER)
+            self.state = 150
+            self.whileBlock()
+            self.state = 151
+            self.match(ToxaLanguageParser.LCORNER)
+            self.state = 152
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1261,13 +1265,13 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 151
+            self.state = 157
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1064694) != 0):
-                self.state = 148
+                self.state = 154
                 self.statement()
-                self.state = 153
+                self.state = 159
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1339,23 +1343,23 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 30, self.RULE_functionStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 154
-            self.match(ToxaLanguageParser.T__5)
-            self.state = 155
-            self.match(ToxaLanguageParser.ID)
-            self.state = 156
-            self.match(ToxaLanguageParser.LPAREN)
-            self.state = 157
-            self.params()
-            self.state = 158
-            self.match(ToxaLanguageParser.RPAREN)
-            self.state = 159
-            self.match(ToxaLanguageParser.RCORNER)
             self.state = 160
-            self.functionBlock()
+            self.match(ToxaLanguageParser.T__5)
             self.state = 161
-            self.match(ToxaLanguageParser.LCORNER)
+            self.match(ToxaLanguageParser.ID)
             self.state = 162
+            self.match(ToxaLanguageParser.LPAREN)
+            self.state = 163
+            self.params()
+            self.state = 164
+            self.match(ToxaLanguageParser.RPAREN)
+            self.state = 165
+            self.match(ToxaLanguageParser.RCORNER)
+            self.state = 166
+            self.functionBlock()
+            self.state = 167
+            self.match(ToxaLanguageParser.LCORNER)
+            self.state = 168
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1407,13 +1411,13 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 167
+            self.state = 173
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1064694) != 0):
-                self.state = 164
+                self.state = 170
                 self.statement()
-                self.state = 169
+                self.state = 175
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1466,11 +1470,11 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_returnStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 170
+            self.state = 176
             self.match(ToxaLanguageParser.T__6)
-            self.state = 171
-            self.expression(0)
-            self.state = 172
+            self.state = 177
+            self.expression()
+            self.state = 178
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1527,13 +1531,13 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_functionCall)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 174
+            self.state = 180
             self.match(ToxaLanguageParser.ID)
-            self.state = 175
+            self.state = 181
             self.match(ToxaLanguageParser.LPAREN)
-            self.state = 176
+            self.state = 182
             self.params()
-            self.state = 177
+            self.state = 183
             self.match(ToxaLanguageParser.RPAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -1585,23 +1589,23 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 180
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 1062912) != 0):
-                self.state = 179
-                self.expression(0)
-
-
             self.state = 186
             self._errHandler.sync(self)
             _la = self._input.LA(1)
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 1062912) != 0):
+                self.state = 185
+                self.expression()
+
+
+            self.state = 192
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
             while _la==8:
-                self.state = 182
-                self.match(ToxaLanguageParser.T__7)
-                self.state = 183
-                self.expression(0)
                 self.state = 188
+                self.match(ToxaLanguageParser.T__7)
+                self.state = 189
+                self.expression()
+                self.state = 194
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1621,6 +1625,18 @@ class ToxaLanguageParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+        def arithmetic(self):
+            return self.getTypedRuleContext(ToxaLanguageParser.ArithmeticContext,0)
+
+
+        def comparison(self):
+            return self.getTypedRuleContext(ToxaLanguageParser.ComparisonContext,0)
+
+
+        def logical(self):
+            return self.getTypedRuleContext(ToxaLanguageParser.LogicalContext,0)
+
+
         def operand(self):
             return self.getTypedRuleContext(ToxaLanguageParser.OperandContext,0)
 
@@ -1628,30 +1644,98 @@ class ToxaLanguageParser ( Parser ):
         def LPAREN(self):
             return self.getToken(ToxaLanguageParser.LPAREN, 0)
 
-        def expression(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(ToxaLanguageParser.ExpressionContext)
-            else:
-                return self.getTypedRuleContext(ToxaLanguageParser.ExpressionContext,i)
+        def expression(self):
+            return self.getTypedRuleContext(ToxaLanguageParser.ExpressionContext,0)
 
 
         def RPAREN(self):
             return self.getToken(ToxaLanguageParser.RPAREN, 0)
 
-        def MUL(self):
-            return self.getToken(ToxaLanguageParser.MUL, 0)
+        def getRuleIndex(self):
+            return ToxaLanguageParser.RULE_expression
 
-        def DIV(self):
-            return self.getToken(ToxaLanguageParser.DIV, 0)
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterExpression" ):
+                listener.enterExpression(self)
 
-        def REM(self):
-            return self.getToken(ToxaLanguageParser.REM, 0)
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitExpression" ):
+                listener.exitExpression(self)
 
-        def PLUS(self):
-            return self.getToken(ToxaLanguageParser.PLUS, 0)
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpression" ):
+                return visitor.visitExpression(self)
+            else:
+                return visitor.visitChildren(self)
 
-        def MINUS(self):
-            return self.getToken(ToxaLanguageParser.MINUS, 0)
+
+
+
+    def expression(self):
+
+        localctx = ToxaLanguageParser.ExpressionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 40, self.RULE_expression)
+        try:
+            self.state = 203
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
+            if la_ == 1:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 195
+                self.arithmetic()
+                pass
+
+            elif la_ == 2:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 196
+                self.comparison()
+                pass
+
+            elif la_ == 3:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 197
+                self.logical()
+                pass
+
+            elif la_ == 4:
+                self.enterOuterAlt(localctx, 4)
+                self.state = 198
+                self.operand()
+                pass
+
+            elif la_ == 5:
+                self.enterOuterAlt(localctx, 5)
+                self.state = 199
+                self.match(ToxaLanguageParser.LPAREN)
+                self.state = 200
+                self.expression()
+                self.state = 201
+                self.match(ToxaLanguageParser.RPAREN)
+                pass
+
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class ComparisonContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def operand(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(ToxaLanguageParser.OperandContext)
+            else:
+                return self.getTypedRuleContext(ToxaLanguageParser.OperandContext,i)
+
 
         def GT(self):
             return self.getToken(ToxaLanguageParser.GT, 0)
@@ -1674,6 +1758,143 @@ class ToxaLanguageParser ( Parser ):
         def NE(self):
             return self.getToken(ToxaLanguageParser.NE, 0)
 
+        def getRuleIndex(self):
+            return ToxaLanguageParser.RULE_comparison
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterComparison" ):
+                listener.enterComparison(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitComparison" ):
+                listener.exitComparison(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComparison" ):
+                return visitor.visitComparison(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def comparison(self):
+
+        localctx = ToxaLanguageParser.ComparisonContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 42, self.RULE_comparison)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 205
+            self.operand()
+            self.state = 206
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 529006592) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+            self.state = 207
+            self.operand()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class ArithmeticContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def operand(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(ToxaLanguageParser.OperandContext)
+            else:
+                return self.getTypedRuleContext(ToxaLanguageParser.OperandContext,i)
+
+
+        def MUL(self):
+            return self.getToken(ToxaLanguageParser.MUL, 0)
+
+        def DIV(self):
+            return self.getToken(ToxaLanguageParser.DIV, 0)
+
+        def REM(self):
+            return self.getToken(ToxaLanguageParser.REM, 0)
+
+        def PLUS(self):
+            return self.getToken(ToxaLanguageParser.PLUS, 0)
+
+        def MINUS(self):
+            return self.getToken(ToxaLanguageParser.MINUS, 0)
+
+        def getRuleIndex(self):
+            return ToxaLanguageParser.RULE_arithmetic
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterArithmetic" ):
+                listener.enterArithmetic(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitArithmetic" ):
+                listener.exitArithmetic(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitArithmetic" ):
+                return visitor.visitArithmetic(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def arithmetic(self):
+
+        localctx = ToxaLanguageParser.ArithmeticContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 44, self.RULE_arithmetic)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 209
+            self.operand()
+            self.state = 210
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 507904) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+            self.state = 211
+            self.operand()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class LogicalContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def operand(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(ToxaLanguageParser.OperandContext)
+            else:
+                return self.getTypedRuleContext(ToxaLanguageParser.OperandContext,i)
+
+
         def AND(self):
             return self.getToken(ToxaLanguageParser.AND, 0)
 
@@ -1681,147 +1902,49 @@ class ToxaLanguageParser ( Parser ):
             return self.getToken(ToxaLanguageParser.OR, 0)
 
         def getRuleIndex(self):
-            return ToxaLanguageParser.RULE_expression
+            return ToxaLanguageParser.RULE_logical
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpression" ):
-                listener.enterExpression(self)
+            if hasattr( listener, "enterLogical" ):
+                listener.enterLogical(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpression" ):
-                listener.exitExpression(self)
+            if hasattr( listener, "exitLogical" ):
+                listener.exitLogical(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpression" ):
-                return visitor.visitExpression(self)
+            if hasattr( visitor, "visitLogical" ):
+                return visitor.visitLogical(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
-    def expression(self, _p:int=0):
-        _parentctx = self._ctx
-        _parentState = self.state
-        localctx = ToxaLanguageParser.ExpressionContext(self, self._ctx, _parentState)
-        _prevctx = localctx
-        _startState = 40
-        self.enterRecursionRule(localctx, 40, self.RULE_expression, _p)
+
+    def logical(self):
+
+        localctx = ToxaLanguageParser.LogicalContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 46, self.RULE_logical)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 195
-            self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [11, 12, 13]:
-                self.state = 190
-                self.operand()
-                pass
-            elif token in [20]:
-                self.state = 191
-                self.match(ToxaLanguageParser.LPAREN)
-                self.state = 192
-                self.expression(0)
-                self.state = 193
-                self.match(ToxaLanguageParser.RPAREN)
-                pass
+            self.state = 213
+            self.operand()
+            self.state = 214
+            _la = self._input.LA(1)
+            if not(_la==29 or _la==30):
+                self._errHandler.recoverInline(self)
             else:
-                raise NoViableAltException(self)
-
-            self._ctx.stop = self._input.LT(-1)
-            self.state = 211
-            self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,12,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
-                    if self._parseListeners is not None:
-                        self.triggerExitRuleEvent()
-                    _prevctx = localctx
-                    self.state = 209
-                    self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,11,self._ctx)
-                    if la_ == 1:
-                        localctx = ToxaLanguageParser.ExpressionContext(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 197
-                        if not self.precpred(self._ctx, 4):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                        self.state = 198
-                        _la = self._input.LA(1)
-                        if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 114688) != 0)):
-                            self._errHandler.recoverInline(self)
-                        else:
-                            self._errHandler.reportMatch(self)
-                            self.consume()
-                        self.state = 199
-                        self.expression(5)
-                        pass
-
-                    elif la_ == 2:
-                        localctx = ToxaLanguageParser.ExpressionContext(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 200
-                        if not self.precpred(self._ctx, 3):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 201
-                        _la = self._input.LA(1)
-                        if not(_la==17 or _la==18):
-                            self._errHandler.recoverInline(self)
-                        else:
-                            self._errHandler.reportMatch(self)
-                            self.consume()
-                        self.state = 202
-                        self.expression(4)
-                        pass
-
-                    elif la_ == 3:
-                        localctx = ToxaLanguageParser.ExpressionContext(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 203
-                        if not self.precpred(self._ctx, 2):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 204
-                        _la = self._input.LA(1)
-                        if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 529006592) != 0)):
-                            self._errHandler.recoverInline(self)
-                        else:
-                            self._errHandler.reportMatch(self)
-                            self.consume()
-                        self.state = 205
-                        self.expression(3)
-                        pass
-
-                    elif la_ == 4:
-                        localctx = ToxaLanguageParser.ExpressionContext(self, _parentctx, _parentState)
-                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 206
-                        if not self.precpred(self._ctx, 1):
-                            from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
-                        self.state = 207
-                        _la = self._input.LA(1)
-                        if not(_la==29 or _la==30):
-                            self._errHandler.recoverInline(self)
-                        else:
-                            self._errHandler.reportMatch(self)
-                            self.consume()
-                        self.state = 208
-                        self.expression(2)
-                        pass
-
-             
-                self.state = 213
-                self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,12,self._ctx)
-
+                self._errHandler.reportMatch(self)
+                self.consume()
+            self.state = 215
+            self.operand()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
             self._errHandler.recover(self, re)
         finally:
-            self.unrollRecursionContexts(_parentctx)
+            self.exitRule()
         return localctx
 
 
@@ -1868,32 +1991,32 @@ class ToxaLanguageParser ( Parser ):
     def operand(self):
 
         localctx = ToxaLanguageParser.OperandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 42, self.RULE_operand)
+        self.enterRule(localctx, 48, self.RULE_operand)
         try:
-            self.state = 218
+            self.state = 221
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,11,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 214
+                self.state = 217
                 self.match(ToxaLanguageParser.INT)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 215
+                self.state = 218
                 self.match(ToxaLanguageParser.FLOAT)
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 216
+                self.state = 219
                 self.match(ToxaLanguageParser.ID)
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 217
+                self.state = 220
                 self.functionCall()
                 pass
 
@@ -1938,11 +2061,11 @@ class ToxaLanguageParser ( Parser ):
     def type_(self):
 
         localctx = ToxaLanguageParser.TypeContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 44, self.RULE_type)
+        self.enterRule(localctx, 50, self.RULE_type)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 220
+            self.state = 223
             _la = self._input.LA(1)
             if not(_la==9 or _la==10):
                 self._errHandler.recoverInline(self)
@@ -1957,34 +2080,6 @@ class ToxaLanguageParser ( Parser ):
             self.exitRule()
         return localctx
 
-
-
-    def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
-        if self._predicates == None:
-            self._predicates = dict()
-        self._predicates[20] = self.expression_sempred
-        pred = self._predicates.get(ruleIndex, None)
-        if pred is None:
-            raise Exception("No predicate with index:" + str(ruleIndex))
-        else:
-            return pred(localctx, predIndex)
-
-    def expression_sempred(self, localctx:ExpressionContext, predIndex:int):
-            if predIndex == 0:
-                return self.precpred(self._ctx, 4)
-         
-
-            if predIndex == 1:
-                return self.precpred(self._ctx, 3)
-         
-
-            if predIndex == 2:
-                return self.precpred(self._ctx, 2)
-         
-
-            if predIndex == 3:
-                return self.precpred(self._ctx, 1)
-         
 
 
 

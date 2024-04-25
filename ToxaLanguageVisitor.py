@@ -114,6 +114,21 @@ class ToxaLanguageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ToxaLanguageParser#comparison.
+    def visitComparison(self, ctx:ToxaLanguageParser.ComparisonContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#arithmetic.
+    def visitArithmetic(self, ctx:ToxaLanguageParser.ArithmeticContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by ToxaLanguageParser#logical.
+    def visitLogical(self, ctx:ToxaLanguageParser.LogicalContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ToxaLanguageParser#operand.
     def visitOperand(self, ctx:ToxaLanguageParser.OperandContext):
         return self.visitChildren(ctx)
