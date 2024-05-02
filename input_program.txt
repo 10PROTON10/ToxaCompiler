@@ -1,8 +1,5 @@
-float a = 25.4;
-int c = 1;
-if (c > 10){
+start
+if (c > 10) then
     print(c);
-    int c = 35.3;
-else
-    print(a);
-};
+endif;
+finish

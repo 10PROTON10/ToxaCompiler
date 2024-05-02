@@ -1,65 +1,31 @@
 [
     {
         "statement": {
-            "assignmentStatement": {
-                "type": "float",
-                "ID": "a",
-                "expr": {
-                    "type": "FLOAT",
-                    "value": 25.4
-                },
-                "END_STATE": ";"
-            }
-        }
-    },
-    {
-        "statement": {
-            "assignmentStatement": {
-                "type": "int",
-                "ID": "c",
-                "expr": {
-                    "type": "INT",
-                    "value": 1
-                },
-                "END_STATE": ";"
-            }
-        }
-    },
-    {
-        "type": "if_else",
-        "condition": {
-            "comparison": ">",
-            "left": {
-                "type": "ID",
-                "value": "c"
-            },
-            "right": {
-                "type": "INT",
-                "value": 10
-            }
-        },
-        "if_body": {
-            "statement": {
-                "assignmentStatement": {
-                    "type": "int",
-                    "ID": "c",
-                    "expr": {
-                        "type": "FLOAT",
-                        "value": 35.3
-                    },
-                    "END_STATE": ";"
-                }
-            }
-        },
-        "else_body": {
-            "statement": {
-                "printStatement": {
-                    "expression": {
+            "ifStatement": {
+                "condition": {
+                    "comparison": ">",
+                    "left": {
                         "type": "ID",
-                        "value": "a"
+                        "value": "c"
                     },
-                    "END_STATE": ";"
-                }
+                    "right": {
+                        "type": "INT",
+                        "value": 10
+                    }
+                },
+                "if_body": [
+                    {
+                        "statement": {
+                            "printStatement": {
+                                "expression": {
+                                    "type": "ID",
+                                    "value": "c"
+                                },
+                                "END_STATE": ";"
+                            }
+                        }
+                    }
+                ]
             }
         }
     }

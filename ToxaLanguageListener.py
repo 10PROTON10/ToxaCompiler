@@ -125,6 +125,15 @@ class ToxaLanguageListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ToxaLanguageParser#incrementOrDecrement.
+    def enterIncrementOrDecrement(self, ctx:ToxaLanguageParser.IncrementOrDecrementContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#incrementOrDecrement.
+    def exitIncrementOrDecrement(self, ctx:ToxaLanguageParser.IncrementOrDecrementContext):
+        pass
+
+
     # Enter a parse tree produced by ToxaLanguageParser#whileStatement.
     def enterWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
         pass

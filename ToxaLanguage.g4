@@ -1,7 +1,7 @@
 grammar ToxaLanguage;
 
-// Начальное правило - программа
-program: statement* EOF;
+// Начальное правило - программа - конечное правило
+program: START_STATEMENT statement* FINISH_STATEMENT EOF;
 
 // Выражение может быть арифметическим выражением, операцией присваивания, оператором печати, if-else, for, while
 statement: assignmentStatement
@@ -21,16 +21,15 @@ assignmentStatement: type ID EQ expression END_STATE;
 printStatement: 'print' LPAREN expression RPAREN END_STATE;
 
 // Правило для if-else
-ifStatement: 'if' LPAREN expression RPAREN RCORNER ifBlock LCORNER END_STATE;
+ifStatement: 'if' LPAREN expression RPAREN THEN ifBlock ENDIF END_STATE;
 
 ifBlock: statement*;
 
-ifElseStatement: 'if' LPAREN expression RPAREN RCORNER ifBlock 'else' elseBlock LCORNER END_STATE;
+ifElseStatement: 'if' LPAREN expression RPAREN THEN ifBlock 'else' elseBlock ENDIF END_STATE;
 
 elseBlock: statement*;
 
-// Правило для оператора цикла for
-forStatement: 'for' LPAREN forInitializer END_STATE (forCondition END_STATE?) forUpdate RPAREN RCORNER forBlock LCORNER END_STATE;
+forStatement: 'for' LPAREN forInitializer END_STATE forCondition END_STATE forUpdate RPAREN THEN forBlock ENDFOR END_STATE;
 
 forBlock: statement*;
 
@@ -41,15 +40,21 @@ forInitializer: type ID EQ expression;
 forCondition: expression;
 
 // Правило для обновления цикла for
-forUpdate: expression;
+forUpdate: ID incrementOrDecrement;
+
+incrementOrDecrement: INCREMENT | DECREMENT;
+
+// Правила для инкремента и декремента
+INCREMENT: PLUS PLUS;
+DECREMENT: MINUS MINUS;
 
 // Правило для оператора цикла while
-whileStatement: 'while' LPAREN expression RPAREN RCORNER whileBlock LCORNER END_STATE;
+whileStatement: 'while' LPAREN expression RPAREN THEN whileBlock ENDWHILE END_STATE;
 
 whileBlock: statement*;
 
 // Правило для функции
-functionStatement: 'function' ID LPAREN params RPAREN RCORNER functionBlock LCORNER END_STATE;
+functionStatement: 'function' ID LPAREN params RPAREN THEN functionBlock ENDFUNCTION END_STATE;
 
 functionBlock: statement*;
 
@@ -88,6 +93,13 @@ operand
 type: 'int' | 'float';
 
 // Лексические правила (токены)
+START_STATEMENT: 'start';
+FINISH_STATEMENT: 'finish';
+THEN: 'then';
+ENDIF: 'endif';
+ENDFOR: 'endfor';
+ENDWHILE: 'endwhile';
+ENDFUNCTION: 'endfunction';
 INT: DIGIT+;
 FLOAT: DIGIT+ '.' DIGIT+;
 ID: [a-zA-Z]+ DIGIT*;
@@ -108,9 +120,7 @@ EQEQ: '==';
 NE: '!=';
 AND: '&&';
 OR: '||';
-// Левая и правая фигурные скобки(Lexer Token)
-RCORNER: '{';
-LCORNER: '}';
+
 
 // Пропускаем пробельные символы
 WS: [ \t\r\n]+ -> skip;

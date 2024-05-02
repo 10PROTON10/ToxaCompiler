@@ -70,9 +70,12 @@ class ASTBuilder(ToxaLanguageVisitor):
         condition = self.visit(ctx.expression())
         block = [self.visit(statement) for statement in ctx.ifBlock().statement()]
         node = {
-            "type": "IF",
-            "condition": condition,
-            "block": block
+            "statement": {
+                "ifStatement": {
+                    "condition": condition,
+                    "if_body": block
+                }
+            }
         }
         return node
 
@@ -90,10 +93,23 @@ class ASTBuilder(ToxaLanguageVisitor):
             "type": "for",
             "initializer": self.visit(ctx.forInitializer()),
             "condition": self.visit(ctx.forCondition()) if ctx.forCondition() else None,
-            "update": self.visit(ctx.forUpdate()),
+            "update": self.visitForUpdate(ctx.forUpdate()),  # Обработка оператора обновления
             "body": self.visit(ctx.forBlock())
         }
         return for_statement
+
+    def visitForInitializer(self, ctx: ToxaLanguageParser.ForInitializerContext):
+        initializer = {
+            "type": "INT",
+            "ID": ctx.ID().getText(),  # Получаем имя переменной
+            "value": self.visit(ctx.expression())  # Обрабатываем выражение для значения переменной
+        }
+        return initializer
+
+    def visitForUpdate(self, ctx: ToxaLanguageParser.ForUpdateContext):
+        id_name = ctx.ID().getText()  # Получаем имя переменной
+        operation = ctx.incrementOrDecrement().getText()  # Получаем оператор инкремента или декремента
+        return {"ID": id_name, "operation": operation}
 
     def visitWhileStatement(self, ctx: ToxaLanguageParser.WhileStatementContext):
         while_statement = {

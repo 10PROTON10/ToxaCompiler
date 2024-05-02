@@ -74,6 +74,11 @@ class ToxaLanguageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ToxaLanguageParser#incrementOrDecrement.
+    def visitIncrementOrDecrement(self, ctx:ToxaLanguageParser.IncrementOrDecrementContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ToxaLanguageParser#whileStatement.
     def visitWhileStatement(self, ctx:ToxaLanguageParser.WhileStatementContext):
         return self.visitChildren(ctx)
