@@ -27,7 +27,7 @@ class ASTBuilder(ToxaLanguageVisitor):
                 "assignmentStatement": {
                     "type": ctx.type_().getText(),
                     "ID": ctx.ID().getText(),
-                    "expr": self.visit(ctx.expression()),
+                    "expression": self.visit(ctx.expression()),
                     "END_STATE": ";"
                 }
             }
@@ -53,6 +53,8 @@ class ASTBuilder(ToxaLanguageVisitor):
             return self.visit(ctx.logical())
         elif ctx.operand():
             return self.visit(ctx.operand())
+        elif ctx.functionCall():
+            return self.visit(ctx.functionCall())
         elif ctx.LPAREN():
             return self.visit(ctx.expression(0))
 
@@ -81,20 +83,26 @@ class ASTBuilder(ToxaLanguageVisitor):
 
     def visitIfElseStatement(self, ctx: ToxaLanguageParser.IfElseStatementContext):
         if_else_statement = {
-            "type": "if_else",
-            "condition": self.visit(ctx.expression()),
-            "if_body": self.visit(ctx.ifBlock()),
-            "else_body": self.visit(ctx.elseBlock())
+            "statement": {
+                "ifElseStatement": {
+                    "condition": self.visit(ctx.expression()),
+                    "if_body": self.visit(ctx.ifBlock()),
+                    "else_body": self.visit(ctx.elseBlock())
+                }
+            }
         }
         return if_else_statement
 
     def visitForStatement(self, ctx: ToxaLanguageParser.ForStatementContext):
         for_statement = {
-            "type": "for",
-            "initializer": self.visit(ctx.forInitializer()),
-            "condition": self.visit(ctx.forCondition()) if ctx.forCondition() else None,
-            "update": self.visitForUpdate(ctx.forUpdate()),  # Обработка оператора обновления
-            "body": self.visit(ctx.forBlock())
+            "statement": {
+                "forStatement": {
+                    "initializer": self.visit(ctx.forInitializer()),
+                    "condition": self.visit(ctx.forCondition()) if ctx.forCondition() else None,
+                    "update": self.visitForUpdate(ctx.forUpdate()),  # Обработка оператора обновления
+                    "body": self.visit(ctx.forBlock())
+                }
+            }
         }
         return for_statement
 
@@ -113,25 +121,39 @@ class ASTBuilder(ToxaLanguageVisitor):
 
     def visitWhileStatement(self, ctx: ToxaLanguageParser.WhileStatementContext):
         while_statement = {
-            "type": "while",
-            "condition": self.visit(ctx.expression()),
-            "body": self.visit(ctx.whileBlock())
+            "statement": {
+                "whileStatement": {
+                    "condition": self.visit(ctx.expression()),
+                    "body": self.visit(ctx.whileBlock())
+                }
+            }
         }
         return while_statement
 
     def visitFunctionStatement(self, ctx: ToxaLanguageParser.FunctionStatementContext):
         function_statement = {
-            "type": "function",
-            "name": ctx.ID().getText(),
-            "params": [self.visit(param) for param in ctx.params().expression()] if ctx.params() else [],
-            "body": self.visit(ctx.functionBlock())
+            "statement": {
+                "functionStatement": {
+                    "name": ctx.ID().getText(),
+                    "params": [self.visit(param) for param in ctx.params().expression()] if ctx.params() else [],
+                    "body": self.visit(ctx.functionBlock())
+                }
+            }
         }
         return function_statement
 
+    def visitFunctionCall(self, ctx: ToxaLanguageParser.FunctionCallContext):
+        name = ctx.ID().getText()
+        params = [self.visit(param) for param in ctx.params().expression()] if ctx.params() else []
+        return {"functionCall": {"name": name, "params": params}}
+
     def visitReturnStatement(self, ctx: ToxaLanguageParser.ReturnStatementContext):
         return_statement = {
-            "type": "return",
-            "value": self.visit(ctx.expression()) if ctx.expression() else None
+            "statement": {
+                "returnStatement": {
+                    "value": self.visit(ctx.expression()) if ctx.expression() else None
+                }
+            }
         }
         return return_statement
 

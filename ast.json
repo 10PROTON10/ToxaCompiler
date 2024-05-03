@@ -1,31 +1,70 @@
 [
     {
         "statement": {
-            "ifStatement": {
-                "condition": {
-                    "comparison": ">",
-                    "left": {
-                        "type": "ID",
-                        "value": "c"
-                    },
-                    "right": {
-                        "type": "INT",
-                        "value": 10
-                    }
-                },
-                "if_body": [
+            "functionStatement": {
+                "name": "add",
+                "params": [
                     {
-                        "statement": {
-                            "printStatement": {
-                                "expression": {
+                        "type": "ID",
+                        "value": "a"
+                    },
+                    {
+                        "type": "ID",
+                        "value": "b"
+                    }
+                ],
+                "body": {
+                    "statement": {
+                        "returnStatement": {
+                            "value": {
+                                "arithmetic": "+",
+                                "left": {
                                     "type": "ID",
-                                    "value": "c"
+                                    "value": "a"
                                 },
-                                "END_STATE": ";"
+                                "right": {
+                                    "type": "ID",
+                                    "value": "b"
+                                }
                             }
                         }
                     }
-                ]
+                }
+            }
+        }
+    },
+    {
+        "statement": {
+            "assignmentStatement": {
+                "type": "int",
+                "ID": "result",
+                "expression": {
+                    "functionCall": {
+                        "name": "add",
+                        "params": [
+                            {
+                                "type": "INT",
+                                "value": 35
+                            },
+                            {
+                                "type": "INT",
+                                "value": 20
+                            }
+                        ]
+                    }
+                },
+                "END_STATE": ";"
+            }
+        }
+    },
+    {
+        "statement": {
+            "printStatement": {
+                "expression": {
+                    "type": "ID",
+                    "value": "add"
+                },
+                "END_STATE": ";"
             }
         }
     }

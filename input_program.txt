@@ -1,5 +1,8 @@
 start
-if (c > 10) then
-    print(c);
-endif;
+function add(a, b) then
+    return a + b;
+endfunction;
+
+int result = add(35,20);
+print(add);
 finish

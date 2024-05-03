@@ -11,6 +11,7 @@ statement: assignmentStatement
          | whileStatement
          | forStatement
          | functionStatement
+         | functionCall
          | returnStatement
          | expression;
 
@@ -73,6 +74,7 @@ expression
     | comparison
     | logical
     | operand
+    | functionCall
     | LPAREN expression RPAREN
     ;
 
