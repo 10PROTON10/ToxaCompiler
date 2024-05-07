@@ -188,6 +188,15 @@ class ToxaLanguageListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ToxaLanguageParser#paramsCall.
+    def enterParamsCall(self, ctx:ToxaLanguageParser.ParamsCallContext):
+        pass
+
+    # Exit a parse tree produced by ToxaLanguageParser#paramsCall.
+    def exitParamsCall(self, ctx:ToxaLanguageParser.ParamsCallContext):
+        pass
+
+
     # Enter a parse tree produced by ToxaLanguageParser#params.
     def enterParams(self, ctx:ToxaLanguageParser.ParamsContext):
         pass

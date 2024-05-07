@@ -109,6 +109,11 @@ class ToxaLanguageVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by ToxaLanguageParser#paramsCall.
+    def visitParamsCall(self, ctx:ToxaLanguageParser.ParamsCallContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by ToxaLanguageParser#params.
     def visitParams(self, ctx:ToxaLanguageParser.ParamsContext):
         return self.visitChildren(ctx)

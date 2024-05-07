@@ -23,24 +23,20 @@ class ASTBuilder(ToxaLanguageVisitor):
 
     def visitAssignmentStatement(self, ctx: ToxaLanguageParser.AssignmentStatementContext):
         assignment = {
-            "statement": {
-                "assignmentStatement": {
-                    "type": ctx.type_().getText(),
-                    "ID": ctx.ID().getText(),
-                    "expression": self.visit(ctx.expression()),
-                    "END_STATE": ";"
-                }
+            "assignmentStatement": {
+                "type": ctx.type_().getText(),
+                "ID": ctx.ID().getText(),
+                "expression": self.visit(ctx.expression()),
+                "END_STATE": ";"
             }
         }
         return assignment
 
     def visitPrintStatement(self, ctx: ToxaLanguageParser.PrintStatementContext):
         return {
-            "statement": {
-                "printStatement": {
-                    "expression": self.visit(ctx.expression()),
-                    "END_STATE": ";"
-                }
+            "printStatement": {
+                "expression": self.visit(ctx.expression()),
+                "END_STATE": ";"
             }
         }
 
@@ -55,8 +51,6 @@ class ASTBuilder(ToxaLanguageVisitor):
             return self.visit(ctx.operand())
         elif ctx.functionCall():
             return self.visit(ctx.functionCall())
-        elif ctx.LPAREN():
-            return self.visit(ctx.expression(0))
 
     def visitOperand(self, ctx: ToxaLanguageParser.OperandContext):
         if ctx.INT():
@@ -67,41 +61,37 @@ class ASTBuilder(ToxaLanguageVisitor):
             return {"type": "ID", "value": ctx.ID().getText()}
         elif ctx.functionCall():
             return self.visit(ctx.functionCall())
+        elif ctx.LPAREN() and ctx.RPAREN():  # Если операнд является выражением в скобках
+            return self.visit(ctx.expression())  # Посещаем выражение внутри скобок
 
     def visitIfStatement(self, ctx: ToxaLanguageParser.IfStatementContext):
         condition = self.visit(ctx.expression())
         block = [self.visit(statement) for statement in ctx.ifBlock().statement()]
         node = {
-            "statement": {
-                "ifStatement": {
-                    "condition": condition,
-                    "if_body": block
-                }
+            "ifStatement": {
+                "condition": condition,
+                "if_body": block
             }
         }
         return node
 
     def visitIfElseStatement(self, ctx: ToxaLanguageParser.IfElseStatementContext):
         if_else_statement = {
-            "statement": {
-                "ifElseStatement": {
-                    "condition": self.visit(ctx.expression()),
-                    "if_body": self.visit(ctx.ifBlock()),
-                    "else_body": self.visit(ctx.elseBlock())
-                }
+            "ifElseStatement": {
+                "condition": self.visit(ctx.expression()),
+                "if_body": self.visit(ctx.ifBlock()),
+                "else_body": self.visit(ctx.elseBlock())
             }
         }
         return if_else_statement
 
     def visitForStatement(self, ctx: ToxaLanguageParser.ForStatementContext):
         for_statement = {
-            "statement": {
-                "forStatement": {
-                    "initializer": self.visit(ctx.forInitializer()),
-                    "condition": self.visit(ctx.forCondition()) if ctx.forCondition() else None,
-                    "update": self.visitForUpdate(ctx.forUpdate()),  # Обработка оператора обновления
-                    "body": self.visit(ctx.forBlock())
-                }
+            "forStatement": {
+                "initializer": self.visit(ctx.forInitializer()),
+                "condition": self.visit(ctx.forCondition()) if ctx.forCondition() else None,
+                "update": self.visitForUpdate(ctx.forUpdate()),  # Обработка оператора обновления
+                "body": self.visit(ctx.forBlock())
             }
         }
         return for_statement
@@ -121,38 +111,35 @@ class ASTBuilder(ToxaLanguageVisitor):
 
     def visitWhileStatement(self, ctx: ToxaLanguageParser.WhileStatementContext):
         while_statement = {
-            "statement": {
-                "whileStatement": {
-                    "condition": self.visit(ctx.expression()),
-                    "body": self.visit(ctx.whileBlock())
-                }
+            "whileStatement": {
+                "condition": self.visit(ctx.expression()),
+                "body": self.visit(ctx.whileBlock())
             }
         }
         return while_statement
 
     def visitFunctionStatement(self, ctx: ToxaLanguageParser.FunctionStatementContext):
+        params = []
+        if ctx.params():
+            params = [self.visit(param) for param in ctx.params().operand()]
         function_statement = {
-            "statement": {
-                "functionStatement": {
-                    "name": ctx.ID().getText(),
-                    "params": [self.visit(param) for param in ctx.params().expression()] if ctx.params() else [],
-                    "body": self.visit(ctx.functionBlock())
-                }
+            "functionStatement": {
+                "name": ctx.ID().getText(),
+                "params": params,
+                "body": self.visit(ctx.functionBlock())
             }
         }
         return function_statement
 
     def visitFunctionCall(self, ctx: ToxaLanguageParser.FunctionCallContext):
         name = ctx.ID().getText()
-        params = [self.visit(param) for param in ctx.params().expression()] if ctx.params() else []
+        params = [self.visit(param) for param in ctx.paramsCall().operand()] if ctx.paramsCall() else []
         return {"functionCall": {"name": name, "params": params}}
 
     def visitReturnStatement(self, ctx: ToxaLanguageParser.ReturnStatementContext):
         return_statement = {
-            "statement": {
-                "returnStatement": {
-                    "value": self.visit(ctx.expression()) if ctx.expression() else None
-                }
+            "returnStatement": {
+                "value": self.visit(ctx.expression()) if ctx.expression() else None
             }
         }
         return return_statement
@@ -164,10 +151,31 @@ class ASTBuilder(ToxaLanguageVisitor):
         return {"comparison": operator, "left": left, "right": right}
 
     def visitArithmetic(self, ctx: ToxaLanguageParser.ArithmeticContext):
-        left = self.visit(ctx.operand(0))
-        right = self.visit(ctx.operand(1))
-        operator = ctx.children[1].getText()  # Получаем арифметический оператор
-        return {"arithmetic": operator, "left": left, "right": right}
+        operands = [self.visit(operand_ctx) for operand_ctx in ctx.operand()]
+        operators = [ctx.children[i].getText() for i in range(1, len(ctx.children), 2)]
+
+        # Переводим символьные представления операторов в соответствующие ключи
+        operator_mapping = {
+            "+": "PLUS",
+            "-": "MINUS",
+            "*": "MUL",
+            "/": "DIV",
+            "^": "POW"
+        }
+
+        # Инициализируем переменную result значением первого операнда
+        result = operands[0]
+
+        # Перебираем операторы и операнды, чтобы вычислить результат
+        for i in range(1, len(operands)):
+            operator = operator_mapping[operators[i - 1]]
+            right = operands[i]
+
+            # Строим вложенную структуру с использованием вычисленного результата и следующего операнда
+            result = {"arithmetic": {"operator": operator, "left": result, "right": right}}
+
+        # Возвращаем вычисленный результат
+        return result
 
     def visitLogical(self, ctx: ToxaLanguageParser.LogicalContext):
         left = self.visit(ctx.operand(0))

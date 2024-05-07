@@ -10,83 +10,89 @@ else:
 
 def serializedATN():
     return [
-        4,1,40,233,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,38,248,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
-        1,0,1,0,5,0,57,8,0,10,0,12,0,60,9,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,3,1,75,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,3,1,
-        3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,5,5,5,99,
-        8,5,10,5,12,5,102,9,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,
-        6,1,7,5,7,116,8,7,10,7,12,7,119,9,7,1,8,1,8,1,8,1,8,1,8,1,8,1,8,
-        1,8,1,8,1,8,1,8,1,8,1,8,1,9,5,9,135,8,9,10,9,12,9,138,9,9,1,10,1,
-        10,1,10,1,10,1,10,1,11,1,11,1,12,1,12,1,12,1,13,1,13,1,14,1,14,1,
-        14,1,14,1,14,1,14,1,14,1,14,1,14,1,15,5,15,162,8,15,10,15,12,15,
-        165,9,15,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,16,1,17,
-        5,17,178,8,17,10,17,12,17,181,9,17,1,18,1,18,1,18,1,18,1,19,1,19,
-        1,19,1,19,1,19,1,20,3,20,193,8,20,1,20,1,20,5,20,197,8,20,10,20,
-        12,20,200,9,20,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,3,21,
-        211,8,21,1,22,1,22,1,22,1,22,1,23,1,23,1,23,1,23,1,24,1,24,1,24,
-        1,24,1,25,1,25,1,25,1,25,3,25,229,8,25,1,26,1,26,1,26,0,0,27,0,2,
-        4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,
-        50,52,0,5,1,0,11,12,2,0,28,28,32,37,1,0,23,27,1,0,38,39,1,0,9,10,
-        230,0,54,1,0,0,0,2,74,1,0,0,0,4,76,1,0,0,0,6,82,1,0,0,0,8,88,1,0,
-        0,0,10,100,1,0,0,0,12,103,1,0,0,0,14,117,1,0,0,0,16,120,1,0,0,0,
-        18,136,1,0,0,0,20,139,1,0,0,0,22,144,1,0,0,0,24,146,1,0,0,0,26,149,
-        1,0,0,0,28,151,1,0,0,0,30,163,1,0,0,0,32,166,1,0,0,0,34,179,1,0,
-        0,0,36,182,1,0,0,0,38,186,1,0,0,0,40,192,1,0,0,0,42,210,1,0,0,0,
-        44,212,1,0,0,0,46,216,1,0,0,0,48,220,1,0,0,0,50,228,1,0,0,0,52,230,
-        1,0,0,0,54,58,5,13,0,0,55,57,3,2,1,0,56,55,1,0,0,0,57,60,1,0,0,0,
-        58,56,1,0,0,0,58,59,1,0,0,0,59,61,1,0,0,0,60,58,1,0,0,0,61,62,5,
-        14,0,0,62,63,5,0,0,1,63,1,1,0,0,0,64,75,3,4,2,0,65,75,3,6,3,0,66,
-        75,3,8,4,0,67,75,3,12,6,0,68,75,3,28,14,0,69,75,3,16,8,0,70,75,3,
-        32,16,0,71,75,3,38,19,0,72,75,3,36,18,0,73,75,3,42,21,0,74,64,1,
-        0,0,0,74,65,1,0,0,0,74,66,1,0,0,0,74,67,1,0,0,0,74,68,1,0,0,0,74,
-        69,1,0,0,0,74,70,1,0,0,0,74,71,1,0,0,0,74,72,1,0,0,0,74,73,1,0,0,
-        0,75,3,1,0,0,0,76,77,3,52,26,0,77,78,5,22,0,0,78,79,5,28,0,0,79,
-        80,3,42,21,0,80,81,5,31,0,0,81,5,1,0,0,0,82,83,5,1,0,0,83,84,5,29,
-        0,0,84,85,3,42,21,0,85,86,5,30,0,0,86,87,5,31,0,0,87,7,1,0,0,0,88,
-        89,5,2,0,0,89,90,5,29,0,0,90,91,3,42,21,0,91,92,5,30,0,0,92,93,5,
-        15,0,0,93,94,3,10,5,0,94,95,5,16,0,0,95,96,5,31,0,0,96,9,1,0,0,0,
-        97,99,3,2,1,0,98,97,1,0,0,0,99,102,1,0,0,0,100,98,1,0,0,0,100,101,
-        1,0,0,0,101,11,1,0,0,0,102,100,1,0,0,0,103,104,5,2,0,0,104,105,5,
-        29,0,0,105,106,3,42,21,0,106,107,5,30,0,0,107,108,5,15,0,0,108,109,
-        3,10,5,0,109,110,5,3,0,0,110,111,3,14,7,0,111,112,5,16,0,0,112,113,
-        5,31,0,0,113,13,1,0,0,0,114,116,3,2,1,0,115,114,1,0,0,0,116,119,
-        1,0,0,0,117,115,1,0,0,0,117,118,1,0,0,0,118,15,1,0,0,0,119,117,1,
-        0,0,0,120,121,5,4,0,0,121,122,5,29,0,0,122,123,3,20,10,0,123,124,
-        5,31,0,0,124,125,3,22,11,0,125,126,5,31,0,0,126,127,3,24,12,0,127,
-        128,5,30,0,0,128,129,5,15,0,0,129,130,3,18,9,0,130,131,5,17,0,0,
-        131,132,5,31,0,0,132,17,1,0,0,0,133,135,3,2,1,0,134,133,1,0,0,0,
-        135,138,1,0,0,0,136,134,1,0,0,0,136,137,1,0,0,0,137,19,1,0,0,0,138,
-        136,1,0,0,0,139,140,3,52,26,0,140,141,5,22,0,0,141,142,5,28,0,0,
-        142,143,3,42,21,0,143,21,1,0,0,0,144,145,3,42,21,0,145,23,1,0,0,
-        0,146,147,5,22,0,0,147,148,3,26,13,0,148,25,1,0,0,0,149,150,7,0,
-        0,0,150,27,1,0,0,0,151,152,5,5,0,0,152,153,5,29,0,0,153,154,3,42,
-        21,0,154,155,5,30,0,0,155,156,5,15,0,0,156,157,3,30,15,0,157,158,
-        5,18,0,0,158,159,5,31,0,0,159,29,1,0,0,0,160,162,3,2,1,0,161,160,
-        1,0,0,0,162,165,1,0,0,0,163,161,1,0,0,0,163,164,1,0,0,0,164,31,1,
-        0,0,0,165,163,1,0,0,0,166,167,5,6,0,0,167,168,5,22,0,0,168,169,5,
-        29,0,0,169,170,3,40,20,0,170,171,5,30,0,0,171,172,5,15,0,0,172,173,
-        3,34,17,0,173,174,5,19,0,0,174,175,5,31,0,0,175,33,1,0,0,0,176,178,
-        3,2,1,0,177,176,1,0,0,0,178,181,1,0,0,0,179,177,1,0,0,0,179,180,
-        1,0,0,0,180,35,1,0,0,0,181,179,1,0,0,0,182,183,5,7,0,0,183,184,3,
-        42,21,0,184,185,5,31,0,0,185,37,1,0,0,0,186,187,5,22,0,0,187,188,
-        5,29,0,0,188,189,3,40,20,0,189,190,5,30,0,0,190,39,1,0,0,0,191,193,
-        3,42,21,0,192,191,1,0,0,0,192,193,1,0,0,0,193,198,1,0,0,0,194,195,
-        5,8,0,0,195,197,3,42,21,0,196,194,1,0,0,0,197,200,1,0,0,0,198,196,
-        1,0,0,0,198,199,1,0,0,0,199,41,1,0,0,0,200,198,1,0,0,0,201,211,3,
-        46,23,0,202,211,3,44,22,0,203,211,3,48,24,0,204,211,3,50,25,0,205,
-        211,3,38,19,0,206,207,5,29,0,0,207,208,3,42,21,0,208,209,5,30,0,
-        0,209,211,1,0,0,0,210,201,1,0,0,0,210,202,1,0,0,0,210,203,1,0,0,
-        0,210,204,1,0,0,0,210,205,1,0,0,0,210,206,1,0,0,0,211,43,1,0,0,0,
-        212,213,3,50,25,0,213,214,7,1,0,0,214,215,3,50,25,0,215,45,1,0,0,
-        0,216,217,3,50,25,0,217,218,7,2,0,0,218,219,3,50,25,0,219,47,1,0,
-        0,0,220,221,3,50,25,0,221,222,7,3,0,0,222,223,3,50,25,0,223,49,1,
-        0,0,0,224,229,5,20,0,0,225,229,5,21,0,0,226,229,5,22,0,0,227,229,
-        3,38,19,0,228,224,1,0,0,0,228,225,1,0,0,0,228,226,1,0,0,0,228,227,
-        1,0,0,0,229,51,1,0,0,0,230,231,7,4,0,0,231,53,1,0,0,0,11,58,74,100,
-        117,136,163,179,192,198,210,228
+        2,27,7,27,1,0,5,0,58,8,0,10,0,12,0,61,9,0,1,0,1,0,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,75,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,3,
+        1,3,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,5,5,5,
+        99,8,5,10,5,12,5,102,9,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,1,6,
+        1,6,1,7,5,7,116,8,7,10,7,12,7,119,9,7,1,8,1,8,1,8,1,8,1,8,1,8,1,
+        8,1,8,1,8,1,8,1,8,1,8,1,8,1,9,5,9,135,8,9,10,9,12,9,138,9,9,1,10,
+        1,10,1,10,1,10,1,10,1,11,1,11,1,12,1,12,1,12,1,13,1,13,1,14,1,14,
+        1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,15,5,15,162,8,15,10,15,12,15,
+        165,9,15,1,16,1,16,1,16,1,16,3,16,171,8,16,1,16,1,16,1,16,1,16,1,
+        16,1,16,1,17,5,17,180,8,17,10,17,12,17,183,9,17,1,18,1,18,1,18,1,
+        18,1,19,1,19,1,19,1,19,1,19,1,20,1,20,1,20,5,20,197,8,20,10,20,12,
+        20,200,9,20,1,21,1,21,1,21,1,21,1,21,1,21,5,21,208,8,21,10,21,12,
+        21,211,9,21,1,22,1,22,1,22,1,22,1,22,3,22,218,8,22,1,23,1,23,1,23,
+        1,23,1,24,1,24,1,24,5,24,227,8,24,10,24,12,24,230,9,24,1,25,1,25,
+        1,25,1,25,1,26,1,26,1,26,1,26,1,26,1,26,1,26,1,26,3,26,244,8,26,
+        1,27,1,27,1,27,0,0,28,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,
+        32,34,36,38,40,42,44,46,48,50,52,54,0,5,1,0,11,12,2,0,26,26,30,35,
+        1,0,21,25,1,0,36,37,1,0,9,10,246,0,59,1,0,0,0,2,74,1,0,0,0,4,76,
+        1,0,0,0,6,82,1,0,0,0,8,88,1,0,0,0,10,100,1,0,0,0,12,103,1,0,0,0,
+        14,117,1,0,0,0,16,120,1,0,0,0,18,136,1,0,0,0,20,139,1,0,0,0,22,144,
+        1,0,0,0,24,146,1,0,0,0,26,149,1,0,0,0,28,151,1,0,0,0,30,163,1,0,
+        0,0,32,166,1,0,0,0,34,181,1,0,0,0,36,184,1,0,0,0,38,188,1,0,0,0,
+        40,193,1,0,0,0,42,201,1,0,0,0,44,217,1,0,0,0,46,219,1,0,0,0,48,223,
+        1,0,0,0,50,231,1,0,0,0,52,243,1,0,0,0,54,245,1,0,0,0,56,58,3,2,1,
+        0,57,56,1,0,0,0,58,61,1,0,0,0,59,57,1,0,0,0,59,60,1,0,0,0,60,62,
+        1,0,0,0,61,59,1,0,0,0,62,63,5,0,0,1,63,1,1,0,0,0,64,75,3,4,2,0,65,
+        75,3,6,3,0,66,75,3,8,4,0,67,75,3,12,6,0,68,75,3,28,14,0,69,75,3,
+        16,8,0,70,75,3,32,16,0,71,75,3,38,19,0,72,75,3,36,18,0,73,75,3,44,
+        22,0,74,64,1,0,0,0,74,65,1,0,0,0,74,66,1,0,0,0,74,67,1,0,0,0,74,
+        68,1,0,0,0,74,69,1,0,0,0,74,70,1,0,0,0,74,71,1,0,0,0,74,72,1,0,0,
+        0,74,73,1,0,0,0,75,3,1,0,0,0,76,77,3,54,27,0,77,78,5,20,0,0,78,79,
+        5,26,0,0,79,80,3,44,22,0,80,81,5,29,0,0,81,5,1,0,0,0,82,83,5,1,0,
+        0,83,84,5,27,0,0,84,85,3,44,22,0,85,86,5,28,0,0,86,87,5,29,0,0,87,
+        7,1,0,0,0,88,89,5,2,0,0,89,90,5,27,0,0,90,91,3,44,22,0,91,92,5,28,
+        0,0,92,93,5,13,0,0,93,94,3,10,5,0,94,95,5,14,0,0,95,96,5,29,0,0,
+        96,9,1,0,0,0,97,99,3,2,1,0,98,97,1,0,0,0,99,102,1,0,0,0,100,98,1,
+        0,0,0,100,101,1,0,0,0,101,11,1,0,0,0,102,100,1,0,0,0,103,104,5,2,
+        0,0,104,105,5,27,0,0,105,106,3,44,22,0,106,107,5,28,0,0,107,108,
+        5,13,0,0,108,109,3,10,5,0,109,110,5,3,0,0,110,111,3,14,7,0,111,112,
+        5,14,0,0,112,113,5,29,0,0,113,13,1,0,0,0,114,116,3,2,1,0,115,114,
+        1,0,0,0,116,119,1,0,0,0,117,115,1,0,0,0,117,118,1,0,0,0,118,15,1,
+        0,0,0,119,117,1,0,0,0,120,121,5,4,0,0,121,122,5,27,0,0,122,123,3,
+        20,10,0,123,124,5,29,0,0,124,125,3,22,11,0,125,126,5,29,0,0,126,
+        127,3,24,12,0,127,128,5,28,0,0,128,129,5,13,0,0,129,130,3,18,9,0,
+        130,131,5,15,0,0,131,132,5,29,0,0,132,17,1,0,0,0,133,135,3,2,1,0,
+        134,133,1,0,0,0,135,138,1,0,0,0,136,134,1,0,0,0,136,137,1,0,0,0,
+        137,19,1,0,0,0,138,136,1,0,0,0,139,140,3,54,27,0,140,141,5,20,0,
+        0,141,142,5,26,0,0,142,143,3,44,22,0,143,21,1,0,0,0,144,145,3,44,
+        22,0,145,23,1,0,0,0,146,147,5,20,0,0,147,148,3,26,13,0,148,25,1,
+        0,0,0,149,150,7,0,0,0,150,27,1,0,0,0,151,152,5,5,0,0,152,153,5,27,
+        0,0,153,154,3,44,22,0,154,155,5,28,0,0,155,156,5,13,0,0,156,157,
+        3,30,15,0,157,158,5,16,0,0,158,159,5,29,0,0,159,29,1,0,0,0,160,162,
+        3,2,1,0,161,160,1,0,0,0,162,165,1,0,0,0,163,161,1,0,0,0,163,164,
+        1,0,0,0,164,31,1,0,0,0,165,163,1,0,0,0,166,167,5,6,0,0,167,168,5,
+        20,0,0,168,170,5,27,0,0,169,171,3,42,21,0,170,169,1,0,0,0,170,171,
+        1,0,0,0,171,172,1,0,0,0,172,173,5,28,0,0,173,174,5,13,0,0,174,175,
+        3,34,17,0,175,176,5,17,0,0,176,177,5,29,0,0,177,33,1,0,0,0,178,180,
+        3,2,1,0,179,178,1,0,0,0,180,183,1,0,0,0,181,179,1,0,0,0,181,182,
+        1,0,0,0,182,35,1,0,0,0,183,181,1,0,0,0,184,185,5,7,0,0,185,186,3,
+        44,22,0,186,187,5,29,0,0,187,37,1,0,0,0,188,189,5,20,0,0,189,190,
+        5,27,0,0,190,191,3,40,20,0,191,192,5,28,0,0,192,39,1,0,0,0,193,198,
+        3,52,26,0,194,195,5,8,0,0,195,197,3,52,26,0,196,194,1,0,0,0,197,
+        200,1,0,0,0,198,196,1,0,0,0,198,199,1,0,0,0,199,41,1,0,0,0,200,198,
+        1,0,0,0,201,202,3,54,27,0,202,209,3,52,26,0,203,204,5,8,0,0,204,
+        205,3,54,27,0,205,206,3,52,26,0,206,208,1,0,0,0,207,203,1,0,0,0,
+        208,211,1,0,0,0,209,207,1,0,0,0,209,210,1,0,0,0,210,43,1,0,0,0,211,
+        209,1,0,0,0,212,218,3,48,24,0,213,218,3,46,23,0,214,218,3,50,25,
+        0,215,218,3,52,26,0,216,218,3,38,19,0,217,212,1,0,0,0,217,213,1,
+        0,0,0,217,214,1,0,0,0,217,215,1,0,0,0,217,216,1,0,0,0,218,45,1,0,
+        0,0,219,220,3,52,26,0,220,221,7,1,0,0,221,222,3,52,26,0,222,47,1,
+        0,0,0,223,228,3,52,26,0,224,225,7,2,0,0,225,227,3,52,26,0,226,224,
+        1,0,0,0,227,230,1,0,0,0,228,226,1,0,0,0,228,229,1,0,0,0,229,49,1,
+        0,0,0,230,228,1,0,0,0,231,232,3,52,26,0,232,233,7,3,0,0,233,234,
+        3,52,26,0,234,51,1,0,0,0,235,244,5,18,0,0,236,244,5,19,0,0,237,244,
+        5,20,0,0,238,244,3,38,19,0,239,240,5,27,0,0,240,241,3,44,22,0,241,
+        242,5,28,0,0,242,244,1,0,0,0,243,235,1,0,0,0,243,236,1,0,0,0,243,
+        237,1,0,0,0,243,238,1,0,0,0,243,239,1,0,0,0,244,53,1,0,0,0,245,246,
+        7,4,0,0,246,55,1,0,0,0,13,59,74,100,117,136,163,170,181,198,209,
+        217,228,243
     ]
 
 class ToxaLanguageParser ( Parser ):
@@ -101,20 +107,20 @@ class ToxaLanguageParser ( Parser ):
 
     literalNames = [ "<INVALID>", "'print'", "'if'", "'else'", "'for'", 
                      "'while'", "'function'", "'return'", "','", "'int'", 
-                     "'float'", "<INVALID>", "<INVALID>", "'start'", "'finish'", 
-                     "'then'", "'endif'", "'endfor'", "'endwhile'", "'endfunction'", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "'*'", "'%'", 
-                     "'/'", "'+'", "'-'", "'='", "'('", "')'", "';'", "'>'", 
-                     "'<'", "'>='", "'<='", "'=='", "'!='", "'&&'", "'||'" ]
+                     "'float'", "<INVALID>", "<INVALID>", "'then'", "'endif'", 
+                     "'endfor'", "'endwhile'", "'endfunction'", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "'*'", "'%'", "'/'", "'+'", 
+                     "'-'", "'='", "'('", "')'", "';'", "'>'", "'<'", "'>='", 
+                     "'<='", "'=='", "'!='", "'&&'", "'||'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "INCREMENT", 
-                      "DECREMENT", "START_STATEMENT", "FINISH_STATEMENT", 
-                      "THEN", "ENDIF", "ENDFOR", "ENDWHILE", "ENDFUNCTION", 
-                      "INT", "FLOAT", "ID", "MUL", "REM", "DIV", "PLUS", 
-                      "MINUS", "EQ", "LPAREN", "RPAREN", "END_STATE", "GT", 
-                      "LT", "GE", "LE", "EQEQ", "NE", "AND", "OR", "WS" ]
+                      "DECREMENT", "THEN", "ENDIF", "ENDFOR", "ENDWHILE", 
+                      "ENDFUNCTION", "INT", "FLOAT", "ID", "MUL", "REM", 
+                      "DIV", "PLUS", "MINUS", "EQ", "LPAREN", "RPAREN", 
+                      "END_STATE", "GT", "LT", "GE", "LE", "EQEQ", "NE", 
+                      "AND", "OR", "WS" ]
 
     RULE_program = 0
     RULE_statement = 1
@@ -136,21 +142,22 @@ class ToxaLanguageParser ( Parser ):
     RULE_functionBlock = 17
     RULE_returnStatement = 18
     RULE_functionCall = 19
-    RULE_params = 20
-    RULE_expression = 21
-    RULE_comparison = 22
-    RULE_arithmetic = 23
-    RULE_logical = 24
-    RULE_operand = 25
-    RULE_type = 26
+    RULE_paramsCall = 20
+    RULE_params = 21
+    RULE_expression = 22
+    RULE_comparison = 23
+    RULE_arithmetic = 24
+    RULE_logical = 25
+    RULE_operand = 26
+    RULE_type = 27
 
     ruleNames =  [ "program", "statement", "assignmentStatement", "printStatement", 
                    "ifStatement", "ifBlock", "ifElseStatement", "elseBlock", 
                    "forStatement", "forBlock", "forInitializer", "forCondition", 
                    "forUpdate", "incrementOrDecrement", "whileStatement", 
                    "whileBlock", "functionStatement", "functionBlock", "returnStatement", 
-                   "functionCall", "params", "expression", "comparison", 
-                   "arithmetic", "logical", "operand", "type" ]
+                   "functionCall", "paramsCall", "params", "expression", 
+                   "comparison", "arithmetic", "logical", "operand", "type" ]
 
     EOF = Token.EOF
     T__0=1
@@ -165,34 +172,32 @@ class ToxaLanguageParser ( Parser ):
     T__9=10
     INCREMENT=11
     DECREMENT=12
-    START_STATEMENT=13
-    FINISH_STATEMENT=14
-    THEN=15
-    ENDIF=16
-    ENDFOR=17
-    ENDWHILE=18
-    ENDFUNCTION=19
-    INT=20
-    FLOAT=21
-    ID=22
-    MUL=23
-    REM=24
-    DIV=25
-    PLUS=26
-    MINUS=27
-    EQ=28
-    LPAREN=29
-    RPAREN=30
-    END_STATE=31
-    GT=32
-    LT=33
-    GE=34
-    LE=35
-    EQEQ=36
-    NE=37
-    AND=38
-    OR=39
-    WS=40
+    THEN=13
+    ENDIF=14
+    ENDFOR=15
+    ENDWHILE=16
+    ENDFUNCTION=17
+    INT=18
+    FLOAT=19
+    ID=20
+    MUL=21
+    REM=22
+    DIV=23
+    PLUS=24
+    MINUS=25
+    EQ=26
+    LPAREN=27
+    RPAREN=28
+    END_STATE=29
+    GT=30
+    LT=31
+    GE=32
+    LE=33
+    EQEQ=34
+    NE=35
+    AND=36
+    OR=37
+    WS=38
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -209,12 +214,6 @@ class ToxaLanguageParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
-
-        def START_STATEMENT(self):
-            return self.getToken(ToxaLanguageParser.START_STATEMENT, 0)
-
-        def FINISH_STATEMENT(self):
-            return self.getToken(ToxaLanguageParser.FINISH_STATEMENT, 0)
 
         def EOF(self):
             return self.getToken(ToxaLanguageParser.EOF, 0)
@@ -253,20 +252,16 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 54
-            self.match(ToxaLanguageParser.START_STATEMENT)
-            self.state = 58
+            self.state = 59
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 544212726) != 0):
-                self.state = 55
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 136054518) != 0):
+                self.state = 56
                 self.statement()
-                self.state = 60
+                self.state = 61
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 61
-            self.match(ToxaLanguageParser.FINISH_STATEMENT)
             self.state = 62
             self.match(ToxaLanguageParser.EOF)
         except RecognitionException as re:
@@ -682,7 +677,7 @@ class ToxaLanguageParser ( Parser ):
             self.state = 100
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 544212726) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 136054518) != 0):
                 self.state = 97
                 self.statement()
                 self.state = 102
@@ -831,7 +826,7 @@ class ToxaLanguageParser ( Parser ):
             self.state = 117
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 544212726) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 136054518) != 0):
                 self.state = 114
                 self.statement()
                 self.state = 119
@@ -991,7 +986,7 @@ class ToxaLanguageParser ( Parser ):
             self.state = 136
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 544212726) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 136054518) != 0):
                 self.state = 133
                 self.statement()
                 self.state = 138
@@ -1353,7 +1348,7 @@ class ToxaLanguageParser ( Parser ):
             self.state = 163
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 544212726) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 136054518) != 0):
                 self.state = 160
                 self.statement()
                 self.state = 165
@@ -1382,10 +1377,6 @@ class ToxaLanguageParser ( Parser ):
         def LPAREN(self):
             return self.getToken(ToxaLanguageParser.LPAREN, 0)
 
-        def params(self):
-            return self.getTypedRuleContext(ToxaLanguageParser.ParamsContext,0)
-
-
         def RPAREN(self):
             return self.getToken(ToxaLanguageParser.RPAREN, 0)
 
@@ -1401,6 +1392,10 @@ class ToxaLanguageParser ( Parser ):
 
         def END_STATE(self):
             return self.getToken(ToxaLanguageParser.END_STATE, 0)
+
+        def params(self):
+            return self.getTypedRuleContext(ToxaLanguageParser.ParamsContext,0)
+
 
         def getRuleIndex(self):
             return ToxaLanguageParser.RULE_functionStatement
@@ -1426,6 +1421,7 @@ class ToxaLanguageParser ( Parser ):
 
         localctx = ToxaLanguageParser.FunctionStatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 32, self.RULE_functionStatement)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 166
@@ -1434,17 +1430,23 @@ class ToxaLanguageParser ( Parser ):
             self.match(ToxaLanguageParser.ID)
             self.state = 168
             self.match(ToxaLanguageParser.LPAREN)
-            self.state = 169
-            self.params()
             self.state = 170
-            self.match(ToxaLanguageParser.RPAREN)
-            self.state = 171
-            self.match(ToxaLanguageParser.THEN)
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==9 or _la==10:
+                self.state = 169
+                self.params()
+
+
             self.state = 172
-            self.functionBlock()
+            self.match(ToxaLanguageParser.RPAREN)
             self.state = 173
-            self.match(ToxaLanguageParser.ENDFUNCTION)
+            self.match(ToxaLanguageParser.THEN)
             self.state = 174
+            self.functionBlock()
+            self.state = 175
+            self.match(ToxaLanguageParser.ENDFUNCTION)
+            self.state = 176
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1496,13 +1498,13 @@ class ToxaLanguageParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 179
+            self.state = 181
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 544212726) != 0):
-                self.state = 176
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 136054518) != 0):
+                self.state = 178
                 self.statement()
-                self.state = 181
+                self.state = 183
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1555,11 +1557,11 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_returnStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 182
-            self.match(ToxaLanguageParser.T__6)
-            self.state = 183
-            self.expression()
             self.state = 184
+            self.match(ToxaLanguageParser.T__6)
+            self.state = 185
+            self.expression()
+            self.state = 186
             self.match(ToxaLanguageParser.END_STATE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1583,8 +1585,8 @@ class ToxaLanguageParser ( Parser ):
         def LPAREN(self):
             return self.getToken(ToxaLanguageParser.LPAREN, 0)
 
-        def params(self):
-            return self.getTypedRuleContext(ToxaLanguageParser.ParamsContext,0)
+        def paramsCall(self):
+            return self.getTypedRuleContext(ToxaLanguageParser.ParamsCallContext,0)
 
 
         def RPAREN(self):
@@ -1616,14 +1618,78 @@ class ToxaLanguageParser ( Parser ):
         self.enterRule(localctx, 38, self.RULE_functionCall)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 186
-            self.match(ToxaLanguageParser.ID)
-            self.state = 187
-            self.match(ToxaLanguageParser.LPAREN)
             self.state = 188
-            self.params()
+            self.match(ToxaLanguageParser.ID)
             self.state = 189
+            self.match(ToxaLanguageParser.LPAREN)
+            self.state = 190
+            self.paramsCall()
+            self.state = 191
             self.match(ToxaLanguageParser.RPAREN)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class ParamsCallContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def operand(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(ToxaLanguageParser.OperandContext)
+            else:
+                return self.getTypedRuleContext(ToxaLanguageParser.OperandContext,i)
+
+
+        def getRuleIndex(self):
+            return ToxaLanguageParser.RULE_paramsCall
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterParamsCall" ):
+                listener.enterParamsCall(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitParamsCall" ):
+                listener.exitParamsCall(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParamsCall" ):
+                return visitor.visitParamsCall(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def paramsCall(self):
+
+        localctx = ToxaLanguageParser.ParamsCallContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 40, self.RULE_paramsCall)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 193
+            self.operand()
+            self.state = 198
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while _la==8:
+                self.state = 194
+                self.match(ToxaLanguageParser.T__7)
+                self.state = 195
+                self.operand()
+                self.state = 200
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1640,11 +1706,18 @@ class ToxaLanguageParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def expression(self, i:int=None):
+        def type_(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(ToxaLanguageParser.ExpressionContext)
+                return self.getTypedRuleContexts(ToxaLanguageParser.TypeContext)
             else:
-                return self.getTypedRuleContext(ToxaLanguageParser.ExpressionContext,i)
+                return self.getTypedRuleContext(ToxaLanguageParser.TypeContext,i)
+
+
+        def operand(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(ToxaLanguageParser.OperandContext)
+            else:
+                return self.getTypedRuleContext(ToxaLanguageParser.OperandContext,i)
 
 
         def getRuleIndex(self):
@@ -1670,27 +1743,25 @@ class ToxaLanguageParser ( Parser ):
     def params(self):
 
         localctx = ToxaLanguageParser.ParamsContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 40, self.RULE_params)
+        self.enterRule(localctx, 42, self.RULE_params)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 192
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 544210944) != 0):
-                self.state = 191
-                self.expression()
-
-
-            self.state = 198
+            self.state = 201
+            self.type_()
+            self.state = 202
+            self.operand()
+            self.state = 209
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==8:
-                self.state = 194
+                self.state = 203
                 self.match(ToxaLanguageParser.T__7)
-                self.state = 195
-                self.expression()
-                self.state = 200
+                self.state = 204
+                self.type_()
+                self.state = 205
+                self.operand()
+                self.state = 211
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1730,16 +1801,6 @@ class ToxaLanguageParser ( Parser ):
             return self.getTypedRuleContext(ToxaLanguageParser.FunctionCallContext,0)
 
 
-        def LPAREN(self):
-            return self.getToken(ToxaLanguageParser.LPAREN, 0)
-
-        def expression(self):
-            return self.getTypedRuleContext(ToxaLanguageParser.ExpressionContext,0)
-
-
-        def RPAREN(self):
-            return self.getToken(ToxaLanguageParser.RPAREN, 0)
-
         def getRuleIndex(self):
             return ToxaLanguageParser.RULE_expression
 
@@ -1763,49 +1824,39 @@ class ToxaLanguageParser ( Parser ):
     def expression(self):
 
         localctx = ToxaLanguageParser.ExpressionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 42, self.RULE_expression)
+        self.enterRule(localctx, 44, self.RULE_expression)
         try:
-            self.state = 210
+            self.state = 217
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,9,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 201
+                self.state = 212
                 self.arithmetic()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 202
+                self.state = 213
                 self.comparison()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 203
+                self.state = 214
                 self.logical()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 204
+                self.state = 215
                 self.operand()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 205
+                self.state = 216
                 self.functionCall()
-                pass
-
-            elif la_ == 6:
-                self.enterOuterAlt(localctx, 6)
-                self.state = 206
-                self.match(ToxaLanguageParser.LPAREN)
-                self.state = 207
-                self.expression()
-                self.state = 208
-                self.match(ToxaLanguageParser.RPAREN)
                 pass
 
 
@@ -1876,20 +1927,20 @@ class ToxaLanguageParser ( Parser ):
     def comparison(self):
 
         localctx = ToxaLanguageParser.ComparisonContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 44, self.RULE_comparison)
+        self.enterRule(localctx, 46, self.RULE_comparison)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 212
+            self.state = 219
             self.operand()
-            self.state = 213
+            self.state = 220
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 270851375104) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 67712843776) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 214
+            self.state = 221
             self.operand()
         except RecognitionException as re:
             localctx.exception = re
@@ -1914,20 +1965,35 @@ class ToxaLanguageParser ( Parser ):
                 return self.getTypedRuleContext(ToxaLanguageParser.OperandContext,i)
 
 
-        def MUL(self):
-            return self.getToken(ToxaLanguageParser.MUL, 0)
+        def MUL(self, i:int=None):
+            if i is None:
+                return self.getTokens(ToxaLanguageParser.MUL)
+            else:
+                return self.getToken(ToxaLanguageParser.MUL, i)
 
-        def DIV(self):
-            return self.getToken(ToxaLanguageParser.DIV, 0)
+        def DIV(self, i:int=None):
+            if i is None:
+                return self.getTokens(ToxaLanguageParser.DIV)
+            else:
+                return self.getToken(ToxaLanguageParser.DIV, i)
 
-        def REM(self):
-            return self.getToken(ToxaLanguageParser.REM, 0)
+        def REM(self, i:int=None):
+            if i is None:
+                return self.getTokens(ToxaLanguageParser.REM)
+            else:
+                return self.getToken(ToxaLanguageParser.REM, i)
 
-        def PLUS(self):
-            return self.getToken(ToxaLanguageParser.PLUS, 0)
+        def PLUS(self, i:int=None):
+            if i is None:
+                return self.getTokens(ToxaLanguageParser.PLUS)
+            else:
+                return self.getToken(ToxaLanguageParser.PLUS, i)
 
-        def MINUS(self):
-            return self.getToken(ToxaLanguageParser.MINUS, 0)
+        def MINUS(self, i:int=None):
+            if i is None:
+                return self.getTokens(ToxaLanguageParser.MINUS)
+            else:
+                return self.getToken(ToxaLanguageParser.MINUS, i)
 
         def getRuleIndex(self):
             return ToxaLanguageParser.RULE_arithmetic
@@ -1952,21 +2018,29 @@ class ToxaLanguageParser ( Parser ):
     def arithmetic(self):
 
         localctx = ToxaLanguageParser.ArithmeticContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 46, self.RULE_arithmetic)
+        self.enterRule(localctx, 48, self.RULE_arithmetic)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 216
+            self.state = 223
             self.operand()
-            self.state = 217
+            self.state = 228
+            self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 260046848) != 0)):
-                self._errHandler.recoverInline(self)
-            else:
-                self._errHandler.reportMatch(self)
-                self.consume()
-            self.state = 218
-            self.operand()
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 65011712) != 0):
+                self.state = 224
+                _la = self._input.LA(1)
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 65011712) != 0)):
+                    self._errHandler.recoverInline(self)
+                else:
+                    self._errHandler.reportMatch(self)
+                    self.consume()
+                self.state = 225
+                self.operand()
+                self.state = 230
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2019,20 +2093,20 @@ class ToxaLanguageParser ( Parser ):
     def logical(self):
 
         localctx = ToxaLanguageParser.LogicalContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 48, self.RULE_logical)
+        self.enterRule(localctx, 50, self.RULE_logical)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 220
+            self.state = 231
             self.operand()
-            self.state = 221
+            self.state = 232
             _la = self._input.LA(1)
-            if not(_la==38 or _la==39):
+            if not(_la==36 or _la==37):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 222
+            self.state = 233
             self.operand()
         except RecognitionException as re:
             localctx.exception = re
@@ -2063,6 +2137,16 @@ class ToxaLanguageParser ( Parser ):
             return self.getTypedRuleContext(ToxaLanguageParser.FunctionCallContext,0)
 
 
+        def LPAREN(self):
+            return self.getToken(ToxaLanguageParser.LPAREN, 0)
+
+        def expression(self):
+            return self.getTypedRuleContext(ToxaLanguageParser.ExpressionContext,0)
+
+
+        def RPAREN(self):
+            return self.getToken(ToxaLanguageParser.RPAREN, 0)
+
         def getRuleIndex(self):
             return ToxaLanguageParser.RULE_operand
 
@@ -2086,33 +2170,43 @@ class ToxaLanguageParser ( Parser ):
     def operand(self):
 
         localctx = ToxaLanguageParser.OperandContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 50, self.RULE_operand)
+        self.enterRule(localctx, 52, self.RULE_operand)
         try:
-            self.state = 228
+            self.state = 243
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,12,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 224
+                self.state = 235
                 self.match(ToxaLanguageParser.INT)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 225
+                self.state = 236
                 self.match(ToxaLanguageParser.FLOAT)
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 226
+                self.state = 237
                 self.match(ToxaLanguageParser.ID)
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 227
+                self.state = 238
                 self.functionCall()
+                pass
+
+            elif la_ == 5:
+                self.enterOuterAlt(localctx, 5)
+                self.state = 239
+                self.match(ToxaLanguageParser.LPAREN)
+                self.state = 240
+                self.expression()
+                self.state = 241
+                self.match(ToxaLanguageParser.RPAREN)
                 pass
 
 
@@ -2156,11 +2250,11 @@ class ToxaLanguageParser ( Parser ):
     def type_(self):
 
         localctx = ToxaLanguageParser.TypeContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 52, self.RULE_type)
+        self.enterRule(localctx, 54, self.RULE_type)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 230
+            self.state = 245
             _la = self._input.LA(1)
             if not(_la==9 or _la==10):
                 self._errHandler.recoverInline(self)

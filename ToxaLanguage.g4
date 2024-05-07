@@ -1,7 +1,7 @@
 grammar ToxaLanguage;
 
 // Начальное правило - программа - конечное правило
-program: START_STATEMENT statement* FINISH_STATEMENT EOF;
+program: statement* EOF;
 
 // Выражение может быть арифметическим выражением, операцией присваивания, оператором печати, if-else, for, while
 statement: assignmentStatement
@@ -55,7 +55,7 @@ whileStatement: 'while' LPAREN expression RPAREN THEN whileBlock ENDWHILE END_ST
 whileBlock: statement*;
 
 // Правило для функции
-functionStatement: 'function' ID LPAREN params RPAREN THEN functionBlock ENDFUNCTION END_STATE;
+functionStatement: 'function' ID LPAREN params? RPAREN THEN functionBlock ENDFUNCTION END_STATE;
 
 functionBlock: statement*;
 
@@ -63,10 +63,12 @@ functionBlock: statement*;
 returnStatement: 'return' expression END_STATE;
 
 // Вызов функции
-functionCall: ID LPAREN params RPAREN;
+functionCall: ID LPAREN paramsCall RPAREN;
+
+paramsCall: operand (',' operand)*;
 
 // Параметры функции
-params: expression? (',' expression)*;
+params: type operand (',' type operand)*;
 
 // Правило для арифметического выражения
 expression
@@ -75,12 +77,11 @@ expression
     | logical
     | operand
     | functionCall
-    | LPAREN expression RPAREN
     ;
 
 comparison: operand (GT | LT | GE | LE | EQ | EQEQ | NE) operand;
 
-arithmetic: operand (MUL | DIV | REM | PLUS | MINUS) operand;
+arithmetic: operand ((MUL | DIV | REM | PLUS | MINUS) operand)*;
 
 logical: operand (AND | OR) operand;
 
@@ -89,14 +90,13 @@ operand
     | FLOAT
     | ID
     | functionCall
+    | LPAREN expression RPAREN
     ;
 
 // Типы данных
 type: 'int' | 'float';
 
 // Лексические правила (токены)
-START_STATEMENT: 'start';
-FINISH_STATEMENT: 'finish';
 THEN: 'then';
 ENDIF: 'endif';
 ENDFOR: 'endfor';
@@ -104,7 +104,7 @@ ENDWHILE: 'endwhile';
 ENDFUNCTION: 'endfunction';
 INT: DIGIT+;
 FLOAT: DIGIT+ '.' DIGIT+;
-ID: [a-zA-Z]+ DIGIT*;
+ID: [a-zA-Zа-яА-Я]+ DIGIT*;
 MUL: '*';
 REM: '%';
 DIV: '/';
