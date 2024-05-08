@@ -1,1 +1,6 @@
-int c = (35 + 1) - 27.5;
+function add(int a, float b) then
+    return a + b;
+endfunction;
+
+int result = add(3, 2);
+print(add);

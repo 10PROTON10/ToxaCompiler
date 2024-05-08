@@ -1,29 +1,65 @@
 [
     {
-        "assignmentStatement": {
-            "type": "int",
-            "ID": "c",
-            "expression": {
-                "arithmetic": {
-                    "operator": "MINUS",
-                    "left": {
-                        "arithmetic": {
-                            "operator": "PLUS",
-                            "left": {
-                                "type": "INT",
-                                "value": 35
-                            },
-                            "right": {
-                                "type": "INT",
-                                "value": 1
+        "functionStatement": {
+            "name": "add",
+            "params": [
+                {
+                    "type": "ID",
+                    "value": "a"
+                },
+                {
+                    "type": "ID",
+                    "value": "b"
+                }
+            ],
+            "body": [
+                {
+                    "returnStatement": {
+                        "value": {
+                            "arithmetic": {
+                                "operator": "PLUS",
+                                "left": {
+                                    "type": "ID",
+                                    "value": "a"
+                                },
+                                "right": {
+                                    "type": "ID",
+                                    "value": "b"
+                                }
                             }
                         }
-                    },
-                    "right": {
-                        "type": "FLOAT",
-                        "value": 27.5
                     }
                 }
+            ]
+        }
+    },
+    {
+        "assignmentStatement": {
+            "type": "int",
+            "ID": "result",
+            "expression": {
+                "functionCall": {
+                    "name": "add",
+                    "params": [
+                        {
+                            "type": "INT",
+                            "value": 3
+                        },
+                        {
+                            "type": "INT",
+                            "value": 2
+                        }
+                    ]
+                }
+            },
+            "END_STATE": ";"
+        }
+    },
+    {
+        "printStatement": {
+            "expression": {
+                "type": "ID",
+                "value": "add"
             },
             "END_STATE": ";"
         }

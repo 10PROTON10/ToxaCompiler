@@ -70,7 +70,7 @@ class ASTBuilder(ToxaLanguageVisitor):
         node = {
             "ifStatement": {
                 "condition": condition,
-                "if_body": block
+                "if_body": [self.visit(statement) for statement in ctx.ifBlock().statement()]
             }
         }
         return node
@@ -79,8 +79,8 @@ class ASTBuilder(ToxaLanguageVisitor):
         if_else_statement = {
             "ifElseStatement": {
                 "condition": self.visit(ctx.expression()),
-                "if_body": self.visit(ctx.ifBlock()),
-                "else_body": self.visit(ctx.elseBlock())
+                "if_body": [self.visit(statement) for statement in ctx.ifBlock().statement()],
+                "else_body": [self.visit(statement) for statement in ctx.elseBlock().statement()]
             }
         }
         return if_else_statement
@@ -91,7 +91,7 @@ class ASTBuilder(ToxaLanguageVisitor):
                 "initializer": self.visit(ctx.forInitializer()),
                 "condition": self.visit(ctx.forCondition()) if ctx.forCondition() else None,
                 "update": self.visitForUpdate(ctx.forUpdate()),  # Обработка оператора обновления
-                "body": self.visit(ctx.forBlock())
+                "body": [self.visit(statement) for statement in ctx.forBlock().statement()]
             }
         }
         return for_statement
@@ -113,7 +113,7 @@ class ASTBuilder(ToxaLanguageVisitor):
         while_statement = {
             "whileStatement": {
                 "condition": self.visit(ctx.expression()),
-                "body": self.visit(ctx.whileBlock())
+                "body": [self.visit(statement) for statement in ctx.whileBlock().statement()]
             }
         }
         return while_statement
@@ -126,7 +126,7 @@ class ASTBuilder(ToxaLanguageVisitor):
             "functionStatement": {
                 "name": ctx.ID().getText(),
                 "params": params,
-                "body": self.visit(ctx.functionBlock())
+                "body": [self.visit(statement) for statement in ctx.functionBlock().statement()]
             }
         }
         return function_statement
