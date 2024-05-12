@@ -1,6 +1,6 @@
-function add(int a, float b) then
-    return a + b;
-endfunction;
-
-int result = add(3, 2);
-print(add);
+int a = 25;
+int c = 1;
+if (c > 10 || b < 3) then
+    print(c);
+    print(a);
+endif;

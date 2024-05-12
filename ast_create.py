@@ -51,6 +51,12 @@ class ASTBuilder(ToxaLanguageVisitor):
             return self.visit(ctx.operand())
         elif ctx.functionCall():
             return self.visit(ctx.functionCall())
+        elif ctx.expression():
+            left = self.visit(ctx.expression(0))
+            operator_text = ctx.getChild(1).getText()
+            operator = "AND" if operator_text == "&&" else "OR" if operator_text == "||" else operator_text
+            right = self.visit(ctx.expression(1))
+            return {"logical": {"operator": operator, "left": left, "right": right}}
 
     def visitOperand(self, ctx: ToxaLanguageParser.OperandContext):
         if ctx.INT():

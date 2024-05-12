@@ -77,6 +77,7 @@ expression
     | logical
     | operand
     | functionCall
+    | expression (AND | OR) expression
     ;
 
 comparison: operand (GT | LT | GE | LE | EQ | EQEQ | NE) operand;

@@ -1,67 +1,75 @@
 [
     {
-        "functionStatement": {
-            "name": "add",
-            "params": [
-                {
-                    "type": "ID",
-                    "value": "a"
-                },
-                {
-                    "type": "ID",
-                    "value": "b"
-                }
-            ],
-            "body": [
-                {
-                    "returnStatement": {
-                        "value": {
-                            "arithmetic": {
-                                "operator": "PLUS",
-                                "left": {
-                                    "type": "ID",
-                                    "value": "a"
-                                },
-                                "right": {
-                                    "type": "ID",
-                                    "value": "b"
-                                }
-                            }
-                        }
-                    }
-                }
-            ]
+        "assignmentStatement": {
+            "type": "int",
+            "ID": "a",
+            "expression": {
+                "type": "INT",
+                "value": 25
+            },
+            "END_STATE": ";"
         }
     },
     {
         "assignmentStatement": {
             "type": "int",
-            "ID": "result",
+            "ID": "c",
             "expression": {
-                "functionCall": {
-                    "name": "add",
-                    "params": [
-                        {
-                            "type": "INT",
-                            "value": 3
-                        },
-                        {
-                            "type": "INT",
-                            "value": 2
-                        }
-                    ]
-                }
+                "type": "INT",
+                "value": 1
             },
             "END_STATE": ";"
         }
     },
     {
-        "printStatement": {
-            "expression": {
-                "type": "ID",
-                "value": "add"
+        "ifStatement": {
+            "condition": {
+                "logical": {
+                    "operator": "OR",
+                    "left": {
+                        "comparison": ">",
+                        "left": {
+                            "type": "ID",
+                            "value": "c"
+                        },
+                        "right": {
+                            "type": "INT",
+                            "value": 10
+                        }
+                    },
+                    "right": {
+                        "comparison": "<",
+                        "left": {
+                            "type": "ID",
+                            "value": "b"
+                        },
+                        "right": {
+                            "type": "INT",
+                            "value": 3
+                        }
+                    }
+                }
             },
-            "END_STATE": ";"
+            "if_body": [
+                {
+                    "printStatement": {
+                        "expression": {
+                            "type": "ID",
+                            "value": "c"
+                        },
+                        "END_STATE": ";"
+                    }
+                },
+                {
+                    "printStatement": {
+                        "expression": {
+                            "type": "ID",
+                            "value": "a"
+                        },
+                        "END_STATE": ";"
+                    }
+                }
+            ]
         }
     }
 ]
