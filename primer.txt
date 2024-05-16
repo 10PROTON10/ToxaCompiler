@@ -1,0 +1,54 @@
+int a = 10;
+int b = 5;
+int c = a + b * 2 - 3;
+print(c);
+
+----------------------
+
+int c = 15;
+if (c > 10) then
+    print(c);
+else
+    int c = 52;
+endif;
+
+---------------------
+
+int a = 25;
+int c = 11;
+if (c > 10) then
+    print(c);
+    print(a);
+endif;
+
+-------------------------
+
+for (int i = 0; i < 5; i++) then
+    print(i);
+endfor;
+
+-------------------------
+
+while (b < 10) then
+    int b = b + 1;
+    print(b);
+endwhile;
+
+-------------------------
+
+function add(int a, float b) then
+    return a + b;
+endfunction;
+
+function main() then
+    print(main);
+endfunction;
+
+--------------------------
+
+function add(int a, float b) then
+    return a + b;
+endfunction;
+
+int result = add(3, 2);
+print(add);

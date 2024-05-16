@@ -1,6 +1,4 @@
-int a = 25;
-int c = 1;
-if (c > 10 || b < 3) then
-    print(c);
-    print(a);
-endif;
+int a = 10;
+int b = 5;
+int c = a + b * 2 - 3;
+print(c);

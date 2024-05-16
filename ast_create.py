@@ -6,7 +6,11 @@ from ToxaLanguageVisitor import ToxaLanguageVisitor
 from antlr4.error.ErrorListener import ErrorListener
 
 class MyErrorListener(ErrorListener):
+    def __init__(self):
+        self.has_errors = False
+
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        self.has_errors = True
         raise Exception("Ошибка на строке " + str(line) + ":" + str(column) + " " + msg)
 
 class ASTBuilder(ToxaLanguageVisitor):
@@ -188,27 +192,27 @@ class ASTBuilder(ToxaLanguageVisitor):
         right = self.visit(ctx.operand(1))
         operator = ctx.children[1].getText()  # Получаем логический оператор
         return {"logical": operator, "left": left, "right": right}
-
-# Код для запуска парсера и создания AST
-def main():
-    input_file = "input_program.txt"
-    output_file = "ast.json"
-
-    input_stream = FileStream(input_file)
-    lexer = ToxaLanguageLexer(input_stream)
-    lexer.removeErrorListeners()
-    lexer.addErrorListener(MyErrorListener())
-    stream = CommonTokenStream(lexer)
-    parser = ToxaLanguageParser(stream)
-    parser.removeErrorListeners()
-    parser.addErrorListener(MyErrorListener())
-    tree = parser.program()
-
-    ast_builder = ASTBuilder()
-    ast = ast_builder.visit(tree)
-
-    with open(output_file, "w") as f:
-        json.dump(ast, f, indent=4)
-
-if __name__ == '__main__':
-    main()
+#
+# # Код для запуска парсера и создания AST
+# def main():
+#     input_file = "input_program.txt"
+#     output_file = "ast.json"
+#
+#     input_stream = FileStream(input_file)
+#     lexer = ToxaLanguageLexer(input_stream)
+#     lexer.removeErrorListeners()
+#     lexer.addErrorListener(MyErrorListener())
+#     stream = CommonTokenStream(lexer)
+#     parser = ToxaLanguageParser(stream)
+#     parser.removeErrorListeners()
+#     parser.addErrorListener(MyErrorListener())
+#     tree = parser.program()
+#
+#     ast_builder = ASTBuilder()
+#     ast = ast_builder.visit(tree)
+#
+#     with open(output_file, "w") as f:
+#         json.dump(ast, f, indent=4)
+#
+# if __name__ == '__main__':
+#     main()
