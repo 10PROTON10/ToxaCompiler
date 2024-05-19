@@ -108,7 +108,7 @@ class ASTBuilder(ToxaLanguageVisitor):
 
     def visitForInitializer(self, ctx: ToxaLanguageParser.ForInitializerContext):
         initializer = {
-            "type": "INT",
+            "type": ctx.type_().getText(),
             "ID": ctx.ID().getText(),  # Получаем имя переменной
             "value": self.visit(ctx.expression())  # Обрабатываем выражение для значения переменной
         }
@@ -131,7 +131,7 @@ class ASTBuilder(ToxaLanguageVisitor):
     def visitFunctionStatement(self, ctx: ToxaLanguageParser.FunctionStatementContext):
         params = []
         if ctx.params():
-            params = [self.visit(param) for param in ctx.params().operand()]
+            params = self.visitParams(ctx.params())
         function_statement = {
             "functionStatement": {
                 "name": ctx.ID().getText(),
@@ -141,15 +141,29 @@ class ASTBuilder(ToxaLanguageVisitor):
         }
         return function_statement
 
+    def visitParams(self, ctx: ToxaLanguageParser.ParamsContext):
+        params = []
+        for i in range(len(ctx.type_())):
+            param_type = ctx.type_(i).getText()
+            param_name = ctx.operand(i).getText()
+            params.append({"type": param_type.upper(), "value": param_name})
+        return params
+
     def visitFunctionCall(self, ctx: ToxaLanguageParser.FunctionCallContext):
         name = ctx.ID().getText()
         params = [self.visit(param) for param in ctx.paramsCall().operand()] if ctx.paramsCall() else []
-        return {"functionCall": {"name": name, "params": params}}
+        return {
+            "type": "functionCall",
+            "functionCall": {
+                "name": name,
+                "params": params
+            }
+        }
 
     def visitReturnStatement(self, ctx: ToxaLanguageParser.ReturnStatementContext):
         return_statement = {
             "returnStatement": {
-                "value": self.visit(ctx.expression()) if ctx.expression() else None
+                "expression": self.visit(ctx.expression()) if ctx.expression() else None
             }
         }
         return return_statement

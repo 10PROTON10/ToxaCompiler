@@ -52,3 +52,14 @@ endfunction;
 
 int result = add(3, 2);
 print(add);
+
+
+--------------------------
+
+function myFunction(int x, float y) then
+    int result = x + y;
+    print(result);
+    return result;
+endfunction;
+
+print(myFunction(2, 3));

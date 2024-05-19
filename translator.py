@@ -23,6 +23,14 @@ class ThreeAddressCode:
     def __str__(self):
         return "\n".join(self.code)
 
+    def save_to_file(self, file_path):
+        try:
+            with open(file_path, 'w') as file:
+                file.write("\n".join(self.code))
+            print(f"Промежуточный код сохранен в файл {file_path}")
+        except Exception as e:
+            print(f"Ошибка при сохранении промежуточного кода в файл {file_path}: {e}")
+
 
 def load_ast_from_file(file_path):
     try:
@@ -65,7 +73,7 @@ def process_expression(expr, tac):
             return process_expression(expr["expression"], tac)
         else:
             raise ValueError(f"Unknown expression type: {expr['type']}")
-    elif "arithmetic" in expr:  # Проверка на ключ "arithmetic"
+    elif "arithmetic" in expr:
         left = process_expression(expr["arithmetic"]["left"], tac)
         right = process_expression(expr["arithmetic"]["right"], tac)
         op = expr["arithmetic"]["operator"]
@@ -73,7 +81,7 @@ def process_expression(expr, tac):
             op = "+"
         elif op == "MINUS":
             op = "-"
-        elif op == "MULT":
+        elif op == "MUL":
             op = "*"
         elif op == "DIV":
             op = "/"
@@ -91,13 +99,12 @@ def process_expression(expr, tac):
         raise ValueError(f"Unknown expression structure: {expr}")
 
 
-
-
 def process_assignment(node, tac):
     var_type = node["assignmentStatement"]["type"]
     var_name = node["assignmentStatement"]["ID"]
     expr = node["assignmentStatement"]["expression"]
     value = process_expression(expr, tac)
+    tac.add_code(f"{var_type.lower()} {var_name}")  # добавление типа переменной
     tac.add_code(f"{var_name} = {value}")
 
 
@@ -178,14 +185,20 @@ def process_for(node, tac):
     initializer = node["forStatement"]["initializer"]
     condition = node["forStatement"]["condition"]
     update = node["forStatement"]["update"]
-    for_body = node["forStatement"]["body"]  # Используем ключ "body" вместо "for_body"
+    for_body = node["forStatement"]["body"]
 
     label_start = tac.new_label()
     label_body = tac.new_label()
     label_end = tac.new_label()
 
-    init_value = process_expression(initializer["value"], tac)  # Обращаемся к "value" вместо "expression"
-    tac.add_code(f"{initializer['ID']} = {init_value}")
+    # Извлечение типа и имени переменной из инициализатора
+    var_type = initializer["type"]
+    var_name = initializer["ID"]
+
+    # Обработка выражения инициализации
+    init_value = process_expression(initializer["value"], tac)
+    tac.add_code(f"{var_type.lower()} {var_name}")
+    tac.add_code(f"{var_name} = {init_value}")
 
     condition_code = process_expression(condition, tac)
 
@@ -197,39 +210,40 @@ def process_for(node, tac):
     for stmt in for_body:
         process_node(stmt, tac)
 
-    if update["operation"] == "++":  # Обращаемся к "operation" вместо "incrementOrDecrement"
+    if update["operation"] == "++":
         tac.add_code(f"{update['ID']} = {update['ID']} + 1")
-    elif update["operation"] == "--":  # Обращаемся к "operation" вместо "incrementOrDecrement"
+    elif update["operation"] == "--":
         tac.add_code(f"{update['ID']} = {update['ID']} - 1")
 
     tac.add_code(f"goto {label_start}")
     tac.add_code(f"{label_end}:")
 
 
-def process_function_call(node, tac):
-    func_name = node["functionCall"]["ID"]
-    params = node["functionCall"]["paramsCall"]
-    param_str = ", ".join([process_expression(param, tac) for param in params])
-    temp = tac.new_temp()
-    tac.add_code(f"{temp} = call {func_name}({param_str})")
-    return temp
-
-
 def process_function(node, tac):
-    func_name = node["functionStatement"]["ID"]
+    func_name = node["functionStatement"]["name"]
     params = node["functionStatement"]["params"]
-    function_body = node["functionStatement"]["functionBlock"]
+    function_body = node["functionStatement"]["body"]
 
     tac.add_code(f"function {func_name}:")
 
     if params:
         for param in params:
-            tac.add_code(f"param {param['ID']}")
+            tac.add_code(f"param {param['type'].lower()} {param['value']}")  # добавление типа параметра
 
     for stmt in function_body:
         process_node(stmt, tac)
 
-    tac.add_code(f"end function {func_name}")
+    tac.add_code(f"endfunction {func_name}")
+
+
+def process_function_call(node, tac):
+    func_name = node["functionCall"]["name"]
+    params = node["functionCall"]["params"]
+    param_str = ", ".join([process_expression(param, tac) for param in params])
+    temp = tac.new_temp()
+    tac.add_code(f"{temp} = call {func_name}({param_str})")
+    return temp
+
 
 
 def process_return(node, tac):
@@ -268,10 +282,10 @@ def generate_three_address_code(ast):
         process_node(node, tac)
     return tac
 
-
 # Пример использования
 ast = load_ast_from_file("ast.json")
 if ast:
     tac = generate_three_address_code(ast)
     print("Промежуточный трёхадресный код:")
     print(tac)
+    tac.save_to_file("tac_code.txt")

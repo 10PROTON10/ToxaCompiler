@@ -1,71 +1,40 @@
 [
     {
-        "assignmentStatement": {
-            "type": "int",
-            "ID": "a",
-            "expression": {
-                "type": "INT",
-                "value": 10
-            },
-            "END_STATE": ";"
-        }
-    },
-    {
-        "assignmentStatement": {
-            "type": "int",
-            "ID": "b",
-            "expression": {
-                "type": "INT",
-                "value": 5
-            },
-            "END_STATE": ";"
-        }
-    },
-    {
-        "assignmentStatement": {
-            "type": "int",
-            "ID": "c",
-            "expression": {
-                "arithmetic": {
-                    "operator": "MINUS",
-                    "left": {
-                        "arithmetic": {
-                            "operator": "MUL",
-                            "left": {
-                                "arithmetic": {
-                                    "operator": "PLUS",
-                                    "left": {
-                                        "type": "ID",
-                                        "value": "a"
-                                    },
-                                    "right": {
-                                        "type": "ID",
-                                        "value": "b"
-                                    }
-                                }
-                            },
-                            "right": {
-                                "type": "INT",
-                                "value": 2
-                            }
-                        }
-                    },
-                    "right": {
-                        "type": "INT",
-                        "value": 3
-                    }
+        "forStatement": {
+            "initializer": {
+                "type": "int",
+                "ID": "i",
+                "value": {
+                    "type": "INT",
+                    "value": 0
                 }
             },
-            "END_STATE": ";"
-        }
-    },
-    {
-        "printStatement": {
-            "expression": {
-                "type": "ID",
-                "value": "c"
+            "condition": {
+                "comparison": "<",
+                "left": {
+                    "type": "ID",
+                    "value": "i"
+                },
+                "right": {
+                    "type": "INT",
+                    "value": 5
+                }
             },
-            "END_STATE": ";"
+            "update": {
+                "ID": "i",
+                "operation": "++"
+            },
+            "body": [
+                {
+                    "printStatement": {
+                        "expression": {
+                            "type": "ID",
+                            "value": "i"
+                        },
+                        "END_STATE": ";"
+                    }
+                }
+            ]
         }
     }
 ]
