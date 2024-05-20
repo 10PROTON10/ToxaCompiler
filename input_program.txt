@@ -1,3 +1,6 @@
-for (int i = 0; i < 5; i++) then
-    print(i);
-endfor;
+int c = 15;
+if (c > 10) then
+    print(c);
+else
+    int c = 52;
+endif;

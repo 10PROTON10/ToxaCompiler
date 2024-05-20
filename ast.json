@@ -13,46 +13,14 @@
     {
         "ifElseStatement": {
             "condition": {
-                "logical": {
-                    "operator": "OR",
-                    "left": {
-                        "logical": {
-                            "operator": "AND",
-                            "left": {
-                                "comparison": ">",
-                                "left": {
-                                    "type": "ID",
-                                    "value": "c"
-                                },
-                                "right": {
-                                    "type": "INT",
-                                    "value": 10
-                                }
-                            },
-                            "right": {
-                                "comparison": "<=",
-                                "left": {
-                                    "type": "ID",
-                                    "value": "c"
-                                },
-                                "right": {
-                                    "type": "INT",
-                                    "value": 8
-                                }
-                            }
-                        }
-                    },
-                    "right": {
-                        "comparison": "==",
-                        "left": {
-                            "type": "ID",
-                            "value": "c"
-                        },
-                        "right": {
-                            "type": "INT",
-                            "value": 5
-                        }
-                    }
+                "comparison": ">",
+                "left": {
+                    "type": "ID",
+                    "value": "c"
+                },
+                "right": {
+                    "type": "INT",
+                    "value": 10
                 }
             },
             "if_body": [

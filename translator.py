@@ -119,8 +119,8 @@ def process_assignment(node, tac):
     var_type = node["assignmentStatement"]["type"]
     var_name = node["assignmentStatement"]["ID"]
     expr = node["assignmentStatement"]["expression"]
-    value = process_expression(expr, tac)
     tac.add_code(f"{var_type.lower()} {var_name}")  # добавление типа переменной
+    value = process_expression(expr, tac)
     tac.add_code(f"{var_name} = {value}")
 
 
@@ -179,6 +179,7 @@ def process_while(node, tac):
     condition = node["whileStatement"]["condition"]
     while_body = node["whileStatement"]["body"]  # Изменено на "body"
 
+    tac.add_code(f"Begin while")
     label_start = tac.new_label()
     label_body = tac.new_label()
     label_end = tac.new_label()
@@ -195,13 +196,15 @@ def process_while(node, tac):
 
     tac.add_code(f"goto {label_start}")
     tac.add_code(f"{label_end}:")
-
+    tac.add_code(f"End while")
 
 def process_for(node, tac):
     initializer = node["forStatement"]["initializer"]
     condition = node["forStatement"]["condition"]
     update = node["forStatement"]["update"]
     for_body = node["forStatement"]["body"]
+
+    tac.add_code(f"Begin for")  # Метка начала цикла for
 
     label_start = tac.new_label()
     label_body = tac.new_label()
@@ -223,8 +226,11 @@ def process_for(node, tac):
     tac.add_code(f"goto {label_end}")
 
     tac.add_code(f"{label_body}:")
+
     for stmt in for_body:
         process_node(stmt, tac)
+
+
 
     if update["operation"] == "++":
         tac.add_code(f"{update['ID']} = {update['ID']} + 1")
@@ -233,14 +239,14 @@ def process_for(node, tac):
 
     tac.add_code(f"goto {label_start}")
     tac.add_code(f"{label_end}:")
-
+    tac.add_code(f"End for")  # Метка конца цикла for
 
 def process_function(node, tac):
     func_name = node["functionStatement"]["name"]
     params = node["functionStatement"]["params"]
     function_body = node["functionStatement"]["body"]
 
-    tac.add_code(f"function {func_name}:")
+    tac.add_code(f"function {func_name}")
 
     if params:
         for param in params:
@@ -298,10 +304,10 @@ def generate_three_address_code(ast):
         process_node(node, tac)
     return tac
 
-# Пример использования
-ast = load_ast_from_file("ast.json")
-if ast:
-    tac = generate_three_address_code(ast)
-    print("Промежуточный трёхадресный код:")
-    print(tac)
-    tac.save_to_file("tac_code.txt")
+# # Пример использования
+# ast = load_ast_from_file("ast.json")
+# if ast:
+#     tac = generate_three_address_code(ast)
+#     print("Промежуточный трёхадресный код:")
+#     print(tac)
+#     tac.save_to_file("tac_code.txt")

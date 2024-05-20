@@ -1,11 +1,12 @@
-int i
-i = 0
-t0 = i < 5
+int c
+c = 15
+t0 = c > 10
+if t0 goto L0
+goto L1
 L0:
-if t0 goto L1
+print c
 goto L2
 L1:
-print i
-i = i + 1
-goto L0
+int c
+c = 52
 L2:

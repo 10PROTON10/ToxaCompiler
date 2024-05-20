@@ -3,6 +3,7 @@ from antlr4 import *
 from ToxaLanguageLexer import ToxaLanguageLexer
 from ToxaLanguageParser import ToxaLanguageParser
 from ast_create import ASTBuilder, MyErrorListener
+from translator import generate_three_address_code
 import llvmlite.ir as ir
 import llvmlite.binding as llvm
 
@@ -36,44 +37,49 @@ class Compiler:
             self.ast_builder = ASTBuilder()
             self.ast = self.ast_builder.visit(self.tree)
             self.save_ast()
-
-    #         # Create LLVM module and builder
-    #         self.module = ir.Module(name="main")
-    #         self.builder = ir.IRBuilder()
-    #
-    #         # Create and walk CustomToxaListener
-    #         printer = CustomToxaListener(self.builder, self.module, self.ast)
-    #         walker = ParseTreeWalker()
-    #         walker.walk(printer, self.tree)
-    #
-    #         # Compile the LLVM module
-    #         self.compile(printer)
-    #     else:
-    #         print("Parsing failed with syntax errors")
-    #
-    # def compile(self, gen_module):
-    #     llvm.initialize()
-    #     llvm.initialize_native_target()
-    #     llvm.initialize_native_asmprinter()
-    #
-    #     target = llvm.Target.from_default_triple()
-    #     target_machine = target.create_target_machine(codemodel="small")
-    #
-    #     gen_module.module.triple = llvm.get_default_triple()
-    #     gen_module.module.data_layout = target_machine.target_data
-    #
-    #     module_ref = llvm.parse_assembly(str(gen_module.module))
-    #     module_ref.verify()
-    #
-    #     with open("output.l", "w") as f:
-    #         f.write(str(gen_module.module))
-    #
-    #     print(str(gen_module.module))
+            #         # Create LLVM module and builder
+            #         self.module = ir.Module(name="main")
+            #         self.builder = ir.IRBuilder()
+            #
+            #         # Create and walk CustomToxaListener
+            #         printer = CustomToxaListener(self.builder, self.module, self.ast)
+            #         walker = ParseTreeWalker()
+            #         walker.walk(printer, self.tree)
+            #
+            #         # Compile the LLVM module
+            #         self.compile(printer)
+            #     else:
+            #         print("Parsing failed with syntax errors")
+            #
+            # def compile(self, gen_module):
+            #     llvm.initialize()
+            #     llvm.initialize_native_target()
+            #     llvm.initialize_native_asmprinter()
+            #
+            #     target = llvm.Target.from_default_triple()
+            #     target_machine = target.create_target_machine(codemodel="small")
+            #
+            #     gen_module.module.triple = llvm.get_default_triple()
+            #     gen_module.module.data_layout = target_machine.target_data
+            #
+            #     module_ref = llvm.parse_assembly(str(gen_module.module))
+            #     module_ref.verify()
+            #
+            #     with open("output.l", "w") as f:
+            #         f.write(str(gen_module.module))
+            #
+            #     print(str(gen_module.module))
 
     def save_ast(self):
         with open(self.output_file, "w") as f:
             json.dump(self.ast, f, indent=4)
         print(f"AST saved to: {self.output_file}")
+
+        # Process AST
+        tac = generate_three_address_code(self.ast)
+        print("Промежуточный трёхадресный код:")
+        print(tac)
+        tac.save_to_file("tac_code.txt")
 
 if __name__ == '__main__':
     input_file = "input_program.txt"
