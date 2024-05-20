@@ -61,12 +61,7 @@ def process_expression(expr, tac):
             tac.add_code(f"{temp} = {left} {op} {right}")
             return temp
         elif expr["type"] == "logical":
-            left = process_expression(expr["left"], tac)
-            right = process_expression(expr["right"], tac)
-            op = expr["operator"]
-            temp = tac.new_temp()
-            tac.add_code(f"{temp} = {left} {op} {right}")
-            return temp
+            return process_logical_expression(expr, tac)
         elif expr["type"] == "functionCall":
             return process_function_call(expr, tac)
         elif expr["type"] == "expression":
@@ -95,8 +90,29 @@ def process_expression(expr, tac):
         temp = tac.new_temp()
         tac.add_code(f"{temp} = {left} {op} {right}")
         return temp
+    elif "logical" in expr:
+        return process_logical_expression(expr, tac)
     else:
         raise ValueError(f"Unknown expression structure: {expr}")
+
+def process_logical_expression(expr, tac):
+    if "logical" in expr:
+        left = process_expression(expr["logical"]["left"], tac)
+        right = process_expression(expr["logical"]["right"], tac)
+        op = expr["logical"]["operator"]
+
+        if op == "AND":
+            temp = tac.new_temp()
+            tac.add_code(f"{temp} = {left} and {right}")
+        elif op == "OR":
+            temp = tac.new_temp()
+            tac.add_code(f"{temp} = {left} or {right}")
+        else:
+            raise ValueError(f"Unknown logical operator: {op}")
+
+        return temp
+    else:
+        raise ValueError(f"Unknown logical expression structure: {expr}")
 
 
 def process_assignment(node, tac):

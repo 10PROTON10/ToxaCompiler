@@ -1,35 +1,79 @@
 [
     {
-        "forStatement": {
-            "initializer": {
-                "type": "int",
-                "ID": "i",
-                "value": {
-                    "type": "INT",
-                    "value": 0
-                }
+        "assignmentStatement": {
+            "type": "int",
+            "ID": "c",
+            "expression": {
+                "type": "INT",
+                "value": 15
             },
+            "END_STATE": ";"
+        }
+    },
+    {
+        "ifElseStatement": {
             "condition": {
-                "comparison": "<",
-                "left": {
-                    "type": "ID",
-                    "value": "i"
-                },
-                "right": {
-                    "type": "INT",
-                    "value": 5
+                "logical": {
+                    "operator": "OR",
+                    "left": {
+                        "logical": {
+                            "operator": "AND",
+                            "left": {
+                                "comparison": ">",
+                                "left": {
+                                    "type": "ID",
+                                    "value": "c"
+                                },
+                                "right": {
+                                    "type": "INT",
+                                    "value": 10
+                                }
+                            },
+                            "right": {
+                                "comparison": "<=",
+                                "left": {
+                                    "type": "ID",
+                                    "value": "c"
+                                },
+                                "right": {
+                                    "type": "INT",
+                                    "value": 8
+                                }
+                            }
+                        }
+                    },
+                    "right": {
+                        "comparison": "==",
+                        "left": {
+                            "type": "ID",
+                            "value": "c"
+                        },
+                        "right": {
+                            "type": "INT",
+                            "value": 5
+                        }
+                    }
                 }
             },
-            "update": {
-                "ID": "i",
-                "operation": "++"
-            },
-            "body": [
+            "if_body": [
                 {
                     "printStatement": {
                         "expression": {
                             "type": "ID",
-                            "value": "i"
+                            "value": "c"
+                        },
+                        "END_STATE": ";"
+                    }
+                }
+            ],
+            "else_body": [
+                {
+                    "assignmentStatement": {
+                        "type": "int",
+                        "ID": "c",
+                        "expression": {
+                            "type": "INT",
+                            "value": 52
                         },
                         "END_STATE": ";"
                     }
