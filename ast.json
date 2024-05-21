@@ -1,11 +1,11 @@
 [
     {
         "assignmentStatement": {
-            "type": "int",
+            "type": "FLOAT",
             "ID": "c",
             "expression": {
-                "type": "INT",
-                "value": 5
+                "type": "FLOAT",
+                "value": 1532.9
             },
             "END_STATE": ";"
         }
@@ -13,14 +13,14 @@
     {
         "whileStatement": {
             "condition": {
-                "comparison": "<",
+                "comparison": ">",
                 "left": {
                     "type": "ID",
                     "value": "c"
                 },
                 "right": {
-                    "type": "INT",
-                    "value": 6
+                    "type": "FLOAT",
+                    "value": 1032.5
                 }
             },
             "body": [
@@ -29,6 +29,26 @@
                         "expression": {
                             "type": "ID",
                             "value": "c"
+                        },
+                        "END_STATE": ";"
+                    }
+                },
+                {
+                    "assignmentStatement": {
+                        "type": "FLOAT",
+                        "ID": "c",
+                        "expression": {
+                            "arithmetic": {
+                                "operator": "MINUS",
+                                "left": {
+                                    "type": "ID",
+                                    "value": "c"
+                                },
+                                "right": {
+                                    "type": "FLOAT",
+                                    "value": 322.3
+                                }
+                            }
                         },
                         "END_STATE": ";"
                     }

@@ -28,7 +28,7 @@ class ASTBuilder(ToxaLanguageVisitor):
     def visitAssignmentStatement(self, ctx: ToxaLanguageParser.AssignmentStatementContext):
         assignment = {
             "assignmentStatement": {
-                "type": ctx.type_().getText(),
+                "type": ctx.type_().getText().upper(),
                 "ID": ctx.ID().getText(),
                 "expression": self.visit(ctx.expression()),
                 "END_STATE": ";"
