@@ -2,16 +2,27 @@
     {
         "assignmentStatement": {
             "type": "int",
-            "ID": "c",
+            "ID": "a",
             "expression": {
                 "type": "INT",
-                "value": 15
+                "value": 25
             },
             "END_STATE": ";"
         }
     },
     {
-        "ifElseStatement": {
+        "assignmentStatement": {
+            "type": "int",
+            "ID": "c",
+            "expression": {
+                "type": "INT",
+                "value": 11
+            },
+            "END_STATE": ";"
+        }
+    },
+    {
+        "ifStatement": {
             "condition": {
                 "comparison": ">",
                 "left": {
@@ -32,16 +43,12 @@
                         },
                         "END_STATE": ";"
                     }
-                }
-            ],
-            "else_body": [
+                },
                 {
-                    "assignmentStatement": {
-                        "type": "int",
-                        "ID": "c",
+                    "printStatement": {
                         "expression": {
-                            "type": "INT",
-                            "value": 52
+                            "type": "ID",
+                            "value": "a"
                         },
                         "END_STATE": ";"
                     }
