@@ -20,14 +20,20 @@ class LLVMTranslator:
                 self.translate_assignment(node["assignmentStatement"])
             elif "whileStatement" in node:
                 self.translate_while(node["whileStatement"])
+            elif "ifStatement" in node:
+                self.translate_if(node["ifStatement"])
+            elif "ifElseStatement" in node:
+                self.translate_if_else(node["ifElseStatement"])
+            elif "forStatement" in node:
+                self.translate_for(node["forStatement"])
             else:
                 raise ValueError(f"Unknown node type in AST: {node.keys()}")
 
         self.builder.ret_void()
 
     def create_global_fmt_str(self):
-        fmt_str = ir.GlobalVariable(self.module, ir.ArrayType(ir.IntType(8), len("%.3f\n")), name="fmt_str")
-        fmt_str.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), len("%.3f\n")), bytearray(b"%.3f\n"))
+        fmt_str = ir.GlobalVariable(self.module, ir.ArrayType(ir.IntType(8), len("%f\n")), name="fmt_str")
+        fmt_str.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), len("%f\n")), bytearray(b"%f\n"))
         self.fmt_str_ptr = self.builder.bitcast(fmt_str, ir.IntType(8).as_pointer())
 
     def translate_assignment(self, node):
@@ -60,6 +66,93 @@ class LLVMTranslator:
 
         self.builder.position_at_end(after_loop_block)
 
+    def translate_if(self, node):
+        condition_node = node["condition"]
+        body_node = node["if_body"]
+
+        if_body_block = self.builder.append_basic_block(name="if_body")
+        after_if_block = self.builder.append_basic_block(name="after_if")
+
+        cond_value = self.translate_expression(condition_node)
+        self.builder.cbranch(cond_value, if_body_block, after_if_block)
+
+        self.builder.position_at_end(if_body_block)
+        self.translate_statements(body_node)
+        self.builder.branch(after_if_block)
+
+        self.builder.position_at_end(after_if_block)
+
+    def translate_if_else(self, node):
+        condition_node = node["condition"]
+        if_body_node = node["if_body"]
+        else_body_node = node["else_body"]
+
+        if_body_block = self.builder.append_basic_block(name="if_body")
+        else_body_block = self.builder.append_basic_block(name="else_body")
+        after_if_else_block = self.builder.append_basic_block(name="after_if_else")
+
+        cond_value = self.translate_expression(condition_node)
+        self.builder.cbranch(cond_value, if_body_block, else_body_block)
+
+        self.builder.position_at_end(if_body_block)
+        self.translate_statements(if_body_node)
+        self.builder.branch(after_if_else_block)
+
+        self.builder.position_at_end(else_body_block)
+        self.translate_statements(else_body_node)
+        self.builder.branch(after_if_else_block)
+
+        self.builder.position_at_end(after_if_else_block)
+
+    def translate_for(self, node):
+        initializer_node = node["initializer"]
+        condition_node = node["condition"]
+        update_node = node["update"]
+        body_node = node["body"]
+
+        # Initialize loop variable
+        self.translate_for_initializer(initializer_node)
+
+        loop_condition_block = self.builder.append_basic_block(name="loop_condition")
+        loop_body_block = self.builder.append_basic_block(name="loop_body")
+        loop_update_block = self.builder.append_basic_block(name="loop_update")
+        after_loop_block = self.builder.append_basic_block(name="after_loop")
+
+        self.builder.branch(loop_condition_block)
+
+        self.builder.position_at_end(loop_condition_block)
+        cond_value = self.translate_expression(condition_node)
+        self.builder.cbranch(cond_value, loop_body_block, after_loop_block)
+
+        self.builder.position_at_end(loop_body_block)
+        self.translate_statements(body_node)
+        self.builder.branch(loop_update_block)
+
+        self.builder.position_at_end(loop_update_block)
+        self.translate_update(update_node)
+        self.builder.branch(loop_condition_block)
+
+        self.builder.position_at_end(after_loop_block)
+
+    def translate_for_initializer(self, node):
+        var_name = node["ID"]
+        value = self.translate_expression(node["value"])
+        if var_name not in self.func_symtab:
+            ptr = self.builder.alloca(value.type, name=var_name)
+            self.func_symtab[var_name] = ptr
+        self.builder.store(value, self.func_symtab[var_name])
+
+    def translate_update(self, node):
+        if node["operation"] == "++":
+            var_ptr = self.func_symtab.get(node["ID"])
+            if not var_ptr:
+                raise ValueError(f"Variable '{node['ID']}' is not defined")
+            current_value = self.builder.load(var_ptr)
+            updated_value = self.builder.add(current_value, ir.Constant(ir.IntType(32), 1))
+            self.builder.store(updated_value, var_ptr)
+        else:
+            raise ValueError(f"Unknown update operation: {node['operation']}")
+
     def translate_statements(self, statements):
         for statement in statements:
             if "printStatement" in statement:
@@ -71,7 +164,9 @@ class LLVMTranslator:
 
     def translate_print(self, node):
         value = self.translate_expression(node["expression"])
-        double_value = self.builder.fpext(value, ir.DoubleType())  # Расширяем float до double
+        if isinstance(value.type, ir.IntType):
+            value = self.builder.sitofp(value, ir.FloatType())
+        double_value = self.builder.fpext(value, ir.DoubleType())
         print_func = self.module.globals.get("printf")
         if not print_func:
             voidptr_ty = ir.IntType(8).as_pointer()
