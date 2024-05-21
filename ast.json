@@ -2,53 +2,33 @@
     {
         "assignmentStatement": {
             "type": "int",
-            "ID": "a",
-            "expression": {
-                "type": "INT",
-                "value": 25
-            },
-            "END_STATE": ";"
-        }
-    },
-    {
-        "assignmentStatement": {
-            "type": "int",
             "ID": "c",
             "expression": {
                 "type": "INT",
-                "value": 11
+                "value": 5
             },
             "END_STATE": ";"
         }
     },
     {
-        "ifStatement": {
+        "whileStatement": {
             "condition": {
-                "comparison": ">",
+                "comparison": "<",
                 "left": {
                     "type": "ID",
                     "value": "c"
                 },
                 "right": {
                     "type": "INT",
-                    "value": 10
+                    "value": 6
                 }
             },
-            "if_body": [
+            "body": [
                 {
                     "printStatement": {
                         "expression": {
                             "type": "ID",
                             "value": "c"
-                        },
-                        "END_STATE": ";"
-                    }
-                },
-                {
-                    "printStatement": {
-                        "expression": {
-                            "type": "ID",
-                            "value": "a"
                         },
                         "END_STATE": ";"
                     }
