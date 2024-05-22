@@ -18,7 +18,7 @@ if_body:
   br label %"after_if_else"
 else_body:
   %"b" = alloca float
-  store float 0x404a266660000000, float* %"b"
+  store float 0x40364cccc0000000, float* %"b"
   %".12" = load float, float* %"b"
   %".13" = fpext float %".12" to double
   %".14" = call i32 (i8*, ...) @"printf"(i8* %".3", double %".13")
@@ -27,6 +27,6 @@ after_if_else:
   ret void
 }
 
-@"fmt_str_int" = global [4 x i8] c"%d\00a"
-@"fmt_str_float" = global [4 x i8] c"%f\00a"
+@"fmt_str_int" = global [4 x i8] c"%d\0a\00"
+@"fmt_str_float" = global [4 x i8] c"%f\0a\00"
 declare i32 @"printf"(i8* %".1", ...)

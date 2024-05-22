@@ -33,10 +33,10 @@ class LLVMTranslator:
 
     def create_global_fmt_str(self):
         fmt_str_int = ir.GlobalVariable(self.module, ir.ArrayType(ir.IntType(8), 4), name="fmt_str_int")
-        fmt_str_int.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), 4), bytearray(b"%d\0a"))
+        fmt_str_int.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), 4), bytearray(b"%d\n\0"))
 
         fmt_str_float = ir.GlobalVariable(self.module, ir.ArrayType(ir.IntType(8), 4), name="fmt_str_float")
-        fmt_str_float.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), 4), bytearray(b"%f\0a"))
+        fmt_str_float.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), 4), bytearray(b"%f\n\0"))
 
         self.fmt_str_int_ptr = self.builder.bitcast(fmt_str_int, ir.IntType(8).as_pointer())
         self.fmt_str_float_ptr = self.builder.bitcast(fmt_str_float, ir.IntType(8).as_pointer())
