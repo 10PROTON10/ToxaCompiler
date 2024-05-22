@@ -5,25 +5,28 @@ target datalayout = ""
 define void @"main"()
 {
 entry:
-  %".2" = bitcast [5 x i8]* @"fmt_str" to i8*
-  %"c" = alloca float
-  store float 0x4097f399a0000000, float* %"c"
-  br label %"loop_condition"
-loop_condition:
-  %".5" = load float, float* %"c"
-  %".6" = fcmp ogt float %".5", 0x4090220000000000
-  br i1 %".6", label %"loop_body", label %"after_loop"
-loop_body:
-  %".8" = load float, float* %"c"
-  %".9" = fpext float %".8" to double
-  %".10" = call i32 (i8*, ...) @"printf"(i8* %".2", double %".9")
-  %".11" = load float, float* %"c"
-  %".12" = fsub float %".11", 0x407424ccc0000000
-  store float %".12", float* %"c"
-  br label %"loop_condition"
-after_loop:
+  %".2" = bitcast [4 x i8]* @"fmt_str_int" to i8*
+  %".3" = bitcast [4 x i8]* @"fmt_str_float" to i8*
+  %"c" = alloca i32
+  store i32 8, i32* %"c"
+  %".5" = load i32, i32* %"c"
+  %".6" = icmp sgt i32 %".5", 10
+  br i1 %".6", label %"if_body", label %"else_body"
+if_body:
+  %".8" = load i32, i32* %"c"
+  %".9" = call i32 (i8*, ...) @"printf"(i8* %".2", i32 %".8")
+  br label %"after_if_else"
+else_body:
+  %"b" = alloca float
+  store float 0x404a266660000000, float* %"b"
+  %".12" = load float, float* %"b"
+  %".13" = fpext float %".12" to double
+  %".14" = call i32 (i8*, ...) @"printf"(i8* %".3", double %".13")
+  br label %"after_if_else"
+after_if_else:
   ret void
 }
 
-@"fmt_str" = global [5 x i8] c"%.3f\0a"
+@"fmt_str_int" = global [4 x i8] c"%d\00a"
+@"fmt_str_float" = global [4 x i8] c"%f\00a"
 declare i32 @"printf"(i8* %".1", ...)

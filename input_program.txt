@@ -1,3 +1,7 @@
-for (int i = 1; i < 5; i++) then
-    print(i);
-endfor;
+int c = 8;
+if (c > 10) then
+    print(c);
+else
+    float b = 52.3;
+    print(b);
+endif;

@@ -1,17 +1,17 @@
 [
     {
         "assignmentStatement": {
-            "type": "FLOAT",
+            "type": "INT",
             "ID": "c",
             "expression": {
-                "type": "FLOAT",
-                "value": 1532.9
+                "type": "INT",
+                "value": 8
             },
             "END_STATE": ";"
         }
     },
     {
-        "whileStatement": {
+        "ifElseStatement": {
             "condition": {
                 "comparison": ">",
                 "left": {
@@ -19,11 +19,11 @@
                     "value": "c"
                 },
                 "right": {
-                    "type": "FLOAT",
-                    "value": 1032.5
+                    "type": "INT",
+                    "value": 10
                 }
             },
-            "body": [
+            "if_body": [
                 {
                     "printStatement": {
                         "expression": {
@@ -32,23 +32,25 @@
                         },
                         "END_STATE": ";"
                     }
-                },
+                }
+            ],
+            "else_body": [
                 {
                     "assignmentStatement": {
                         "type": "FLOAT",
-                        "ID": "c",
+                        "ID": "b",
                         "expression": {
-                            "arithmetic": {
-                                "operator": "MINUS",
-                                "left": {
-                                    "type": "ID",
-                                    "value": "c"
-                                },
-                                "right": {
-                                    "type": "FLOAT",
-                                    "value": 322.3
-                                }
-                            }
+                            "type": "FLOAT",
+                            "value": 52.3
+                        },
+                        "END_STATE": ";"
+                    }
+                },
+                {
+                    "printStatement": {
+                        "expression": {
+                            "type": "ID",
+                            "value": "b"
                         },
                         "END_STATE": ";"
                     }

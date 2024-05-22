@@ -32,9 +32,14 @@ class LLVMTranslator:
         self.builder.ret_void()
 
     def create_global_fmt_str(self):
-        fmt_str = ir.GlobalVariable(self.module, ir.ArrayType(ir.IntType(8), len("%f\n")), name="fmt_str")
-        fmt_str.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), len("%f\n")), bytearray(b"%f\n"))
-        self.fmt_str_ptr = self.builder.bitcast(fmt_str, ir.IntType(8).as_pointer())
+        fmt_str_int = ir.GlobalVariable(self.module, ir.ArrayType(ir.IntType(8), 4), name="fmt_str_int")
+        fmt_str_int.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), 4), bytearray(b"%d\0a"))
+
+        fmt_str_float = ir.GlobalVariable(self.module, ir.ArrayType(ir.IntType(8), 4), name="fmt_str_float")
+        fmt_str_float.initializer = ir.Constant(ir.ArrayType(ir.IntType(8), 4), bytearray(b"%f\0a"))
+
+        self.fmt_str_int_ptr = self.builder.bitcast(fmt_str_int, ir.IntType(8).as_pointer())
+        self.fmt_str_float_ptr = self.builder.bitcast(fmt_str_float, ir.IntType(8).as_pointer())
 
     def translate_assignment(self, node):
         var_name = node["ID"]
@@ -164,15 +169,17 @@ class LLVMTranslator:
 
     def translate_print(self, node):
         value = self.translate_expression(node["expression"])
-        if isinstance(value.type, ir.IntType):
-            value = self.builder.sitofp(value, ir.FloatType())
-        double_value = self.builder.fpext(value, ir.DoubleType())
         print_func = self.module.globals.get("printf")
         if not print_func:
             voidptr_ty = ir.IntType(8).as_pointer()
             print_func_ty = ir.FunctionType(ir.IntType(32), [voidptr_ty], var_arg=True)
             print_func = ir.Function(self.module, print_func_ty, name="printf")
-        self.builder.call(print_func, [self.fmt_str_ptr, double_value])
+
+        if isinstance(value.type, ir.IntType):
+            self.builder.call(print_func, [self.fmt_str_int_ptr, value])
+        else:
+            double_value = self.builder.fpext(value, ir.DoubleType())
+            self.builder.call(print_func, [self.fmt_str_float_ptr, double_value])
 
     def translate_expression(self, expression):
         if "type" in expression:
@@ -254,11 +261,11 @@ def load_ast_from_file(filename):
         return json.load(file)
 
 
-if __name__ == "__main__":
-    ast_filename = "ast.json"
-    ast = load_ast_from_file(ast_filename)
-    translator = LLVMTranslator()
-    translator.translate_program(ast)
-    llvm_code = translator.generate_code()
-    with open("output.ll", "w") as output_file:
-        output_file.write(llvm_code)
+# if __name__ == "__main__":
+#     ast_filename = "ast.json"
+#     ast = load_ast_from_file(ast_filename)
+#     translator = LLVMTranslator()
+#     translator.translate_program(ast)
+#     llvm_code = translator.generate_code()
+#     with open("output.ll", "w") as output_file:
+#         output_file.write(llvm_code)

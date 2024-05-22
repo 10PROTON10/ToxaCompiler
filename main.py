@@ -3,9 +3,11 @@ from antlr4 import *
 from ToxaLanguageLexer import ToxaLanguageLexer
 from ToxaLanguageParser import ToxaLanguageParser
 from ast_create import ASTBuilder, MyErrorListener
-from translator import generate_three_address_code
 import llvmlite.ir as ir
 import llvmlite.binding as llvm
+
+from translatetollvm import LLVMTranslator
+
 
 class Compiler:
     def __init__(self, input_file, output_file):
@@ -76,10 +78,12 @@ class Compiler:
         print(f"AST saved to: {self.output_file}")
 
         # Process AST
-        tac = generate_three_address_code(self.ast)
-        print("Промежуточный трёхадресный код:")
-        print(tac)
-        tac.save_to_file("tac_code.txt")
+        translator = LLVMTranslator()
+        translator.translate_program(self.ast)
+        llvm_code = translator.generate_code()
+        with open("output.ll", "w") as output_file:
+            output_file.write(llvm_code)
+
 
 if __name__ == '__main__':
     input_file = "input_program.txt"
