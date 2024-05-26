@@ -187,14 +187,32 @@ class ASTBuilder(ToxaLanguageVisitor):
             "^": "POW"
         }
 
+        # Функция для обработки операций с более высоким приоритетом
+        def handle_high_priority_ops(operands, operators):
+            result = []
+            i = 0
+            while i < len(operators):
+                if operators[i] in ("*", "/"):
+                    left = operands.pop(i)
+                    right = operands.pop(i)
+                    op = operator_mapping[operators.pop(i)]
+                    operands.insert(i, {"arithmetic": {"operator": op, "left": left, "right": right}})
+                else:
+                    result.append((operands[i], operators[i]))
+                    i += 1
+            result.append((operands[i], None))  # Добавляем последний операнд
+            return result
+
+        # Обрабатываем операции умножения и деления
+        processed = handle_high_priority_ops(operands, operators)
+
         # Инициализируем переменную result значением первого операнда
-        result = operands[0]
+        result = processed[0][0]
 
         # Перебираем операторы и операнды, чтобы вычислить результат
-        for i in range(1, len(operands)):
-            operator = operator_mapping[operators[i - 1]]
-            right = operands[i]
-
+        for i in range(1, len(processed)):
+            operator = operator_mapping[processed[i - 1][1]]
+            right = processed[i][0]
             # Строим вложенную структуру с использованием вычисленного результата и следующего операнда
             result = {"arithmetic": {"operator": operator, "left": result, "right": right}}
 
