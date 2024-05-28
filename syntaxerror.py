@@ -52,12 +52,12 @@ def check_indentation(input_file):
                 if current_indent != expected_indent:
                     errors.append(f"Ошибка отступа на строке {i + 1}: {line.strip()}")
                     correct_indentation = False
-            else:
-                if current_indent != expected_indent and current_indent != expected_indent + 4:
+            elif stripped_line.startswith('else'):
+                expected_indent = indent_stack[-1] - 4
+                if current_indent != expected_indent:
                     errors.append(f"Ошибка отступа на строке {i + 1}: {line.strip()}")
                     correct_indentation = False
-
-                # Если это не начало или конец блока, проверяем, что отступ корректен
+            else:
                 if current_indent != expected_indent:
                     errors.append(f"Ошибка отступа на строке {i + 1}: {line.strip()}")
                     correct_indentation = False
@@ -79,6 +79,14 @@ def check_undefined_functions(input_file, declared_functions):
 
 
 def check_syntax(input_file):
+    # Проверка отступов
+    correct_indentation, indentation_errors = check_indentation(input_file)
+    if not correct_indentation:
+        print("Обнаружены ошибки отступов:")
+        for error in indentation_errors:
+            print(error)
+        return
+
     # Чтение входного файла
     input_stream = FileStream(input_file, encoding='utf-8')
 
@@ -113,23 +121,23 @@ def check_syntax(input_file):
     except Exception as e:
         return str(e)
 
-def main():
-    # Запрашиваем у пользователя путь к файлу
-    input_file = 'input_program.txt'
-
-    # Проверка отступов
-    correct_indentation, indentation_errors = check_indentation(input_file)
-    if not correct_indentation:
-        print("Обнаружены ошибки отступов:")
-        for error in indentation_errors:
-            print(error)
-        return
-
-    # Проверяем синтаксис файла
-    result = check_syntax(input_file)
-
-    # Выводим результат проверки
-    print(result)
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     # Запрашиваем у пользователя путь к файлу
+#     input_file = 'input_program.txt'
+#
+#     # Проверка отступов
+#     correct_indentation, indentation_errors = check_indentation(input_file)
+#     if not correct_indentation:
+#         print("Обнаружены ошибки отступов:")
+#         for error in indentation_errors:
+#             print(error)
+#         return
+#
+#     # Проверяем синтаксис файла
+#     result = check_syntax(input_file)
+#
+#     # Выводим результат проверки
+#     print(result)
+#
+# if __name__ == '__main__':
+#     main()
