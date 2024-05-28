@@ -1,97 +1,3 @@
-# import json
-#
-#
-# def read_ast_from_file(filename):
-#     with open(filename, 'r') as file:
-#         ast = json.load(file)
-#     return ast
-#
-#
-# def write_ast_to_file(ast, filename):
-#     with open(filename, 'w') as file:
-#         json.dump(ast, file, indent=4)
-#
-#
-# def optimize(ast):
-#     optimized_ast = ast[:]  # Создаем копию AST, чтобы не изменять оригинал
-#     fold_constants(optimized_ast)
-#     remove_unused_code(optimized_ast)
-#     return optimized_ast
-#
-#
-# def fold_constants(ast):
-#     for statement in ast:
-#         if 'assignmentStatement' in statement:
-#             expression = statement['assignmentStatement']['expression']
-#             if 'arithmetic' in expression:
-#                 left = expression['arithmetic']['left']
-#                 right = expression['arithmetic']['right']
-#                 if 'value' in left and 'value' in right:
-#                     operator = expression['arithmetic']['operator']
-#                     if operator == 'PLUS':
-#                         value = left['value'] + right['value']
-#                     elif operator == 'MINUS':
-#                         value = left['value'] - right['value']
-#                     elif operator == 'MUL':
-#                         value = left['value'] * right['value']
-#                     elif operator == 'DIV':
-#                         value = left['value'] / right['value']
-#                     statement['assignmentStatement']['expression'] = {
-#                         'type': left['type'],
-#                         'value': value
-#                     }
-#
-#
-# def remove_unused_code(ast):
-#     used_variables = set()
-#     for statement in ast:
-#         if 'assignmentStatement' in statement:
-#             assigned_variable = statement['assignmentStatement']['ID']
-#             expression = statement['assignmentStatement']['expression']
-#             used_variables.update(get_used_variables(expression, assigned_variable))
-#
-#     for statement in reversed(ast):
-#         if 'assignmentStatement' in statement:
-#             assigned_variable = statement['assignmentStatement']['ID']
-#             if assigned_variable not in used_variables:
-#                 ast.remove(statement)
-#         elif 'printStatement' in statement:
-#             used_variables.add(statement['printStatement']['expression']['value'])
-#
-#
-# def get_used_variables(expression, exclude_variable=None):
-#     used_variables = set()
-#     if 'type' in expression:
-#         if expression['type'] == 'ID' and expression['value'] != exclude_variable:
-#             used_variables.add(expression['value'])
-#     elif 'arithmetic' in expression:
-#         arithmetic = expression['arithmetic']
-#         used_variables.update(get_used_variables(arithmetic['left'], exclude_variable))
-#         used_variables.update(get_used_variables(arithmetic['right'], exclude_variable))
-#     elif 'comparison' in expression:
-#         comparison = expression['comparison']
-#         used_variables.update(get_used_variables(comparison['left'], exclude_variable))
-#         used_variables.update(get_used_variables(comparison['right'], exclude_variable))
-#     elif 'logical' in expression:
-#         logical = expression['logical']
-#         used_variables.update(get_used_variables(logical['left'], exclude_variable))
-#         used_variables.update(get_used_variables(logical['right'], exclude_variable))
-#     return used_variables
-#
-#
-# def main():
-#     input_filename = 'ast.json'
-#     output_filename = 'upgrade.json'
-#
-#     ast = read_ast_from_file(input_filename)
-#     optimized_ast = optimize(ast)
-#     write_ast_to_file(optimized_ast, output_filename)
-#
-#
-# if __name__ == "__main__":
-#     main()
-
-
 import json
 import math
 
@@ -100,6 +6,28 @@ class ASTOptimizer:
     def __init__(self, ast_file):
         with open(ast_file, 'r') as file:
             self.ast = json.load(file)
+
+    def fold_constants(self, ast):
+        for statement in ast:
+            if 'assignmentStatement' in statement:
+                expression = statement['assignmentStatement']['expression']
+                if 'arithmetic' in expression:
+                    left = expression['arithmetic']['left']
+                    right = expression['arithmetic']['right']
+                    if 'value' in left and 'value' in right:
+                        operator = expression['arithmetic']['operator']
+                        if operator == 'PLUS':
+                            value = left['value'] + right['value']
+                        elif operator == 'MINUS':
+                            value = left['value'] - right['value']
+                        elif operator == 'MUL':
+                            value = left['value'] * right['value']
+                        elif operator == 'DIV':
+                            value = left['value'] / right['value']
+                        statement['assignmentStatement']['expression'] = {
+                            'type': left['type'],
+                            'value': value
+                        }
 
     def check_for_var(self, expr):
         if expr['type'] == 'ID':
@@ -165,7 +93,8 @@ class ASTOptimizer:
         if isinstance(node, dict):
             for key, value in node.items():
                 if isinstance(value, list):
-                    node[key] = [self.remove_dead_code(item, used_vars, all_vars) for item in value]
+                    node[key] = [self.remove_dead_code(item, used_vars, all_vars) for item in value if
+                                 self.remove_dead_code(item, used_vars, all_vars) is not None]
                 else:
                     node[key] = self.remove_dead_code(value, used_vars, all_vars)
 
@@ -217,6 +146,7 @@ class ASTOptimizer:
 
         self.ast = self.remove_dead_code(self.ast, used_vars, all_vars)
         self.ast = self.remove_redundant_operations(self.ast)
+        self.fold_constants(self.ast)
 
     def save_ast(self, output_file):
         with open(output_file, 'w') as file:

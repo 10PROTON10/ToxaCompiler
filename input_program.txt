@@ -1,7 +1,8 @@
-int c = 8;
-if (c > 10) then
+int c = 2 + 2 * 2 + 2;
+float g = 35.5;
+if (c > 10.5) then
     print(c);
 else
-    float b = 52.3;
+    float b = 10.3;
     print(b);
 endif;
