@@ -1,49 +1,22 @@
 [
     {
         "assignmentStatement": {
-            "type": "INT",
-            "ID": "c",
+            "type": "FLOAT",
+            "ID": "d",
             "expression": {
-                "arithmetic": {
-                    "operator": "PLUS",
-                    "left": {
-                        "arithmetic": {
-                            "operator": "PLUS",
-                            "left": {
-                                "type": "INT",
-                                "value": 2
-                            },
-                            "right": {
-                                "arithmetic": {
-                                    "operator": "MUL",
-                                    "left": {
-                                        "type": "INT",
-                                        "value": 2
-                                    },
-                                    "right": {
-                                        "type": "INT",
-                                        "value": 2
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "right": {
-                        "type": "INT",
-                        "value": 2
-                    }
-                }
+                "type": "FLOAT",
+                "value": 3.5
             },
             "END_STATE": ";"
         }
     },
     {
         "assignmentStatement": {
-            "type": "FLOAT",
-            "ID": "g",
+            "type": "INT",
+            "ID": "c",
             "expression": {
-                "type": "FLOAT",
-                "value": 35.5
+                "type": "INT",
+                "value": 8
             },
             "END_STATE": ";"
         }

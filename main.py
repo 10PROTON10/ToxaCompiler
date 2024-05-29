@@ -8,89 +8,91 @@ from ast_create import ASTBuilder, MyErrorListener
 from translatetollvm import LLVMTranslator
 from optimizer import optimize_ast
 
-
 class Compiler:
+    first_run = True  # Класс-атрибут для отслеживания первого запуска
+
     def __init__(self, input_file, output_file):
-        self.input_file_path = input_file  # Save input file path
-        self.output_file_path = output_file  # Save output file path
-        self.llvm_code = None  # Initialize llvm_code attribute
+        self.input_file_path = input_file  # Сохраняем путь к входному файлу
+        self.output_file_path = output_file  # Сохраняем путь к выходному файлу
+        self.llvm_code = None  # Инициализируем атрибут llvm_code
 
-        print(f"Processing file: {input_file}")
-
-        # Lexer
-        self.input_file_stream = FileStream(self.input_file_path)  # Create file stream
+        # Лексер
+        self.input_file_stream = FileStream(self.input_file_path)  # Создаем файловый поток
         self.lexer = ToxaLanguageLexer(self.input_file_stream)
         self.lexer.removeErrorListeners()
         self.error_listener = MyErrorListener()
         self.lexer.addErrorListener(self.error_listener)
 
-        # Token Stream
+        # Поток токенов
         self.stream = CommonTokenStream(self.lexer)
 
-        # Parser
+        # Парсер
         self.parser = ToxaLanguageParser(self.stream)
         self.parser.removeErrorListeners()
         self.parser.addErrorListener(self.error_listener)
 
-        # Parse Tree
+        # Дерево разбора
         self.tree = self.parser.program()
 
-        # Check syntax
+        # Проверка синтаксиса
         syntax_result = syntaxerror.check_syntax(self.input_file_path)
         if syntax_result != "Синтаксический анализ завершен успешно, ошибок не найдено.":
             print("Ошибка в синтаксисе файла:")
             print(syntax_result)
             return
         else:
-            print("Parsing completed successfully")
             self.ast_builder = ASTBuilder()
             self.ast = self.ast_builder.visit(self.tree)
-            self.save_ast()
+            if Compiler.first_run:  # Сохраняем AST только при первом запуске
+                self.save_ast()
+                Compiler.first_run = False
 
     def save_ast(self):
-        with open(self.output_file_path, "w") as f:  # Use output_file_path
+        with open(self.output_file_path, "w") as f:  # Используем output_file_path
             json.dump(self.ast, f, indent=4)
-        print(f"AST saved to: {self.output_file_path}")
+        print(f"AST сохранён в: {self.output_file_path}")
 
-        # Close the file
+        # Закрываем файл
         f.close()
 
-        # Process AST
+        # Обработка AST
         translator = LLVMTranslator()
         translator.translate_program(self.ast)
-        self.llvm_code = translator.generate_code()  # Assign llvm_code attribute
+        self.llvm_code = translator.generate_code()  # Присваиваем атрибут llvm_code
 
-        # Define output file path based on optimization status
+        # Определяем путь к выходному файлу на основе статуса оптимизации
         output_ll_file = "output_opt.ll" if "upgrade" in self.output_file_path else "output_no_opt.ll"
 
         with open(output_ll_file, "w") as output_file:
             output_file.write(self.llvm_code)
-        print(f"Created LLVM code: {output_ll_file}")
-
+        print(f"Код LLVM создан: {output_ll_file}")
 
 if __name__ == '__main__':
     input_file = "input_program.txt"
-    output_file = "ast.json"
-    upgrade_file = 'upgrade.json'
-    # Measure time without optimization
-    start_time_no_opt = time.time()
-    compiler = Compiler(input_file, output_file)
-    end_time_no_opt = time.time()
-    llvm_code_no_opt_time = end_time_no_opt - start_time_no_opt
+    syntax_result = syntaxerror.check_syntax(input_file)
+    if syntax_result != "Синтаксический анализ завершен успешно, ошибок не найдено.":
+        print("Исправьте ошибку")
+        print(syntax_result)
+    else:
+        print("Синтаксический анализ завершен успешно")
+        print("Семантический анализ завершен успешно")
+        output_file = "ast.json"
+        upgrade_file = 'upgrade.json'
+        # Измеряем время без оптимизации
+        start_time_no_opt = time.time()
+        compiler = Compiler(input_file, output_file)
+        end_time_no_opt = time.time()
+        llvm_code_no_opt_time = end_time_no_opt - start_time_no_opt
 
-    print(f"LLVM code generation time without optimization: {llvm_code_no_opt_time:.4f} seconds")
+        print(f"Время генерации кода LLVM без оптимизации: {llvm_code_no_opt_time:.4f} секунд")
 
-    # Apply optimization to LLVM code
-    optimize_ast(output_file, upgrade_file)
+        # Применяем оптимизацию к коду LLVM
+        optimize_ast(output_file, upgrade_file)
 
-    # Measure time with optimization
-    start_time_with_opt = time.time()
-    compiler = Compiler(input_file, upgrade_file)
-    end_time_with_opt = time.time()
-    llvm_code_with_opt_time = end_time_with_opt - start_time_with_opt
+        # Измеряем время с оптимизацией
+        start_time_with_opt = time.time()
+        compiler = Compiler(input_file, upgrade_file)
+        end_time_with_opt = time.time()
+        llvm_code_with_opt_time = end_time_with_opt - start_time_with_opt
 
-    print(f"LLVM code generation time with optimization: {llvm_code_with_opt_time:.4f} seconds")
-
-    # Output execution time
-    print(f"Time without optimization: {llvm_code_no_opt_time:.4f} seconds")
-    print(f"Time with optimization: {llvm_code_with_opt_time:.4f} seconds")
+        print(f"Время генерации кода LLVM с оптимизацией: {llvm_code_with_opt_time:.4f} секунд")
